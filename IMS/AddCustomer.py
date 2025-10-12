@@ -119,9 +119,6 @@ save_btn = wait.until(
 save_btn.click()
 print("Save button clicked successfully!")
 
-
-
-
 # Wait for user input before closing the browser
 print("Press 'Enter' to close the browser.")
 keyboard.wait('enter')
