@@ -51,7 +51,7 @@ class MainPage:
         driver.execute_script("arguments[0].click();", ledger_group)
         print("Ledger Group Master opened.")
 
-        # Close sidebar if exists
+        # Close sidebar if existsgit 
         try:
             close_btn = self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[@class='sidebar-close']"))
@@ -84,6 +84,18 @@ class MainPage:
         select.select_by_value("AT")  # ASSETS
         print("Selected 'ASSETS' from Account Type dropdown.")
 
+        group_name = self.wait.until(
+            EC.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='GroupName']"))
+        )
+        group_name.send_keys("Automation Testing")
+        print("Entered 'Automation Testing' as Group Name.")
+
+        save_btn = self.wait.until(
+            EC.element_to_be_clickable((By.ID, "save"))
+        )
+        save_btn.click()
+        print("Clicked Save button to add new ledger group.")
+        time.sleep(20)  # Wait for the action to complete
 
 if __name__ == "__main__":
     driver = login_to_ims()
