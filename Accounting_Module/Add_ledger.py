@@ -6,7 +6,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from login_details import login_to_ims
 import time  # Needed for short sleep
 
-
 class MainPage:
     def __init__(self, driver):
         # Reuse the driver from login_to_ims
@@ -46,9 +45,9 @@ class MainPage:
             EC.element_to_be_clickable(
                 (By.LINK_TEXT, "Ledger Group Master"))
         )
-        driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", ledger_group)
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", ledger_group)
         time.sleep(2)  # give some time for the submenu to appear
-        driver.execute_script("arguments[0].click();", ledger_group)
+        self.driver.execute_script("arguments[0].click();", ledger_group)
         print("Ledger Group Master opened.")
 
         # Close sidebar if existsgit 
@@ -61,7 +60,7 @@ class MainPage:
         except:
             print("Sidebar close button not found.")
 
-    def add_new_ledger(self):
+    def add_new_ledger(self, account_name: str):
         # Click Add New
         add_btn = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//button[@id='addLedgerDropdown']"))
@@ -98,8 +97,15 @@ class MainPage:
         acc_name_select = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//input[@id='accountName']"))
         )
-        acc_name_select.send_keys("Automation Ledger")
-        print("Entered Account Name: Automation Ledger")
+        acc_name_select.clear()
+        acc_name_select.send_keys(account_name)
+        print("Entered Account Name: {account_name}")
+
+        sub_ledger_checkbox = self.wait.until(
+            EC.element_to_be_clickable((By.XPATH, "//input[@type='checkbox' and @formcontrolname='HasSubLedger']"))
+        )
+        sub_ledger_checkbox.click()
+        print("Checked Sub Ledger checkbox.")
 
         save_btn = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//button[@id='save']"))

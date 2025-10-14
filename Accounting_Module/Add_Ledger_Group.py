@@ -46,14 +46,14 @@ class MainPage:
             EC.element_to_be_clickable(
                 (By.LINK_TEXT, "Ledger Group Master"))
         )
-        driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", ledger_group)
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", ledger_group)
         time.sleep(2)  # give some time for the submenu to appear
-        driver.execute_script("arguments[0].click();", ledger_group)
+        self.driver.execute_script("arguments[0].click();", ledger_group)
         print("Ledger Group Master opened.")
 
         # Close sidebar if existsgit 
         try:
-            close_btn = self.wait.until(
+            close_btn = WebDriverWait(self.driver, 5).until(
                 EC.element_to_be_clickable((By.XPATH, "//button[@class='sidebar-close']"))
             )
             close_btn.click()
@@ -61,7 +61,7 @@ class MainPage:
         except:
             print("Sidebar close button not found.")
 
-    def add_new_ledger_group(self):
+    def add_new_ledger_group(self, group_name_value: str):
         # Click Add New
         add_btn = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//button[@id='addLedgerDropdown']"))
@@ -87,8 +87,8 @@ class MainPage:
         group_name = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='GroupName']"))
         )
-        group_name.send_keys("Automation Testing")
-        print("Entered 'Automation Testing' as Group Name.")
+        group_name.send_keys(group_name_value)
+        print("Entered {group_name_value} as Group Name.")
 
         save_btn = self.wait.until(
             EC.element_to_be_clickable((By.ID, "save"))
