@@ -99,7 +99,7 @@ class MainPage:
         )
         acc_name_select.clear()
         acc_name_select.send_keys(account_name)
-        print("Entered Account Name: {account_name}")
+        print(f"Entered Account Name: {account_name}")
 
         sub_ledger_checkbox = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//input[@type='checkbox' and @formcontrolname='HasSubLedger']"))

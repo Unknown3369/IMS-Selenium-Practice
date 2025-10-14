@@ -88,7 +88,7 @@ class MainPage:
             EC.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='GroupName']"))
         )
         group_name.send_keys(group_name_value)
-        print("Entered {group_name_value} as Group Name.")
+        print(f"Entered {group_name_value} as Group Name.")
 
         save_btn = self.wait.until(
             EC.element_to_be_clickable((By.ID, "save"))
