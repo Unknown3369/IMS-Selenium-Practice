@@ -79,8 +79,6 @@ class MainPage:
 
         time.sleep(3)
 
-
-
 if __name__ == "__main__":
     driver = login_to_ims()
     main = MainPage(driver)
