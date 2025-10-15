@@ -15,3 +15,6 @@ def login_to_ims():
     wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='Date']")))
     print("Dashboard page loaded successfully!")
     return driver
+
+if __name__ == "__main__":
+    login_to_ims()
