@@ -15,7 +15,7 @@ def payment_voucher_details():
     payment_voucher.open_payment_voucher()
 
     # Add voucher details
-    payment_voucher.add_voucher_details("REF678909384", "Automation Test Payment", "John Doe", 1500, "CHQ12344857756", "15-06-2025")
+    payment_voucher.add_voucher_details("REF62201584", "Automation Test Payment", "John Doe", 150000, "CHQ857756", "15-06-2025")
 
     # Wait before closing
     time.sleep(5)
