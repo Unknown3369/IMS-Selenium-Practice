@@ -29,7 +29,7 @@ class MainPage:
         self.cr_amount = (By.XPATH, "//input[@id='CrAmtInput_1']")
         self.no_button = (By.XPATH, "//button[contains(text(),'No')]")
 
-    def open_accounting_module(self):
+    def open_accounting_module(self): 
         account = self.wait.until(
             EC.element_to_be_clickable(self.accounting_module)
         )
