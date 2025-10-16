@@ -1,1 +1,9 @@
-This is a Selenium Practice Repository of Sagan for IMS Software where I will be Practicing Automation of the Demo Website of IMS Software.
+This Repository is for practice purpose only.
+
+Selenium Basic Practice implementation - IMS Software
+
+Tested Link:
+  https://redmiims.webredirect.himshang.com.np/#/pages/dashboard
+
+Tested Version:
+  1.0.86
