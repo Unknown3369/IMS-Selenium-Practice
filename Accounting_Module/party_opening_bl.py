@@ -18,9 +18,10 @@ class MainPage:
       self.refno = (By.XPATH, "//input[@id='refno']")
       self.select_account = (By.XPATH, "//input[@id='ACCODEInput_0']")
       self.account_select = (By.XPATH, "//div[@title='Milk Chocolate Vendor']")
-      self.amount_dr = (By.XPATH, "//input[@id='AMOUNTDR_0']")
-      self.narration = (By.XPATH, "//input[@id='NARRATION']")
-      self.save_button = (By.XPATH, "//button[@id='btnSave']")
+      self.amount_dr = (By.XPATH, "//input[contains(@id, 'DrAmtInput')]")
+      self.narration = (By.ID, "narration_0")
+      self.save_button = (By.XPATH, "//button[normalize-space(text())='F6 SAVE']")
+      self.no_button = (By.ID, "nobtn")
       
    def open_accounting_module(self):
       account = self.wait.until(
@@ -50,7 +51,7 @@ class MainPage:
       ledger_opening_bl.click()
       print("Clicked on Party Opening B/L.")
 
-   def add_party_opening_details(self, reference_number: str):
+   def add_party_opening_details(self, reference_number: str, debit_amount: float, enter_narration: str):
       refno = self.wait.until(
          EC.element_to_be_clickable(self.refno)
       )
@@ -69,8 +70,31 @@ class MainPage:
       actions_select = ActionChains(self.driver).double_click(account_select).perform()
       print("Selected Account")
 
+      amount_dr = self.wait.until(
+         EC.element_to_be_clickable(self.amount_dr)
+      )
+      amount_dr.clear()
+      amount_dr.send_keys(debit_amount)
+      print(f"Entered Debit Amount: {debit_amount}")
 
+      narration = self.wait.until(
+         EC.element_to_be_clickable(self.narration)
+      )
+      narration.clear()
+      narration.send_keys(enter_narration)
+      print(f"Entered Narration: {enter_narration}")
 
+      save_button = self.wait.until(
+         EC.element_to_be_clickable(self.save_button)
+      )
+      save_button.click()
+      print("Clicked on Save button.")
+
+      no_button = self.wait.until(
+         EC.element_to_be_clickable(self.no_button)
+      )
+      no_button.click()
+      print("Clicked on No button in confirmation dialog.")
 
 if __name__ == "__main__":
    driver = login_to_ims()
