@@ -15,7 +15,7 @@ def journal_voucher_details():
     journal_voucher.open_journal_voucher()
 
     # Step 4: Add voucher details
-    journal_voucher.add_voucher("REF2650283", "Automation Test Voucher", 1000, 1000)
+    journal_voucher.add_voucher("REF26502858443", "Automation Test Voucher", 1000, 1000)
 
     # Step 5: Wait before closing
     time.sleep(5)
