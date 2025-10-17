@@ -28,6 +28,11 @@ class MainPage:
         self.selected_account_n = (By.XPATH, "//div[@title='Test Account']")
         self.cr_amount = (By.XPATH, "//input[@id='CrAmtInput_1']")
         self.no_button = (By.XPATH, "//button[contains(text(),'No')]")
+        self.edit_button = (By.XPATH, "//button[normalize-space(text())='F5 EDIT']")
+        self.select_voucher = (By.XPATH, "//div[@title='JV24-KAT-82/83']")
+        self.alt_select_account = (By.XPATH, "//div[@title='Test']")
+        self.view_button = (By.XPATH, "//button[contains(normalize-space(), 'F4 VIEW')]")
+        self.enter_view = (By.XPATH, "//div[normalize-space(text())='JV27-KAT-82/83']")
 
     def open_accounting_module(self): 
         account = self.wait.until(
@@ -62,6 +67,7 @@ class MainPage:
         print("Journal Voucher opened.")
         time.sleep(5)
 
+    # ____Add Voucher___
     def add_voucher(self, reference_number: str, enter_remarks: str, debit_amount: int, credit_amount: int):
         refno = self.wait.until(
             EC.element_to_be_clickable(self.refno)
@@ -132,6 +138,66 @@ class MainPage:
         print("Clicked 'No' on the confirmation dialog.")
 
 
+#___________EDIT JOURNAL VOUCHER SECTION STARTS____________
+    def edit_voucher(self, dr_amount: float):
+        edit_button = self.wait.until(
+            EC.element_to_be_clickable(self.edit_button)
+        )
+        edit_button.click()
+        print("Edit Button Clicked")
+
+        select_voucher = self.wait.until(
+            EC.element_to_be_clickable(self.select_voucher)
+        )
+        ActionChains(self.driver).double_click(select_voucher).perform()
+        print("Selected Sucessfully")
+
+        edit_select_account = self.wait.until(
+            EC.element_to_be_clickable(self.select_account)
+        )
+        edit_select_account.send_keys(Keys.ENTER)
+        
+        select_edited_account = self.wait.until(
+            EC.element_to_be_clickable(self.alt_select_account)
+        )
+        ActionChains(self.driver).double_click(select_edited_account).perform()
+        print("Account Selected")
+        time.sleep(3)
+        
+        edited_dr_amount = self.wait.until(
+            EC.element_to_be_clickable(self.amount_dr)
+        )
+        edited_dr_amount.clear()
+        edited_dr_amount.send_keys(dr_amount)
+        print("Amount Entered")
+
+        save_button = self.wait.until(
+            EC.element_to_be_clickable(self.save_button)
+        )
+        save_button.click()
+        print("Clicked on Save button.")
+
+        no_btn = self.wait.until(
+            EC.element_to_be_clickable(self.no_button)
+        )
+        no_btn.click()
+        print("Clicked 'No' on the confirmation dialog.")
+
+    #______________View Journal Voucher____________________
+    def view_voucher (self):
+        view_button = self.wait.until(
+            EC.element_to_be_clickable(self.view_button)
+        )
+        view_button.click()
+        print("View Button Clicked")
+        
+        enter_view = self.wait.until(
+            EC.element_to_be_clickable(self.enter_view)
+        )
+        ActionChains(self.driver).double_click(enter_view).perform()
+
+
+#important Code
 if __name__ == "__main__":
     driver = login_to_ims()
     journal_voucher = MainPage(driver)
