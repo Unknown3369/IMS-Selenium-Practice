@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from login_details import login_to_ims
+from datetime import date
 import time  # Needed for short sleep
 
 
@@ -29,7 +30,7 @@ class MainPage:
       self.narration= (By.XPATH, "//input[@id='narration_0']")
       self.receipt_mode = (By.XPATH, "//select[@id='transactionType_0']")
       self.receipt_number = (By.ID, "ChequeNo_0")
-      self.date = (By.ID, "ChequeDate_0")
+      self.date = (By.XPATH, "//input[@id='ChequeDate_0']")
       self.cross = (By.XPATH, "//span[@aria-hidden='true' and text()='×']")
       self.save = (By.XPATH, "//button[contains(text(), 'F6 SAVE')]")
 
@@ -109,7 +110,7 @@ class MainPage:
       select_acc.perform()
       print("Selected Cash/Bank Account: PETTY CASH A/C")
 
-   def voucher_details(self, cr_amount: int, enter_narration: str, number_receipt: str, enter_date: str):
+   def voucher_details(self, cr_amount: int, enter_narration: str, number_receipt: str):
       select_account = self.wait.until(
          EC.element_to_be_clickable(self.select_account)
       )
@@ -147,12 +148,16 @@ class MainPage:
       receipt_number.send_keys(number_receipt)
       print(f"Entered Receipt Number: {number_receipt}")
 
-      date = self.wait.until(
-         EC.element_to_be_clickable(self.date)
+      # Wait until the date field is present in the DOM
+      date_field = self.wait.until(
+         EC.presence_of_element_located(self.date)
       )
-      date.clear()
-      date.send_keys(enter_date)
-      print(f"Entered Date: {enter_date}")
+      date_field.click()
+      today_date = date.today().strftime("%Y-%m-%d") 
+      print("Field value attribute:", date_field.get_attribute("value"))
+      self.driver.execute_script("arguments[0].value = arguments[1];", date_field, today_date)
+      print(f"Date Entered: {today_date}")
+
 
       try:
          handle_popups=self.wait.until(
@@ -163,10 +168,22 @@ class MainPage:
       except:
          print("No popup appeared.")
       
-      save_button = self.wait.until(
-         EC.element_to_be_clickable(self.save)
-      )
-      save_button.click()
+
+      try:
+         # Try clicking directly
+         save_button = self.wait.until(EC.element_to_be_clickable(self.save))
+         save_button.click()
+         print("Save button clicked successfully.")
+      except:
+         print("Save button not clickable....trying Shift key workaround...")
+         # Send Ctrl keypress (you can change this to TAB, ENTER, etc.)
+         actions = ActionChains(self.driver)
+         actions.key_down(Keys.SHIFT).pause(0.1).key_up(Keys.SHIFT).perform()
+         # Try again
+         save_button = self.wait.until(EC.element_to_be_clickable(self.save))
+         save_button.click()
+         print("Save button clicked after Shift key workaround.")
+
 
 
 
