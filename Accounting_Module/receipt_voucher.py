@@ -12,6 +12,7 @@ import time  # Needed for short sleep
 class MainPage:
    def __init__(self, driver):
       self.driver = driver
+      self.actions = ActionChains(driver)  # ✅ Add this line
       self.wait = WebDriverWait(self.driver, 15)
       self.accounting_module = (By.XPATH, "//span[normalize-space(text())='Accounting Module']")
       self.transactions = (By.XPATH, "//span[normalize-space(text())='Transactions']")
@@ -139,7 +140,7 @@ class MainPage:
          EC.element_to_be_clickable(self.receipt_mode)
       )
       receipt_mode.click()
-      Select(receipt_mode).select_by_visible_text("Cheque")
+      Select(receipt_mode).select_by_visible_text("E-Transfer")
       print("Selected Receipt Mode: Cheque")
 
       receipt_number = self.wait.until(
@@ -147,42 +148,50 @@ class MainPage:
       )
       receipt_number.send_keys(number_receipt)
       print(f"Entered Receipt Number: {number_receipt}")
+      time.sleep(15)
 
-      # Wait until the date field is present in the DOM
+      # --- Step: Enter Today's Date ---
       date_field = self.wait.until(
-         EC.presence_of_element_located(self.date)
-      )
+            EC.element_to_be_clickable((By.XPATH, "//input[contains(@id, 'ChequeDate_0')]"))
+        )
       date_field.click()
-      today_date = date.today().strftime("%Y-%m-%d") 
-      print("Field value attribute:", date_field.get_attribute("value"))
-      self.driver.execute_script("arguments[0].value = arguments[1];", date_field, today_date)
-      print(f"Date Entered: {today_date}")
+
+      # Type today's date in MMDDYYYY format
+      today_date = date.today().strftime("%m%d%Y")
+
+      # ✅ Use the initialized ActionChains instance
+      self.actions.send_keys(today_date).perform()
+
+
+      time.sleep(5)   
 
 
       try:
-         handle_popups=self.wait.until(
-            EC.element_to_be_clickable(self.cross)
+         alert_ok = WebDriverWait(self.driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, "//button[normalize-space(text())='OK']"))
          )
-         handle_popups.click()
-         print("Popup closed.")
-      except:
-         print("No popup appeared.")
+         alert_ok.click()
+         print("Closed 'Invalid Transaction Date' popup")
+      except Exception:
+         pass
+
+      time.sleep(10)
       
 
-      try:
-         # Try clicking directly
-         save_button = self.wait.until(EC.element_to_be_clickable(self.save))
-         save_button.click()
-         print("Save button clicked successfully.")
-      except:
-         print("Save button not clickable....trying Shift key workaround...")
-         # Send Ctrl keypress (you can change this to TAB, ENTER, etc.)
-         actions = ActionChains(self.driver)
-         actions.key_down(Keys.SHIFT).pause(0.1).key_up(Keys.SHIFT).perform()
-         # Try again
-         save_button = self.wait.until(EC.element_to_be_clickable(self.save))
-         save_button.click()
-         print("Save button clicked after Shift key workaround.")
+      # try:
+      # Try clicking directly
+      save_button = self.wait.until(EC.element_to_be_clickable(self.save))
+      save_button.click()
+      print("Save button clicked successfully.")
+      # except:
+      #    print("Save button not clickable....trying Shift key workaround...")
+      #    # Send Ctrl keypress (you can change this to TAB, ENTER, etc.)
+      #    actions = ActionChains(self.driver)
+      #    actions.key_down(Keys.SHIFT).pause(0.1).key_up(Keys.SHIFT).perform()
+      #    # Try again
+      #    save_button = self.wait.until(EC.element_to_be_clickable(self.save))
+      #    save_button.click()
+      #    print("Save button clicked after Shift key workaround.")
 
 
 
