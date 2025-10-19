@@ -13,7 +13,6 @@ class MainPage:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 25)
-
         self.accounting_module = (By.XPATH, "//span[normalize-space(text())='Accounting Module']")
         self.transactions = (By.XPATH, "//span[normalize-space(text())='Transactions']")
         self.chart_of_accounts = (By.LINK_TEXT, "Voucher Entries")

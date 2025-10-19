@@ -152,8 +152,8 @@ class MainPage:
 
       # --- Step: Enter Today's Date ---
       date_field = self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//input[contains(@id, 'ChequeDate_0')]"))
-        )
+            EC.element_to_be_clickable(self.date)
+         )
       date_field.click()
 
       # Type today's date in MMDDYYYY format

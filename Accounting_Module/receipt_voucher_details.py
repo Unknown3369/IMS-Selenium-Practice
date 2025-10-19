@@ -13,7 +13,7 @@ def receipt_voucher_details():
    receipt_voucher.open_receipt_voucher()
    # Step 4: Add voucher details
    receipt_voucher.add_voucher("Automation Test Receipt", "PETTY CASH A/C")
-   receipt_voucher.voucher_details(1500, "Test Narration", "7898548")
+   receipt_voucher.voucher_details(1500, "Test Narration", "CH7488")
    # Step 5: Wait before closing
    time.sleep(5)
    driver.quit()

@@ -1,6 +1,8 @@
 from selenium import webdriver
 from Payment_Vouchers import MainPage
 from login_details import login_to_ims
+from datetime import datetime
+import random
 import time
 
 def payment_voucher_details():
@@ -15,7 +17,15 @@ def payment_voucher_details():
     payment_voucher.open_payment_voucher()
 
     # Add voucher details
-    payment_voucher.add_voucher_details("REF62201584", "Automation Test Payment", "John Doe", 150000, "CHQ857756", "15-06-2025")
+    def generate_random_refno():
+        date_part = datetime.now().strftime("%y%m%d")  # e.g. 251019
+        random_part = random.randint(100, 999)
+        return f"JV{date_part}{random_part}"
+    
+    def generate_rendom_chequeno():
+        random_num = random.randint(1000,9999)
+        return f"CHQ{random_num}"
+    payment_voucher.add_voucher_details(generate_random_refno(), "Automation Test Payment", "John Doe", 150000, generate_rendom_chequeno())
 
     # Wait before closing
     time.sleep(5)

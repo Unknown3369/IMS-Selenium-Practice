@@ -6,14 +6,16 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from login_details import login_to_ims
 from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
+from datetime import date
 import time
 import keyboard
 
 class MainPage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 15)
-
+        self.wait = WebDriverWait(self.driver,25)
+        self.actions = ActionChains(driver)
 
         self.accounting_module = (By.XPATH, "//span[normalize-space(text())='Accounting Module']")
         self.transactions = (By.XPATH, "//span[normalize-space(text())='Transactions']")
@@ -67,7 +69,7 @@ class MainPage:
         print("Payment Voucher opened.")
         time.sleep(5)
 
-    def add_voucher_details(self, reference_number: str, enter_remarks: str, payee: str, enter_amount: int, cheque_number: str, cheque_date: str):
+    def add_voucher_details(self, reference_number: str, enter_remarks: str, payee: str, enter_amount: int, cheque_number: str):
         refno = self.wait.until(
             EC.element_to_be_clickable(self.refno)
         )
@@ -151,11 +153,30 @@ class MainPage:
         cheque_no.send_keys(cheque_number)
         print(f"Entered Cheque Number: {cheque_number}")
 
+        # --- Step: Enter Today's Date ---
         date_field = self.wait.until(
             EC.element_to_be_clickable(self.cheque_date)
         )
-        date_field.send_keys(cheque_date)
-        print(f"Entered Cheque Date: {cheque_date}")
+        date_field.click()
+
+        # Type today's date in MMDDYYYY format
+        today_date = date.today().strftime("%m%d%Y")
+
+        # ✅ Use the initialized ActionChains instance
+        self.actions.send_keys(today_date).perform()
+
+
+        time.sleep(5)   
+
+
+        try:
+            alert_ok = WebDriverWait(self.driver, 5).until(
+                EC.element_to_be_clickable((By.XPATH, "//button[normalize-space(text())='OK']"))
+            )
+            alert_ok.click()
+            print("Closed 'Invalid Transaction Date' popup")
+        except Exception:
+            pass
 
         try: 
             error_handler = self.wait.until(
@@ -169,11 +190,23 @@ class MainPage:
         action_shift = ActionChains(self.driver)
         action_shift.key_down(Keys.SHIFT).pause(0.5).key_up(Keys.SHIFT).perform()
 
-        save_button = self.wait.until(
-            EC.element_to_be_clickable(self.save)
-        )
-        save_button.click()
-        print("Clicked on SAVE button.")
+        try:
+        # Try to find and click the Save button
+            save_button = self.wait.until(
+                EC.element_to_be_clickable(self.save_button)
+            )
+            save_button.click()
+            print("Clicked on Save button.")
+        except (TimeoutException, ElementClickInterceptedException):
+            print("Save button not found or not clickable. Pressing SHIFT and retrying...")
+            # Press and release SHIFT key
+            ActionChains(self.driver).key_down(Keys.SHIFT).pause(0.5).key_up(Keys.SHIFT).perform()    
+            # Try again to find and click the button
+            save_button = self.wait.until(
+                EC.element_to_be_clickable(self.save_button)
+            )
+            save_button.click()
+            print("Clicked on Save button after pressing SHIFT.")
 
         no_popup = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//button[@id='nobtn' and normalize-space(text())='No']"))
