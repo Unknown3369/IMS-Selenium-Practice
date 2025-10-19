@@ -5,13 +5,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from login_details import login_to_ims
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
 import time
 import keyboard
 
 class MainPage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 15)
+        self.wait = WebDriverWait(self.driver, 25)
 
         self.accounting_module = (By.XPATH, "//span[normalize-space(text())='Accounting Module']")
         self.transactions = (By.XPATH, "//span[normalize-space(text())='Transactions']")
@@ -125,12 +126,30 @@ class MainPage:
         cr_amount.send_keys(credit_amount)
         print(f"Entered Debit Amount: {credit_amount}")
 
-        save_button = self.wait.until(
-            EC.element_to_be_clickable(self.save_button)
-        )
-        save_button.click()
-        print("Clicked on Save button.")
-
+        # save_button = self.wait.until(
+        #     EC.element_to_be_clickable(self.save_button)
+        # )
+        # save_button.click()
+        # print("Clicked on Save button.")
+        
+        try:
+        # Try to find and click the Save button
+            save_button = self.wait.until(
+                EC.element_to_be_clickable(self.save_button)
+            )
+            save_button.click()
+            print("Clicked on Save button.")
+        except (TimeoutException, ElementClickInterceptedException):
+            print("Save button not found or not clickable. Pressing SHIFT and retrying...")
+            # Press and release SHIFT key
+            ActionChains(self.driver).key_down(Keys.SHIFT).pause(0.5).key_up(Keys.SHIFT).perform()    
+            # Try again to find and click the button
+            save_button = self.wait.until(
+                EC.element_to_be_clickable(self.save_button)
+            )
+            save_button.click()
+            print("Clicked on Save button after pressing SHIFT.")
+    
         no_btn = self.wait.until(
             EC.element_to_be_clickable(self.no_button)
         )
