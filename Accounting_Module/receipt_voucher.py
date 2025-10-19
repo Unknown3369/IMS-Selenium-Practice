@@ -12,7 +12,7 @@ import time  # Needed for short sleep
 class MainPage:
    def __init__(self, driver):
       self.driver = driver
-      self.actions = ActionChains(driver)  # ✅ Add this line
+      self.actions = ActionChains(driver)
       self.wait = WebDriverWait(self.driver, 15)
       self.accounting_module = (By.XPATH, "//span[normalize-space(text())='Accounting Module']")
       self.transactions = (By.XPATH, "//span[normalize-space(text())='Transactions']")
@@ -159,12 +159,10 @@ class MainPage:
       # Type today's date in MMDDYYYY format
       today_date = date.today().strftime("%m%d%Y")
 
-      # ✅ Use the initialized ActionChains instance
+      # Use the initialized ActionChains instance
       self.actions.send_keys(today_date).perform()
 
-
       time.sleep(5)   
-
 
       try:
          alert_ok = WebDriverWait(self.driver, 5).until(

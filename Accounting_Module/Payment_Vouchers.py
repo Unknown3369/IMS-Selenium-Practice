@@ -15,6 +15,7 @@ class MainPage:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver,25)
+        self.driver.maximize_window()
         self.actions = ActionChains(driver)
 
         self.accounting_module = (By.XPATH, "//span[normalize-space(text())='Accounting Module']")
@@ -34,8 +35,8 @@ class MainPage:
         self.pay_mode = (By.XPATH, "//select[@id='transactionType_0']")
         self.cheque_no = (By.XPATH, "//input[@id='ChequeNo_0']")
         self.cheque_date = (By.XPATH, "//input[@id='ChequeDate_0']")
-        self.save = (By.XPATH, "//button[contains(text(),'F6 SAVE')]")
-    
+        self.save = (By.XPATH, "//button[contains(text(), 'F6 SAVE')]")
+
     def open_accounting_module(self):
         account = self.wait.until(
             EC.element_to_be_clickable( self.accounting_module)
@@ -152,6 +153,7 @@ class MainPage:
         )
         cheque_no.send_keys(cheque_number)
         print(f"Entered Cheque Number: {cheque_number}")
+        cheque_no.send_keys(Keys.TAB)
 
         # --- Step: Enter Today's Date ---
         date_field = self.wait.until(
@@ -162,12 +164,10 @@ class MainPage:
         # Type today's date in MMDDYYYY format
         today_date = date.today().strftime("%m%d%Y")
 
-        # ✅ Use the initialized ActionChains instance
+        # Use the initialized ActionChains instance
         self.actions.send_keys(today_date).perform()
 
-
         time.sleep(5)   
-
 
         try:
             alert_ok = WebDriverWait(self.driver, 5).until(
@@ -178,6 +178,7 @@ class MainPage:
         except Exception:
             pass
 
+        time.sleep(3)
         try: 
             error_handler = self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[.//span[@aria-hidden='true' and text()='×']]"))
@@ -187,33 +188,17 @@ class MainPage:
         except Exception:
             print("No unexpected popup appeared.")
 
-        action_shift = ActionChains(self.driver)
-        action_shift.key_down(Keys.SHIFT).pause(0.5).key_up(Keys.SHIFT).perform()
-
-        try:
-        # Try to find and click the Save button
-            save_button = self.wait.until(
-                EC.element_to_be_clickable(self.save_button)
-            )
-            save_button.click()
-            print("Clicked on Save button.")
-        except (TimeoutException, ElementClickInterceptedException):
-            print("Save button not found or not clickable. Pressing SHIFT and retrying...")
-            # Press and release SHIFT key
-            ActionChains(self.driver).key_down(Keys.SHIFT).pause(0.5).key_up(Keys.SHIFT).perform()    
-            # Try again to find and click the button
-            save_button = self.wait.until(
-                EC.element_to_be_clickable(self.save_button)
-            )
-            save_button.click()
-            print("Clicked on Save button after pressing SHIFT.")
+        save_button = self.wait.until(
+            EC.element_to_be_clickable(self.save)
+        )
+        save_button.click()
+        print("Clicked on Save button successfully.")
 
         no_popup = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//button[@id='nobtn' and normalize-space(text())='No']"))
         )
         no_popup.click()
         print("Handled popup.")
-
 
 
 if __name__ == "__main__":

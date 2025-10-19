@@ -24,8 +24,9 @@ def payment_voucher_details():
     
     def generate_rendom_chequeno():
         random_num = random.randint(1000,9999)
-        return f"CHQ{random_num}"
-    payment_voucher.add_voucher_details(generate_random_refno(), "Automation Test Payment", "John Doe", 150000, generate_rendom_chequeno())
+        return f"{random_num}"
+    
+    payment_voucher.add_voucher_details(generate_random_refno(), "Test Payment", "John Doe", 150000, generate_rendom_chequeno())
 
     # Wait before closing
     time.sleep(5)
