@@ -26,8 +26,13 @@ def payment_voucher_details():
         random_num = random.randint(1000,9999)
         return f"{random_num}"
     
-    payment_voucher.add_voucher_details(generate_random_refno(), "Test Payment", "John Doe", 150000, generate_rendom_chequeno())
+    def generate_random_amount():
+        random_num = random.randfloat(1000.00,99999.99)
+        return f"{random_num}"
+    
+    payment_voucher.add_voucher_details(generate_random_refno(), "Test Payment", "John Doe", generate_random_amount(), generate_rendom_chequeno())
 
+    payment_voucher.save_voucher()
     # Wait before closing
     time.sleep(5)
     driver.quit()

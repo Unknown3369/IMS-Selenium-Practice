@@ -36,6 +36,7 @@ class MainPage:
         self.cheque_no = (By.XPATH, "//input[@id='ChequeNo_0']")
         self.cheque_date = (By.XPATH, "//input[@id='ChequeDate_0']")
         self.save = (By.XPATH, "//button[contains(text(), 'F6 SAVE')]")
+        self.no_popup = (By.XPATH, "//button[@id='nobtn' and normalize-space(text())='No']")
 
     def open_accounting_module(self):
         account = self.wait.until(
@@ -167,7 +168,7 @@ class MainPage:
         # Use the initialized ActionChains instance
         self.actions.send_keys(today_date).perform()
 
-        time.sleep(5)   
+        time.sleep(3)   
 
         try:
             alert_ok = WebDriverWait(self.driver, 5).until(
@@ -178,7 +179,7 @@ class MainPage:
         except Exception:
             pass
 
-        time.sleep(3)
+        time.sleep(1)
         try: 
             error_handler = self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[.//span[@aria-hidden='true' and text()='×']]"))
@@ -187,7 +188,8 @@ class MainPage:
             print("Handled unexpected popup.")
         except Exception:
             print("No unexpected popup appeared.")
-
+        
+    def save_voucher(self):
         save_button = self.wait.until(
             EC.element_to_be_clickable(self.save)
         )
@@ -195,7 +197,7 @@ class MainPage:
         print("Clicked on Save button successfully.")
 
         no_popup = self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//button[@id='nobtn' and normalize-space(text())='No']"))
+            EC.element_to_be_clickable(self.no_popup)
         )
         no_popup.click()
         print("Handled popup.")
