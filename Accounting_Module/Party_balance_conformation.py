@@ -23,6 +23,7 @@ class MainPage:
       self.select_to_date = (By.XPATH, "//input[@type='date' and @placeholder='Year Start Date' and contains(@style, 'margin-left: 13px')]")
       self.account_select = (By.XPATH, "//input[@name='customerName' and @placeholder='Press Enter to select']")
       self.select_account = (By.XPATH, "//div[@title='IMSTestCustom']")
+      self.load_btn = (By.XPATH, "//button[contains(@class, 'btn-info') and normalize-space(text())='Load']")
 
    def open_accounting_module(self):
       account = self.wait.until(
@@ -52,27 +53,49 @@ class MainPage:
       party_bl_conformation.click()
       print("Clicked on Party Balance Conformation.")
 
-
-
-
-      # # Type today's date in MMDDYYYY format
-      # today_date = date.today().strftime("%m%d%Y")
-      # # Use the initialized ActionChains instance
-      # self.actions.send_keys(today_date).perform()
-      # try:
-      #    alert_ok = WebDriverWait(self.driver, 5).until(
-      #       EC.element_to_be_clickable((By.XPATH, "//button[normalize-space(text())='OK']"))
-      #    )
-      #    alert_ok.click()
-      #    print("Closed 'Invalid Transaction Date' popup")
-      # except Exception:
-      #    pass
+   def party_balance_(self):
+      print("party_balance_ function called")
+      select_from_date = self.wait.until(
+         EC.presence_of_element_located(self.select_from_date)
+      )
+      select_from_date.clear()
+      select_from_date.send_keys("09262025")
+      print("Entered From Date: 09262025")
 
       select_to_date = self.wait.until(
          EC.presence_of_element_located(self.select_to_date)
       )
       select_to_date.clear()
+      select_to_date.send_keys("10262025")
+      print("Entered To Date: 10262025")
 
+      party_account_select = self.wait.until(
+         EC.element_to_be_clickable(self.account_select)
+      )
+      party_account_select.send_keys(Keys.ENTER)
+      select_party_account = self.wait.until(
+         EC.element_to_be_clickable(self.select_account)
+      )
+      select_party_account_click = ActionChains(self.driver).double_click(select_party_account)
+      select_party_account_click.perform()
+      print("Selected Party Account: IMSTestCustom")
+      time.sleep(2)
+
+      # save_button = self.wait.until(
+      #    EC.element_to_be_clickable(self.load_btn)
+      # )
+      # self.actions.double_click(save_button).perform()
+      # print("Load button clicked successfully!")
+
+      try:
+         load_button = self.wait.until(
+         EC.element_to_be_clickable(self.load_btn)
+         )
+         self.driver.execute_script("arguments[0].scrollIntoView(true);", load_button)
+         load_button.click()
+         print("Clicked Load button successfully.")
+      except:
+         print("Could not find or click the Load button within time.")
 
 
 if __name__ == "__main__":
@@ -80,5 +103,6 @@ if __name__ == "__main__":
    main_page = MainPage(driver)
    main_page.open_accounting_module()
    main_page.open_party_bl_conformation()
+   main_page.party_balance_()
    time.sleep(25)
    driver.quit()
