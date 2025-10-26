@@ -30,7 +30,7 @@ class MainPage:
         self.no_button = (By.XPATH, "//button[contains(text(),'No')]")
         self.edit_button = (By.XPATH, "//button[normalize-space(text())='F5 EDIT']")
         self.select_voucher = (By.XPATH, "//div[@title='JV24-KAT-82/83']")
-        self.alt_select_account = (By.XPATH, "//div[@title='Test']")
+        self.alt_select_account = (By.XPATH, "//div[@title='Sujata Vendor']")
         self.view_button = (By.XPATH, "//button[contains(normalize-space(), 'F4 VIEW')]")
         self.enter_view = (By.XPATH, "//div[normalize-space(text())='JV27-KAT-82/83']")
 
@@ -157,7 +157,7 @@ class MainPage:
 
 
 #___________EDIT JOURNAL VOUCHER SECTION STARTS____________
-    def edit_voucher(self, dr_amount: float):
+    def edit_voucher(self, dr_amount: float, cr_amount: float):
         edit_button = self.wait.until(
             EC.element_to_be_clickable(self.edit_button)
         )
@@ -187,6 +187,13 @@ class MainPage:
         )
         edited_dr_amount.clear()
         edited_dr_amount.send_keys(dr_amount)
+        print("Amount Entered")
+
+        edited_cr_amount = self.wait.until(
+            EC.element_to_be_clickable(self.cr_amount)
+        )
+        edited_cr_amount.clear()
+        edited_cr_amount.send_keys(cr_amount)
         print("Amount Entered")
 
         save_button = self.wait.until(

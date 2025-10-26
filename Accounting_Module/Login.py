@@ -9,7 +9,7 @@ import time
 class Login:
     def __init__(self, driver: webdriver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 25)
+        self.wait = WebDriverWait(driver, 35)
 
         self.username = (By.XPATH, "//input[@placeholder='Username']")
         self.password = (By.XPATH, "//input[@placeholder='Password']")

@@ -13,6 +13,7 @@ class MainPage:
    def __init__(self, driver):
       self.driver = driver
       self.wait = WebDriverWait(self.driver, 15)
+      self.driver.maximize_window()
       self.actions = ActionChains(driver)
 
       self.accounting_module = (By.XPATH, "//span[normalize-space(text())='Accounting Module']")
@@ -23,7 +24,7 @@ class MainPage:
       self.select_to_date = (By.XPATH, "//input[@type='date' and @placeholder='Year Start Date' and contains(@style, 'margin-left: 13px')]")
       self.account_select = (By.XPATH, "//input[@name='customerName' and @placeholder='Press Enter to select']")
       self.select_account = (By.XPATH, "//div[@title='IMSTestCustom']")
-      self.load_btn = (By.XPATH, "//button[contains(@class, 'btn-info') and normalize-space(text())='Load']")
+      self.load_btn = (By.XPATH, "//button[@class='btn btn-info pull-left' and normalize-space(text())='Load']")
 
    def open_accounting_module(self):
       account = self.wait.until(
@@ -78,24 +79,14 @@ class MainPage:
       )
       select_party_account_click = ActionChains(self.driver).double_click(select_party_account)
       select_party_account_click.perform()
-      print("Selected Party Account: IMSTestCustom")
+      print("Selected Party Account successfully.")
       time.sleep(2)
 
-      # save_button = self.wait.until(
-      #    EC.element_to_be_clickable(self.load_btn)
-      # )
-      # self.actions.double_click(save_button).perform()
-      # print("Load button clicked successfully!")
-
-      try:
-         load_button = self.wait.until(
-         EC.element_to_be_clickable(self.load_btn)
-         )
-         self.driver.execute_script("arguments[0].scrollIntoView(true);", load_button)
-         load_button.click()
-         print("Clicked Load button successfully.")
-      except:
-         print("Could not find or click the Load button within time.")
+      load_button = self.wait.until(
+      EC.visibility_of_element_located(self.load_btn)
+      )
+      load_button.click()
+      print("Clicked Load button successfully.")
 
 
 if __name__ == "__main__":
