@@ -1,11 +1,11 @@
-from Tests.login_test import test_login_to_ims
+from login_details import login_to_ims
 from Accounting_Module.party_opening_bl import MainPage
 from selenium.webdriver.common.by import By
 import time
 
 def test_party_opening_bl_details():
     # Login and get driver
-    driver = test_login_to_ims()
+    driver = login_to_ims()
     # Initialize MainPage with the logged-in driver
     party_opening = MainPage(driver)
     # Navigate through the app

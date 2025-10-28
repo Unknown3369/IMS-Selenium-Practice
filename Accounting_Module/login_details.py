@@ -1,11 +1,12 @@
 from selenium import webdriver
-from Accounting_Module.Login import Login
+from Login import Login
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
 
-def test_login_to_ims(driver):
+def login_to_ims():
+    driver = webdriver.Edge()
     login =Login(driver)
     login.perform_login("Testuser", "Test@1234")
     print("Login process completed.")
@@ -16,4 +17,4 @@ def test_login_to_ims(driver):
     return driver
 
 if __name__ == "__main__":
-    test_login_to_ims()
+    login_to_ims()

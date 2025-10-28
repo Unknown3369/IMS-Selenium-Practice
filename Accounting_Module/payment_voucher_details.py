@@ -1,6 +1,6 @@
 from selenium import webdriver
 from Payment_Vouchers import MainPage
-from Tests.login_test import login_to_ims
+from login_details import login_to_ims
 from datetime import datetime
 import random
 import time

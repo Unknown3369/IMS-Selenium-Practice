@@ -1,6 +1,6 @@
 from selenium import webdriver
 from Add_Sub_Ledger import MainPage
-from Tests.login_test import login_to_ims 
+from login_details import login_to_ims
 import time
 
 def sub_ledger_details():

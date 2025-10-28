@@ -1,4 +1,4 @@
-from Tests.login_test import login_to_ims
+from login_details import login_to_ims
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from ledger_opening_bl import MainPage

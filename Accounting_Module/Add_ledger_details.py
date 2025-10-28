@@ -1,6 +1,6 @@
 from selenium import webdriver
 from Add_ledger import MainPage
-from Tests.login_test import login_to_ims  # Make sure this path matches your folder
+from login_details import login_to_ims
 import time
 
 def ledger_details():
