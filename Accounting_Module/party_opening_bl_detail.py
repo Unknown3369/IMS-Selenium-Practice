@@ -3,7 +3,7 @@ from Accounting_Module.party_opening_bl import MainPage
 from selenium.webdriver.common.by import By
 import time
 
-def test_party_opening_bl_details():
+def party_opening_bl_details():
     # Login and get driver
     driver = login_to_ims()
     # Initialize MainPage with the logged-in driver
@@ -18,4 +18,4 @@ def test_party_opening_bl_details():
     driver.quit()
 
 if __name__ == "__main__":
-    test_party_opening_bl_details()
+    party_opening_bl_details()
