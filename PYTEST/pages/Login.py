@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-class Login:
+class login:
    def __init__(self, driver: webdriver):
       self.driver = driver
       self.wait = WebDriverWait(driver, 35)

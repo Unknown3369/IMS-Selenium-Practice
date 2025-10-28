@@ -1,5 +1,5 @@
 from selenium import webdriver
-from pages.Login import Login
+from PYTEST.pages.Login import login
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -7,8 +7,8 @@ import time
 
 def test_login_to_ims():
    driver = webdriver.Edge()
-   login =Login(driver)
-   login.perform_login("Testuser", "Test@1234")
+   login_page =login(driver)
+   login_page.perform_login("Testuser", "Test@1234")
    print("Login process completed.")
    wait = WebDriverWait(driver, 30)
    wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='Date']")))
