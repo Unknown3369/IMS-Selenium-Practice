@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from login_details import login_to_ims
+from Tests.login_test import test_login_to_ims
 from datetime import date
 import time
 
@@ -90,7 +90,7 @@ class MainPage:
 
 
 if __name__ == "__main__":
-   driver = login_to_ims()
+   driver = test_login_to_ims()
    main_page = MainPage(driver)
    main_page.open_accounting_module()
    main_page.open_party_bl_conformation()

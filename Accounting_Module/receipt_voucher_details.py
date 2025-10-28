@@ -1,4 +1,4 @@
-from login_details import login_to_ims
+from Tests.login_test import login_to_ims
 from receipt_voucher import MainPage
 import time
 

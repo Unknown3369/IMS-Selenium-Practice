@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from login_details import login_to_ims
+from Tests.login_test import login_to_ims
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
 from datetime import date
