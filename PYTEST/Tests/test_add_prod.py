@@ -19,7 +19,6 @@ def test_add_prod(driver: webdriver):
    def generate_random_hscode(length):
       random_hs = random.randint(1000, 9999)
       return str(random_hs)
-      
    
    add_prod_page.add_prod_test(driver, random_string, generate_random_hscode(4), "Testdescription", 100)
 

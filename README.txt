@@ -7,3 +7,10 @@ Tested Link:
 
 Tested Version:
   1.0.86
+
+
+To Run the tests in Terminal:-
+    To Run the Tests:
+      pytest --alluredir=allure-results -v -s
+    To View the Report:
+      allure serve allure-results
