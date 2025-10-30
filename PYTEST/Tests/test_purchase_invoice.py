@@ -18,6 +18,3 @@ def test_purchase_invoice(driver:webdriver):
 
 if __name__ == "__main__":
    pytest.main()
-
-
-   

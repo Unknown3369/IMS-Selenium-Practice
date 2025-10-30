@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","39657","test_purchase_invoice","PYTEST.tests","2025-10-30","passed","2025-10-30","","test_purchase_invoice","",""
+"This test logs into the IMS application using valid credentials and verifies the dashboard.","18527","Login to IMS Application","PYTEST.tests","2025-10-30","passed","2025-10-30","","login_test","",""
+"","56952","test_add_prod","PYTEST.tests","2025-10-30","broken","2025-10-30","","test_add_prod","",""
