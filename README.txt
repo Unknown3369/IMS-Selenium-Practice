@@ -14,3 +14,6 @@ To Run the tests in Terminal:-
       pytest --alluredir=allure-results -v -s
     To View the Report:
       allure serve allure-results
+    To Create HTML Reports:
+      allure generate
+      
