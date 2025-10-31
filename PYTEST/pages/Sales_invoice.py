@@ -17,8 +17,9 @@ class sales_invoice:
       self.sales_invoice_link = (By.XPATH, "//span[normalize-space()='Sales Tax Invoice']")
       self.refno = (By.XPATH, "//input[@id='refnoInput']")
       self.customer_enter = (By.XPATH, "//input[@id='customerselectid']")
-      self.customer_select = (By.XPATH, "//div[normalize-space(text())='IMSTestCustom']")
-      self.item_select = (By.XPATH, "//div[normalize-space(text())='14.2']")
+      self.customer_select = (By.XPATH, "//div[normalize-space(text())='Cash Customer']")
+      self.item_enter = (By.XPATH, "//input[@id='itemDesc0']")
+      self.item_select = (By.XPATH, "//div[normalize-space(text())='14.38']")
       self.quantity = (By.XPATH, "//input[@id='alternateQty0']")
       self.save= (By.XPATH, "//button[normalize-space(text())='SAVE [End]']")
       self.amount_btn = (By.XPATH, "//button[normalize-space(text())='Balance Amount']")
@@ -80,7 +81,7 @@ class sales_invoice:
 
       #enter item details
       item_enter = self.wait.until(
-         EC.presence_of_element_located((By.XPATH, "//input[@id='itemDesc0']"))
+         EC.presence_of_element_located(self.item_enter)
       )  
       item_enter.send_keys(Keys.ENTER)
       print("Clicked on Item field!")
