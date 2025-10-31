@@ -1,5 +1,5 @@
 from PYTEST.pages.Login import login
-from PYTEST.pages.Add_product_vatable import Add_prod
+from PYTEST.pages.Add_product_nonvatable import Add_prod
 from selenium import webdriver
 import pytest
 import random
@@ -20,7 +20,7 @@ def test_add_prod(driver: webdriver):
       random_hs = random.randint(1000, 9999)
       return str(random_hs)
    
-   add_prod_page.add_prod_test(driver, random_string, generate_random_hscode(4), "Testdescription", 100)
+   add_prod_page.add_prod_test(driver, random_string, generate_random_hscode(4), "Testdescription", 50)
 
 if __name__ == "__main__":
    pytest.main()
