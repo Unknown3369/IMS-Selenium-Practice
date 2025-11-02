@@ -18,15 +18,14 @@ class sales_invoice:
       self.refno = (By.XPATH, "//input[@id='refnoInput']")
       self.customer_enter = (By.XPATH, "//input[@id='customerselectid']")
       self.customer_select = (By.XPATH, "//div[normalize-space(text())='Cash Customer']")
-      self.item_enter = (By.XPATH, "//input[@id='itemDesc0']")
-      self.item_select = (By.XPATH, "//div[normalize-space(text())='14.38']")
-      self.quantity = (By.XPATH, "//input[@id='alternateQty0']")
+      self.item_enter = (By.XPATH, "//input[@id='barcodeField' and @placeholder='Enter Barcode']")
+      self.quantity = (By.XPATH, "//input[@id='quantityBarcode']")
       self.save= (By.XPATH, "//button[normalize-space(text())='SAVE [End]']")
       self.amount_btn = (By.XPATH, "//button[normalize-space(text())='Balance Amount']")
       self.add_button = (By.XPATH, "//button[normalize-space(text())='Add']")
       self.save_button = (By.XPATH, "(//button[contains(text(),'SAVE') and contains(@class,'btn-info')])[last()]")
 
-   def sales_invoice_test(self, driver: webdriver):
+   def sales_invoice_test(self, driver: webdriver, ref_value: int):
 
       # Click on “Transactions” menu
       transactions = self.wait.until(
@@ -56,9 +55,6 @@ class sales_invoice:
       driver.execute_script("arguments[0].click();", sales_invoice_link)
       print("Sales Tax Invoice clicked successfully!")
 
-   def sales_invoice_form_test(self, driver: webdriver, ref_value: int, gen_quantity: int):
-      # Add Details in Sales Invoice Form
-
       refno = self.wait.until(
          EC.presence_of_element_located(self.refno)
       )
@@ -79,28 +75,31 @@ class sales_invoice:
       self.actions.double_click(customer_select).perform()
       print("Customer selected successfully!")
 
+   def sales_invoice_form_test(self, driver: webdriver, item_code: str,  gen_quantity: int):
+      # Add Details in Sales Invoice Form
+
       #enter item details
       item_enter = self.wait.until(
          EC.presence_of_element_located(self.item_enter)
       )  
+      item_enter.clear()
+      item_enter.send_keys(item_code)
       item_enter.send_keys(Keys.ENTER)
       print("Clicked on Item field!")
-
-      #Item Select
-      item_select = self.wait.until(
-         EC.presence_of_element_located(self.item_select)
-      )
-      self.actions.double_click(item_select).perform()
-      print("Item selected successfully!")
 
       #add quantity
       quantity = self.wait.until(
          EC.presence_of_element_located(self.quantity)
       )
+      quantity.clear()
       quantity.send_keys(gen_quantity)
-      time.sleep(2)
-      quantity.send_keys(Keys.ENTER)
       print(f"Quantity {gen_quantity} entered successfully!")
+      # Optional: remove Enter key if not needed
+      quantity.send_keys(Keys.ENTER)
+      print("Quantity entered successfully!")
+
+
+   def save_btn(self,driver: webdriver):
 
       # Click on Save button
       save = self.wait.until(
@@ -108,12 +107,12 @@ class sales_invoice:
       )
       save.click()
       print("Save button clicked successfully!")
-      time.sleep(5)
 
       # Click on Balance Amount button
       amount_btn = self.wait.until(
          EC.element_to_be_clickable(self.amount_btn)
       )
+      time.sleep(2)
       amount_btn.click()
       print("Balance Amount button clicked successfully!")
 
@@ -121,6 +120,7 @@ class sales_invoice:
       add_button = self.wait.until(
          EC.element_to_be_clickable(self.add_button)
       )
+      time.sleep(2)
       add_button.click()
       print("Add button clicked successfully!")
 
@@ -130,4 +130,4 @@ class sales_invoice:
       )
       save_button.click()
       print("Save button clicked successfully!")
-      time.sleep(15)
+      time.sleep(5)

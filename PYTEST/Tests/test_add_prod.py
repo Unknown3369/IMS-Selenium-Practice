@@ -33,6 +33,7 @@ def test_add_prod(driver: webdriver):
       random_hs = random.randint(1000, 9999)
       random_price = random.randint(10, 999)
       output_price = random_price + random.randint(130, 200)
+      
 
       # get item code from add_prod_test()
       item_code = add_prod_page.add_prod_test(driver, random_string, random_hs, "Testdescription", random_price, output_price)

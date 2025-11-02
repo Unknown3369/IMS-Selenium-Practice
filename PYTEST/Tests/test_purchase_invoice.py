@@ -15,7 +15,6 @@ def read_products_from_csv(file_path):
    return products
 
 
-
 def test_purchase_invoice(driver: webdriver):
    login_page = login(driver)
    purchase_invoice = PurchaseInvoice(driver)
