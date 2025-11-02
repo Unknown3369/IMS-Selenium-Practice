@@ -22,12 +22,11 @@ class PurchaseInvoice:
       self.invoice_no = (By.XPATH, "//input[@id='invoiceNO']")
       self.account = (By.XPATH, "//input[@id='accountfield']")
       self.account_name = (By.XPATH, "//div[@title='Dark Chocolate Vendor']")
-      self.item_name = (By.XPATH, "//input[@id='ITEMDESC0']")
-      self.select_item = (By.XPATH, "//div[@title='Dark Chocolate']")
-      self.quantity = (By.XPATH, "//input[@id='ALTERNATEQUANTIY0']")
+      self.item_name = (By.XPATH, "//input[@id='barcodeField' and @placeholder='Enter Barcode']")
+      self.quantity = (By.XPATH, "//input[@id='quantityBarcode' and @type='number']")
       self.save_button = (By.XPATH, "//button[contains(text(),'SAVE')]")
-   
-   def purchase_invoice_test(self, driver:webdriver, invoice_value: int, enter_quantity: int):
+
+   def purchase_invoice(self, driver: webdriver, invoice_value: int):
       transactions = self.wait.until(
          EC.element_to_be_clickable(self.transactions)
       )
@@ -79,28 +78,23 @@ class PurchaseInvoice:
       self.actions.double_click(account_name).perform()
       print("Account name selected successfully!")
       time.sleep(2)
+   
+   def purchase_invoice_test(self, driver:webdriver, item_code: str, enter_quantity: int):
 
       # Click on item name field
-      item_name = self.wait.until(
-         EC.presence_of_element_located(self.item_name)
-      )
+      item_name = self.wait.until(EC.presence_of_element_located(self.item_name))
+      item_name.clear()
+      item_name.send_keys(item_code)   # type the actual Item Code
+      time.sleep(2)
       item_name.send_keys(Keys.ENTER)
       time.sleep(2)
       print("Item name field clicked successfully!")
-
-      # Select item from the dropdown
-      select_item = self.wait.until(
-         EC.presence_of_element_located(self.select_item)
-      )
-      actions = ActionChains(driver)
-      actions.double_click(select_item).perform()
-      print("Item selected successfully!")
-      time.sleep(4)
 
       #add quantity
       quantity = self.wait.until(
          EC.presence_of_element_located(self.quantity)
       )
+      quantity.clear()
       quantity.send_keys(enter_quantity)
       quantity.send_keys(Keys.ENTER)
       print("Quantity entered successfully!")

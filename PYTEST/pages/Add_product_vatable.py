@@ -85,7 +85,7 @@ class Add_prod:
       add_product_label.click()
       print("Add Product label clicked successfully!")
 
-   def add_prod_test(self, driver: webdriver,input_itemname: str, input_hscode: str, input_description: str, input_purchase_price: int, input_sales_price: int):
+   def add_prod_test(self, driver: webdriver,input_itemname: str, input_hscode: str, input_description: str, input_purchase_price: int, input_sales_price: int):         
          # Wait for the item group input box
          item_group_input = self.wait.until(
             EC.presence_of_element_located(self.item_group_input)
@@ -196,14 +196,16 @@ class Add_prod:
          print("Sales Price entered successfully!")
          time.sleep (3)
 
-         # try:
-         #    handle_alert = self.wait.until(
-         #       EC.element_to_be_clickable((By.XPATH, "//button[@mat-dialog-close and @color='primary' and normalize-space(.//span)='OK']"))
-         #    )
-         #    handle_alert.click()
-         #    print("Alert accepted successfully!")
-         # except:
-         #    print("No alert found")
+         # Wait until system generates the item code
+         item_code_element = self.wait.until(
+            EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Enter Item Code' and @readonly]"))
+         )
+
+         # Wait until value is non-empty
+         self.wait.until(lambda d: item_code_element.get_attribute("value").strip() != "")
+
+         item_code = item_code_element.get_attribute("value").strip()
+         print(f"Generated Item Code: {item_code}")
 
          # Wait for the SAVE button to be clickable
          save_button =self.wait.until(
@@ -222,6 +224,8 @@ class Add_prod:
          alert.dismiss()
          time.sleep(5)
 
+         return item_code
+
          # try:
          #    WebDriverWait(driver, 5).until(EC.alert_is_present())
          #    alert = driver.switch_to.alert
@@ -234,3 +238,5 @@ class Add_prod:
          #    )
          # except:
          #    print("No alert appeared after saving.")
+
+   

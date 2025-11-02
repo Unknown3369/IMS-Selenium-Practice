@@ -18,9 +18,8 @@ def save_product_to_csv(product_data, filename="added_products.csv"):
    file_exists = os.path.isfile(filename)
    with open(filename, mode="a", newline="", encoding="utf-8") as file:
       writer = csv.writer(file)
-      # Write header only once (if file didn't exist)
       if not file_exists:
-            writer.writerow(["Product Name", "HS Code", "Description", "Purchase Price", "Sales Price"])
+         writer.writerow(["Item Code", "Product Name", "HS Code", "Description", "Purchase Price", "Sales Price"])
       writer.writerow(product_data)
 
 
@@ -29,16 +28,14 @@ def test_add_prod(driver: webdriver):
    add_prod_page = Add_prod(driver)
    login_page.perform_login("Testuser", "Test@1234")
    add_prod_page.masters_click_test(driver)
-
-   # if os.path.exists("added_products.csv"):
-   #    os.remove("added_products.csv")
-
-
    for i in range(5):
       random_string = random_name()
       random_hs = random.randint(1000, 9999)
       random_price = random.randint(10, 999)
       output_price = random_price + random.randint(130, 200)
-      add_prod_page.add_prod_test(driver, random_string, random_hs, "Testdescription", random_price,output_price)
 
-      save_product_to_csv([random_string, random_hs, "Testdescription", random_price, output_price])
+      # get item code from add_prod_test()
+      item_code = add_prod_page.add_prod_test(driver, random_string, random_hs, "Testdescription", random_price, output_price)
+
+      # save with item code included
+      save_product_to_csv([item_code, random_string, random_hs, "Testdescription", random_price, output_price])
