@@ -1,6 +1,8 @@
 Item Code,Product Name,HS Code,Description,Purchase Price,Sales Price
 14.109,prod_78be879a,3651,Testdescription,275,441
-14.110,prod_cdeacfec,6100,Testdescription,693,859
-14.111,prod_f4d5cce9,8777,Testdescription,802,983
-14.112,prod_498c2102,8926,Testdescription,414,570
-14.114,prod_085a4280,2081,Testdescription,533,678
+
+14.147,prod_95376a17,4237,Testdescription,527,726
+14.148,prod_6aa81ded,3644,Testdescription,251,400
+14.149,prod_c811dfe6,8510,Testdescription,641,821
+14.150,prod_b12ad1e8,2889,Testdescription,209,395
+14.151,prod_47f6e0e8,2308,Testdescription,190,389

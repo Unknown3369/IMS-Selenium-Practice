@@ -19,7 +19,7 @@ class sales_invoice:
       self.customer_enter = (By.XPATH, "//input[@id='customerselectid']")
       self.customer_select = (By.XPATH, "//div[normalize-space(text())='Cash Customer']")
       self.item_enter = (By.XPATH, "//input[@id='barcodeField' and @placeholder='Enter Barcode']")
-      self.quantity = (By.XPATH, "//input[@id='quantityBarcode']")
+      self.quantity = (By.XPATH, "//input[@id='quantityBarcode' and @type='number' and @autocomplete='off']")
       self.save= (By.XPATH, "//button[normalize-space(text())='SAVE [End]']")
       self.amount_btn = (By.XPATH, "//button[normalize-space(text())='Balance Amount']")
       self.add_button = (By.XPATH, "//button[normalize-space(text())='Add']")
@@ -75,17 +75,18 @@ class sales_invoice:
       self.actions.double_click(customer_select).perform()
       print("Customer selected successfully!")
 
-   def sales_invoice_form_test(self, driver: webdriver, item_code: str,  gen_quantity: int):
+   def sales_invoice_form_test(self, driver: webdriver, item_code: str, gen_quantity: int):
       # Add Details in Sales Invoice Form
 
       #enter item details
       item_enter = self.wait.until(
          EC.presence_of_element_located(self.item_enter)
-      )  
+      )
       item_enter.clear()
       item_enter.send_keys(item_code)
       item_enter.send_keys(Keys.ENTER)
       print("Clicked on Item field!")
+      time.sleep(2)
 
       #add quantity
       quantity = self.wait.until(
@@ -93,9 +94,9 @@ class sales_invoice:
       )
       quantity.clear()
       quantity.send_keys(gen_quantity)
-      print(f"Quantity {gen_quantity} entered successfully!")
-      # Optional: remove Enter key if not needed
       quantity.send_keys(Keys.ENTER)
+      quantity.clear()
+      time.sleep(5)
       print("Quantity entered successfully!")
 
 

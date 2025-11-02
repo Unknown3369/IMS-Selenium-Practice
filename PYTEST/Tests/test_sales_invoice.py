@@ -36,10 +36,9 @@ def test_sales_invoice(driver: webdriver):
       sales_price = product['Sales Price']
       item_code = product['Item Code']  
 
-      ran_quantity = str(random.randint(1, 9))
+      ran_quantity = str(random.randint(4, 20))
 
       sales_invoice_page.sales_invoice_form_test(driver, item_code,ran_quantity)
-      time.sleep(2)
    sales_invoice_page.save_btn(driver)
 
 if __name__ == "__main__":
