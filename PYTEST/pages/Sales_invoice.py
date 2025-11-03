@@ -86,7 +86,7 @@ class sales_invoice:
       item_enter.send_keys(item_code)
       item_enter.send_keys(Keys.ENTER)
       print("Clicked on Item field!")
-      time.sleep(2)
+      time.sleep(2) 
 
       #add quantity
       quantity = self.wait.until(
