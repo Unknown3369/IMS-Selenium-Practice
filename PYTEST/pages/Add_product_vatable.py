@@ -225,18 +225,3 @@ class Add_prod:
          time.sleep(5)
 
          return item_code
-
-         # try:
-         #    WebDriverWait(driver, 5).until(EC.alert_is_present())
-         #    alert = driver.switch_to.alert
-         #    print("Alert says:", alert.text)
-         #    alert.accept()  # accept instead of dismiss
-         #    print("Alert accepted successfully!")
-         #    # Wait until overlay disappears
-         #    WebDriverWait(driver, 10).until_not(
-         #       EC.presence_of_element_located((By.CSS_SELECTOR, "h2"))
-         #    )
-         # except:
-         #    print("No alert appeared after saving.")
-
-   
