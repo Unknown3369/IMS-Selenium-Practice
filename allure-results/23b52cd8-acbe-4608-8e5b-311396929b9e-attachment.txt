@@ -1,0 +1,5 @@
+Login button clicked!
+Detected previous session popup and clicked Logout.
+Login button re clicked!
+Login process completed.
+Dashboard page loaded successfully!

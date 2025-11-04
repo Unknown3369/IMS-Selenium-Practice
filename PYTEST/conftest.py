@@ -4,14 +4,17 @@ from selenium import webdriver
 
 @pytest.fixture
 def driver():
-   # Setup
-   driver = webdriver.Edge()
-   driver.maximize_window()
-   driver.maximize_window()
-   driver.implicitly_wait(10)
+   # Setup Edge in headless mode
+   options = webdriver.EdgeOptions()
+   options.add_argument("--headless")
+   options.add_argument("--disable-gpu")
+   options.add_argument("--no-sandbox")
+   options.add_argument("--window-size=1920,1080")
+   
+   driver = webdriver.Edge(options=options)
    yield driver
-   # Teardown
    driver.quit()
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):

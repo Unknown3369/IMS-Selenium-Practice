@@ -10,8 +10,8 @@ Tested Version:
 
 
 To Run the tests in Terminal:-
-    To Run the Tests:
-      pytest --alluredir=allure-results -v -s
+    To Run the Tests: 
+      pytest --alluredir=allure-results -v -s --disable-warnings
     To View the Report:
       allure serve allure-results
     To Create HTML Reports:

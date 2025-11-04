@@ -18,6 +18,7 @@ class Add_prod:
       self.driver =driver
       self.wait = WebDriverWait(driver, 30)
       self.actions = ActionChains(driver)
+      
       self.master = (By.XPATH, "//span[contains(text(),'Masters')]")
       self.inventory_info = (By.LINK_TEXT, "Inventory Info")
       self.product_master = (By.XPATH, "//a[contains(@href, '/vendor-master/product')]")

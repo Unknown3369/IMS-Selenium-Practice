@@ -1,0 +1,94 @@
+Login button clicked!
+Detected previous session popup and clicked Logout.
+Login button re clicked!
+Masters clicked successfully!
+Inventory Info hovered and clicked successfully!
+Product Master clicked successfully!
+Add Product button clicked successfully!
+Add Product label is visible
+Add Product label clicked successfully!
+ng-select box clicked successfully!
+option selected successfully!
+OK button clicked successfully!
+Item Name entered successfully!
+HS Code entered successfully!
+Unit dropdown clicked successfully!
+Stock Unit selected successfully!
+Product Description entered successfully!
+Short Name entered successfully!
+Category selected successfully!
+Purchase Price entered successfully!
+Triggered dropdown selection successfully!
+Supplier selected successfully!
+Sales Price entered successfully!
+Generated Item Code: 14.453
+SAVE button clicked successfully!
+Alert says: Data Saved Successfully. Do you want to continue adding products to this group ?
+ng-select box clicked successfully!
+option selected successfully!
+OK button clicked successfully!
+Item Name entered successfully!
+HS Code entered successfully!
+Unit dropdown clicked successfully!
+Stock Unit selected successfully!
+Product Description entered successfully!
+Short Name entered successfully!
+Category selected successfully!
+Purchase Price entered successfully!
+Triggered dropdown selection successfully!
+Supplier selected successfully!
+Sales Price entered successfully!
+Generated Item Code: 14.455
+SAVE button clicked successfully!
+Alert says: Data Saved Successfully. Do you want to continue adding products to this group ?
+ng-select box clicked successfully!
+option selected successfully!
+OK button clicked successfully!
+Item Name entered successfully!
+HS Code entered successfully!
+Unit dropdown clicked successfully!
+Stock Unit selected successfully!
+Product Description entered successfully!
+Short Name entered successfully!
+Category selected successfully!
+Purchase Price entered successfully!
+Triggered dropdown selection successfully!
+Supplier selected successfully!
+Sales Price entered successfully!
+Generated Item Code: 14.456
+SAVE button clicked successfully!
+Alert says: Data Saved Successfully. Do you want to continue adding products to this group ?
+ng-select box clicked successfully!
+option selected successfully!
+OK button clicked successfully!
+Item Name entered successfully!
+HS Code entered successfully!
+Unit dropdown clicked successfully!
+Stock Unit selected successfully!
+Product Description entered successfully!
+Short Name entered successfully!
+Category selected successfully!
+Purchase Price entered successfully!
+Triggered dropdown selection successfully!
+Supplier selected successfully!
+Sales Price entered successfully!
+Generated Item Code: 14.457
+SAVE button clicked successfully!
+Alert says: Data Saved Successfully. Do you want to continue adding products to this group ?
+ng-select box clicked successfully!
+option selected successfully!
+OK button clicked successfully!
+Item Name entered successfully!
+HS Code entered successfully!
+Unit dropdown clicked successfully!
+Stock Unit selected successfully!
+Product Description entered successfully!
+Short Name entered successfully!
+Category selected successfully!
+Purchase Price entered successfully!
+Triggered dropdown selection successfully!
+Supplier selected successfully!
+Sales Price entered successfully!
+Generated Item Code: 14.458
+SAVE button clicked successfully!
+Alert says: Data Saved Successfully. Do you want to continue adding products to this group ?

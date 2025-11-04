@@ -1,0 +1,26 @@
+Login button clicked!
+Detected previous session popup and clicked Logout.
+Login button re clicked!
+Masters clicked successfully!
+Inventory Info hovered and clicked successfully!
+Product Master clicked successfully!
+Add Product button clicked successfully!
+Add Product label is visible
+Add Product label clicked successfully!
+ng-select box clicked successfully!
+option selected successfully!
+OK button clicked successfully!
+Item Name entered successfully!
+HS Code entered successfully!
+Checkbox clicked successfully!
+Unit dropdown clicked successfully!
+Stock Unit selected successfully!
+Product Description entered successfully!
+Short Name entered successfully!
+Category selected successfully!
+Purchase Price entered successfully!
+Triggered dropdown selection successfully!
+Supplier <selenium.webdriver.remote.webelement.WebElement (session="83339a634186aa3d74804fb050accb9b", element="f.02530FBA4E9DD1D3EB84F36808E9BB72.d.B265A7AF3E88466A0958B88A49E7D584.e.219")> selected successfully!
+Sales Price entered successfully!
+SAVE button clicked successfully!
+Alert says: Data Saved Successfully. Do you want to continue adding products to this group ?
