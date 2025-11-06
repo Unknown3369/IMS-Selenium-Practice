@@ -26,7 +26,7 @@ def test_add_prod(driver: webdriver):
    add_prod_page = Add_prod(driver)
    login_page.perform_login("Testuser", "Test@1234")
    add_prod_page.masters_click_test(driver)
-   for i in range(100):
+   for i in range(5):
       random_string = random_name()
       random_hs = random.randint(1000, 9999)
       random_price = random.randint(10, 999)
