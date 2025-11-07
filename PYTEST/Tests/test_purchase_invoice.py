@@ -1,6 +1,7 @@
 import csv
 import pytest
 import random
+import time
 from selenium import webdriver
 from PYTEST.pages.Login import login
 from PYTEST.pages.Purchase_invoice import PurchaseInvoice
@@ -39,6 +40,7 @@ def test_purchase_invoice(driver: webdriver):
       random_quantity = random.randint(10, 100)
 
       purchase_invoice.purchase_invoice_test(driver, item_code, random_quantity)
+      time.sleep(1)
    purchase_invoice.save_button_click(driver)
 
 if __name__ == "__main__":

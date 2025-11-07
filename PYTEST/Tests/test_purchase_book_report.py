@@ -17,3 +17,4 @@ def test_purchase_book_report(driver):
       screenshot_path = f"screenshots/sales_report_{int(time.time())}.png"
       driver.save_screenshot(screenshot_path)
       allure.attach.file(screenshot_path, name="Purchase Report Generated", attachment_type=allure.attachment_type.PNG)
+      

@@ -98,6 +98,7 @@ class PurchaseInvoice:
       quantity.send_keys(enter_quantity)
       quantity.send_keys(Keys.ENTER)
       print("Quantity entered successfully!")
+      time.sleep(2)
    
    def save_button_click(self, driver:webdriver):
       # Click on save button
