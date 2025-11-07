@@ -94,12 +94,6 @@ class PurchaseBookReport:
          )
       run_button.click()
       print("Run button clicked successfully!")
-      # Load report
-      load_button = self.wait.until(
-         EC.element_to_be_clickable(self.load_button)
-         )
-      load_button.click()
-      print("Load Report clicked successfully!")
 
       try:
          alert_text = WebDriverWait(driver, 7).until(
