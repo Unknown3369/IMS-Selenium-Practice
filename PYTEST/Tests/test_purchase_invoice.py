@@ -19,7 +19,8 @@ def read_products_from_csv(file_path):
 def test_purchase_invoice(driver: webdriver):
    login_page = login(driver)
    purchase_invoice = PurchaseInvoice(driver)
-   login_page.perform_login("Testuser", "Test@1234")
+   time.sleep(45)
+   login_page.perform_login("TestTest", "Test@1234")
 
    # Load products from CSV
    products = read_products_from_csv("added_products.csv")

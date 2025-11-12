@@ -16,7 +16,8 @@ class login:
       self.logout_button = (By.XPATH, "//button[.//span[text()='Logout']]")
    def perform_login(self, username: str, password: str):
       # Open the login page
-      self.driver.get("https://redmiims.webredirect.himshang.com.np/#/login")
+      # self.driver.get("https://redmiims.webredirect.himshang.com.np/#/login")
+      self.driver.get("https://redmiims.variantqa.himshang.com.np/#/login")
       # Enter username
       username_box = self.wait.until(
          EC.presence_of_element_located(self.username)

@@ -40,12 +40,12 @@ class Purchase_rep_supp_wise:
       purchase_report.click()
       print("Purchase Report clicked successfully!")
       # Click on “Purchase Book Report”
-      purchase_report_item_wise = self.wait.until(
+      purchase_report_supp_wise = self.wait.until(
          EC.presence_of_element_located(self.purchase_report_item_wise)
          )
-      self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", purchase_report_item_wise)
+      self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", purchase_report_supp_wise)
       time.sleep(1)
-      self.driver.execute_script("arguments[0].click();", purchase_report_item_wise)
+      self.driver.execute_script("arguments[0].click();", purchase_report_supp_wise)
       print("Purchase Report - Supplier Wise clicked successfully!")
 
    def run_purchase_report_supp(self):
