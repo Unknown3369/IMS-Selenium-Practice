@@ -36,7 +36,7 @@ class Add_prod:
       self.short_name = (By.XPATH, "//input[@placeholder='Enter Short Name']")
       self.purchase_price = (By.XPATH, "//input[@placeholder='Enter Purchase Price']")
       self.select_input = (By.XPATH, "//input[@placeholder='Press Enter to select']")
-      self.supplier = (By.XPATH, "//td[contains(@class,'mat-column-ACNAME') and normalize-space(text())='testprodsupp']")
+      self.supplier = (By.XPATH, "//td[normalize-space(text())='Dark Chocolate Vendor']")
       self.sales_price = (By.XPATH, "//input[@type='number' and @placeholder='0']")
       self.save_button = (By.XPATH, "//button[@id='save' and text()='SAVE']")
 
