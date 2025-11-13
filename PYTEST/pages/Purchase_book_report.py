@@ -28,7 +28,6 @@ class PurchaseBookReport:
       self.load_button = (By.XPATH, "//div[@class='option-card' and .//span[normalize-space()='Load Report']]")
       self.button = (By.XPATH, "//button[normalize-space()='OK']")
    def open_purchase_book_report(self):
-      """Actually runs the Purchase Book Report test flow."""
       driver = self.driver
       # Click on “Reports” menu
       reports = self.wait.until(
