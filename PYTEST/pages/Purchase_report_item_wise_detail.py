@@ -17,6 +17,11 @@ class Purchase_report_item_wise_detail:
       self.purchase_report = (By.LINK_TEXT, "Purchase Reports")
       self.purchase_report_item_wise = (By.XPATH, "//span[normalize-space()='Purchase Report - Item Wise']")
       self.branch_dropdown = (By.XPATH, "//select[@class='form-control input-text ng-untouched ng-pristine ng-valid']")
+      self.item_select = (By.XPATH, "//input[@placeholder='Press Enter to select Items']")
+      self.select_item_code = (By.XPATH, "//select[@style='width: 100%' and contains(@class,'ng-valid')]")
+      self.search_item = (By.XPATH, "//input[@placeholder='Enter keyword to search']")
+      self.select_search_item = (By.XPATH,"//input[@type='checkbox']")
+      self.ok_button = (By.XPATH, "//button[normalize-space()='OK']")
       self.run_button = (By.XPATH, "//button[@type='button' and text()='RUN']")
    
    def item_wise_detail_report(self):
@@ -57,7 +62,7 @@ class Purchase_report_item_wise_detail:
       print("Branch selected successfully!")
 
       item_select = self.wait.until(
-         EC.presence_of_element_located((By.XPATH, "//span[@class='select2-selection__placeholder']"))
+         EC.presence_of_element_located(self.item_select)
          )
       item_select.send_keys(Keys.ENTER)
       select_item_code = self.wait.until(
@@ -71,15 +76,16 @@ class Purchase_report_item_wise_detail:
          EC.presence_of_element_located(self.search_item)
          )
       search_item.send_keys(enter_item_code)
-      search_item.send_keys(Keys.ENTER)
+      select_search_item = self.wait.until(
+         EC.presence_of_element_located(self.select_search_item)
+         )
+      select_search_item.click()
       print(f"Item code {enter_item_code} entered successfully!")
 
       ok_button = self.wait.until(
          EC.presence_of_element_located(self.ok_button)
          )
       
-
-
    def run_item_wise_detail_report(self):
       # Run report
       run_button = self.wait.until(
