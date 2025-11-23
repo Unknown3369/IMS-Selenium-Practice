@@ -24,14 +24,17 @@ def test_purchase_report_item_wise_details(driver):
 
    purchase_report.item_wise_detail_report() 
    purchase_report.open_item_wise_detail_report()  # <-- run actual flow
-   for product in products:
-      product_name = product['Product Name']
-      hs_code = product['HS Code']
-      description = product['Description']
-      purchase_price = product['Purchase Price']
-      sales_price = product['Sales Price']
-      item_code = product['Item Code']  
-      purchase_report.fill_item_wise_detail_report(item_code)
+   # for product in products:
+   #    product_name = product['Product Name']
+   #    hs_code = product['HS Code']
+   #    description = product['Description']
+   #    purchase_price = product['Purchase Price']
+   #    sales_price = product['Sales Price']
+   #    item_code = product['Item Code']  
+   #    print(f"Processing product: {product_name} (Item Code: {item_code})")
+   #    purchase_report.fill_item_wise_detail_report(product_name)
+   #    print(f"Filled report for product: {product_name} (Item Code: {item_code})")
+   purchase_report.fill_item_wise_detail_report()
    purchase_report.run_item_wise_detail_report()
    time.sleep(8)  # Wait for report to generate
 

@@ -1,3 +1,4 @@
+from concurrent.futures import wait
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -20,8 +21,8 @@ class Purchase_report_item_wise_detail:
       self.item_name = (By.XPATH, "//input[@placeholder='Press Enter to select Items']")
       self.item_select = (By.XPATH, "//select[option[text()='Select Filter Option']]")
       self.select_item_code = (By.XPATH, "//select[option[text()='ITEM CODE'] and option[text()='DESCRIPTION']]")
-      self.search_item = (By.XPATH, "//input[@placeholder='Enter keyword to search']")
-      self.select_search_item = (By.XPATH,"//input[@type='checkbox']")
+      self.search_item = (By.XPATH, "//input[contains(@placeholder, 'keyword') and contains(@placeholder,'search')]")
+      self.select_search_item = (By.XPATH, "(//input[@type='checkbox'])[1]")
       self.ok_button = (By.XPATH, "//button[normalize-space()='OK']")
       self.run_button = (By.XPATH, "//button[@type='button' and text()='RUN']")
    
@@ -67,35 +68,42 @@ class Purchase_report_item_wise_detail:
       item_name = self.wait.until(
          EC.presence_of_element_located(self.item_name)
          )
-      item_name.click()
       item_name.send_keys(Keys.ENTER)
       time.sleep(2)
       print("Item Name selected successfully!")
 
-      item_select = self.wait.until(
-         EC.presence_of_element_located(self.item_select)
-         )
-      self.driver.execute_script("arguments[0].click();", item_select)
-      select_item_code = self.wait.until(
-         EC.presence_of_element_located(self.select_item_code)
-         )
-      select_item_code_dropdown = Select(select_item_code)
-      time.sleep(2)
-      select_item_code_dropdown.select_by_visible_text("ITEM CODE")
-      print("Item Code selected successfully!")
+   # def fill_item_wise_detail_report(self, enter_product_name: str):
+   def fill_item_wise_detail_report(self):
+   #    search_item = self.wait.until(
+   #       EC.element_to_be_clickable(self.search_item)
+   #       )
+   #    search_item.click()
+   #    search_item.send_keys("P")
+   #    time.sleep(2)
+   #    select_search_item = self.wait.until(
+   #       EC.presence_of_element_located(self.select_search_item)
+   #       )
+   #    select_search_item.click()
+   #    print("Item code entered successfully!")
 
-   def fill_item_wise_detail_report(self, enter_item_code: str):
-      search_item = self.wait.until(
-         EC.presence_of_element_located(self.search_item)
-         )
-      search_item.click()
-      search_item.send_keys(enter_item_code)
-      select_search_item = self.wait.until(
-         EC.presence_of_element_located(self.select_search_item)
-         )
-      select_search_item.click()
-      print(f"Item code {enter_item_code} entered successfully!")
-      
+      item_input = self.wait.until(
+         EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter to select Items']"))
+            )
+      self.driver.execute_script("arguments[0].scrollIntoView(true);", item_input)
+      item_input.click()
+      time.sleep(1)
+      # Press Enter or trigger dropdown (depending on site behavior)
+      item_input.send_keys(Keys.ENTER)
+      time.sleep(2)
+      # Wait for the White Chocolate item to appear
+      white_choco = self.wait.until(
+         EC.visibility_of_element_located((By.XPATH, "//div[@title='White Chocolate']"))
+      ) 
+      # Double-click on "White Chocolate"
+      self.actions.double_click(white_choco).perform()
+      print("Successfully selected 'White Chocolate'")
+      time.sleep(2)
+
    def run_item_wise_detail_report(self):
       ok_button = self.wait.until(
          EC.presence_of_element_located(self.ok_button)
