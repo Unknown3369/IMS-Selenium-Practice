@@ -39,7 +39,7 @@ def test_add_prod(driver: webdriver):
    clear_csv("added_products.csv")
 
    # Generate and add multiple products
-   for i in range(5):
+   for i in range(1000):
       random_string = random_name()
       random_hs = random.randint(1000, 9999)
       random_price = random.randint(10, 999)
