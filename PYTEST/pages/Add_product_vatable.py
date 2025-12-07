@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.alert import Alert
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from tests.login_test import test_login_to_ims
+from PYTEST.tests.test_1_login import test_login_to_ims
 import keyboard
 import time
 
