@@ -22,13 +22,8 @@ class VatSalesRegisterReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Vat Sales Register Report generation...")
-
         try:
-            # ==========================================
-            # STEP 1: Navigate to Vat Sales Register
-            # ==========================================
-            print("📂 Navigating to Reports → VAT Report → VAT Sales Register...")
+            print(" Navigating to Reports → VAT Report → VAT Sales Register...")
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
             )
@@ -58,10 +53,7 @@ class VatSalesRegisterReportPage:
             print("✅ Clicked 'VAT Sales Register'")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 2: Select Customer
-            # ==========================================
-            print("👤 Selecting customer...")
+            print(" Selecting customer...")
 
             customer_input = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter or Tab for Customer List']"))
@@ -69,7 +61,7 @@ class VatSalesRegisterReportPage:
             customer_input.click()
             time.sleep(0.5)
             customer_input.send_keys(Keys.ENTER)
-            print("🔽 Customer list opened.")
+            print(" Customer list opened.")
             time.sleep(1.5)
 
             # Double-click customer from list
@@ -77,7 +69,7 @@ class VatSalesRegisterReportPage:
                 EC.element_to_be_clickable((By.XPATH, "//div[@title='Carti']"))
             )
             self.actions.double_click(customer_select).perform()
-            print("✅ Selected customer: Carti")
+            print(" Selected customer: Carti")
             time.sleep(1)
 
             # ==========================================
@@ -87,13 +79,13 @@ class VatSalesRegisterReportPage:
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'RUN')]"))
             )
             run_btn.click()
-            print("▶️ Clicked RUN button.")
+            print("▶Clicked RUN button.")
             time.sleep(3)
 
             # ==========================================
             # STEP 4: Verify Table Loaded
             # ==========================================
-            print("📊 Verifying Vat Sales Register table...")
+            print("Verifying Vat Sales Register table...")
 
             try:
                 table = wait.until(
@@ -101,7 +93,7 @@ class VatSalesRegisterReportPage:
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
 
-                print(f"✅ Vat Sales Register Report loaded with {len(rows) - 1} rows.")
+                print(f" Vat Sales Register Report loaded with {len(rows) - 1} rows.")
 
                 # Screenshot on success
                 allure.attach(
@@ -110,20 +102,20 @@ class VatSalesRegisterReportPage:
                     attachment_type=allure.attachment_type.PNG
                 )
 
-                print("📸 Table screenshot attached.")
+                print("Table screenshot attached.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load — no rows found.")
+                print("Table did NOT load — no rows found.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="Vat_Sales_Register_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
 
-            print("🎉 Vat Sales Register Report generation completed successfully.")
+            print(" Vat Sales Register Report generation completed successfully.")
 
         except Exception as e:
-            print(f"❌ Error occurred: {e}")
+            print(f" Error occurred: {e}")
             allure.attach(
                 driver.get_screenshot_as_png(),
                 name="Vat_Sales_Register_Error",

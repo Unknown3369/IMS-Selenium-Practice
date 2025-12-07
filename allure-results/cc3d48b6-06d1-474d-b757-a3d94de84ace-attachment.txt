@@ -1,0 +1,1 @@
+'SalesBookReportPage' object has no attribute 'generate_sales_book_report'

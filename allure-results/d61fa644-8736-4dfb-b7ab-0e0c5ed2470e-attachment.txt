@@ -1,0 +1,1 @@
+'PurchaseBookReport' object has no attribute 'generate_purchase_book_report'

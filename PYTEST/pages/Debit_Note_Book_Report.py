@@ -22,8 +22,6 @@ class DebitNoteBookReportPage:
         driver = self.driver
         print("🚀 Starting Debit Note Book Report generation...")
 
-        # ✅ Step 1: Navigate to Reports → Purchase Reports → Debit Note Book Report
-        print("📂 Navigating to Reports → Purchase Reports → Debit Note Book Report...")
         reports_btn = wait.until(
             EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
         )
