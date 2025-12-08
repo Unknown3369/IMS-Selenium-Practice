@@ -1,1 +1,0 @@
-type object 'login' has no attribute 'click_signin'
