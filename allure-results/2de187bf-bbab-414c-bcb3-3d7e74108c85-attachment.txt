@@ -1,0 +1,30 @@
+Message: element click intercepted: Element <select _ngcontent-mig-c731="" class="form-control input-text ng-untouched ng-pristine ng-valid">...</select> is not clickable at point (447, 274). Other element would receive the click: <a _ngcontent-mig-c228="" class="dropbtn-inner ng-star-inserted" title="Inventory Movement Report">...</a>
+  (Session info: MicrosoftEdge=143.0.3650.66); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterceptedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7ea989435
+	0x7ff7ea8f9aa4
+	0x7ff7eace2d12
+	0x7ff7ea758789
+	0x7ff7ea756e20
+	0x7ff7ea754dd7
+	0x7ff7ea754321
+	0x7ff7ea74a9e6
+	0x7ff7ea7723ea
+	0x7ff7ea74a2e5
+	0x7ff7ea74a1fd
+	0x7ff7ea74a2e5
+	0x7ff7ea78c8de
+	0x7ff7ea74982a
+	0x7ff7ea748b33
+	0x7ff7ea749653
+	0x7ff7ea831d64
+	0x7ff7ea840b1c
+	0x7ff7ea83a6ff
+	0x7ff7eaa1a7f7
+	0x7ff7ea905306
+	0x7ff7ea8ff714
+	0x7ff7ea8ff859
+	0x7ff7ea8f391d
+	0x7ff9932ae8d7
+	0x7ff99556c53c

@@ -17,7 +17,7 @@ def read_products_from_csv(file_path):
 def test_debit_note(driver: webdriver):
    login_page = login(driver)
    debit_note = Debit_Note(driver)
-   time.sleep(45)
+   time.sleep(15)
    login_page.perform_login("TestTest", "Test@1234")
 
    # Load products from CSV

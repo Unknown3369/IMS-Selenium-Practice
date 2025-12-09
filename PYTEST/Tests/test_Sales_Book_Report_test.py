@@ -13,23 +13,24 @@ def test_generate_sales_book_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate Sales Book Report ---
         sales_report_page = SalesBookReportPage(driver)
-        sales_report_page.generate_sales_book_report()
-        print("📊 Sales Book Report generated successfully.")
+        sales_report_page.open_sales_book_report()
+        sales_report_page.run_sales_book_report()
+        print("Sales Book Report generated successfully.")
 
-        # ✅ Step 3: Capture screenshot after full report generation
+        # Step 3: Capture screenshot after full report generation
         allure.attach(
             driver.get_screenshot_as_png(),
             name="Sales_Book_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
-        print("📸 Screenshot captured after successful Sales Book Report generation.")
+        print("Screenshot captured after successful Sales Book Report generation.")
 
     except Exception as e:
-        # ❌ Step 4: Capture screenshot & error details if something fails
+        # Step 4: Capture screenshot & error details if something fails
         allure.attach(
             driver.get_screenshot_as_png(),
             name="Sales_Book_Report_Error",
@@ -40,4 +41,4 @@ def test_generate_sales_book_report(driver):
             name="Error_Details",
             attachment_type=allure.attachment_type.TEXT
         )
-        pytest.fail(f"❌ Sales Book Report test failed due to: {e}")
+        pytest.fail(f"Sales Book Report test failed due to: {e}")

@@ -56,10 +56,9 @@ class StockIssueReportPage:
             inv_mov_report = wait.until(
                 EC.element_to_be_clickable((By.LINK_TEXT, "Inventory Movement Report"))
             )
-            driver.execute_script("arguments[0].scrollIntoView(true);", inv_mov_report)
+            # driver.execute_script("arguments[0].scrollIntoView(true);", inv_mov_report)
             inv_mov_report.click()
             print("✅ Clicked 'Inventory Movement Report'")
-            time.sleep(2)
 
             # ==========================================
             # STEP 3: Click Stock Issue Report

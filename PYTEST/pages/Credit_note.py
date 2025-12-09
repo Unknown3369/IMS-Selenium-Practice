@@ -78,7 +78,7 @@ class CreditNotePage:
             # ✅ Step 3: Double-click voucher
             print("📅 Selecting a voucher from the list...")
             voucher_item = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//div[@title='2025-12-03']"))
+                EC.element_to_be_clickable((By.XPATH, "//div[@title='2025-12-08']")) #update this manually for now .
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", voucher_item)
             actions.double_click(voucher_item).perform()
@@ -109,7 +109,7 @@ class CreditNotePage:
             # 📸 Screenshot
             screenshot = driver.get_screenshot_as_png()
             allure.attach(screenshot, name="Credit_Note_Screenshot",
-                          attachment_type=allure.attachment_type.PNG)
+                attachment_type=allure.attachment_type.PNG)
             print("📸 Screenshot saved.")
 
         except TimeoutException:

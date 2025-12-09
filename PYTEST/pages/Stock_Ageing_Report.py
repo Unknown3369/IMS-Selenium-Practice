@@ -58,13 +58,29 @@ class StockAgeingReportPage:
 
             # STEP 2: Select Warehouse
             print("🏢 Selecting Warehouse: Main Warehouse...")
-            warehouse_dropdown = wait.until(EC.element_to_be_clickable((
-                By.XPATH, "//select[contains(@class,'form-control')]"
+            warehouse_dropdown = wait.until(EC.presence_of_element_located((
+                By.XPATH, "//select[contains(@class,'form-control') and contains(@class,'input-text')]"
             )))
-            warehouse_dropdown.click()
+            
+            # Scroll the page so the dropdown is visible
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", warehouse_dropdown)
             time.sleep(1)
+            
+            # Move mouse away from overlapping menu
+            ActionChains(self.driver).move_by_offset(0, 0).perform()
+            time.sleep(1)
+            
+            # Try normal click
+            try:
+                warehouse_dropdown.click()
+            except:
+                # If still intercepted, use JavaScript click
+                self.driver.execute_script("arguments[0].click();", warehouse_dropdown)
 
-            main_warehouse = wait.until(EC.element_to_be_clickable((
+            # warehouse_dropdown.click()
+            # time.sleep(1)
+
+            main_warehouse = wait.until(EC.presence_of_element_located((
                 By.XPATH, "//option[contains(text(),'Main Warehouse')]"
             )))
             main_warehouse.click()

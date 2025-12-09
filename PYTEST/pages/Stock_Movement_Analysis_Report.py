@@ -25,10 +25,6 @@ class StockMovementAnalysisReportPage:
         print("🚀 Starting Stock Movement Analysis Report generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to Stock Movement Analysis Report
-            # ==========================================
-            print("📂 Navigating to Reports → Inventory Reports → Stock Movement Analysis Report...")
 
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
@@ -59,11 +55,6 @@ class StockMovementAnalysisReportPage:
             print("✅ Clicked 'Stock Movement Analysis Report'")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 2: Select Supplier
-            # ==========================================
-            print("🧾 Selecting Supplier...")
-
             supplier_input = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter or Tab for Account List']"))
             )
@@ -80,11 +71,6 @@ class StockMovementAnalysisReportPage:
 
             print("✅ Supplier 'Sujata Vendor' selected successfully.")
 
-            # ==========================================
-            # STEP 3: Click RUN button
-            # ==========================================
-            print("▶️ Clicking RUN button...")
-
             run_btn = wait.until(
                 EC.element_to_be_clickable(
                     (By.XPATH, "//button[@class='btn btn-info confirm-btn' and contains(text(),'RUN')]"))
@@ -92,11 +78,6 @@ class StockMovementAnalysisReportPage:
             run_btn.click()
             print("⏳ Report is generating...")
             time.sleep(3)
-
-            # ==========================================
-            # STEP 4: Verify Table Loaded
-            # ==========================================
-            print("📊 Verifying table data...")
 
             try:
                 table = wait.until(
@@ -117,12 +98,12 @@ class StockMovementAnalysisReportPage:
                 print("📸 Screenshot attached to Allure.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load — no rows found.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="Stock_Mv_Analysis_Report_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
+                print("⚠️ Table did NOT load — no rows found.")
 
             print("🎉 Stock Movement Analysis Report generation completed successfully.")
 
