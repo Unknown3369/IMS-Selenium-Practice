@@ -21,13 +21,10 @@ class SalesReportMembershipWisePage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Sales Report Membership Wise generation...")
+        print("Starting Sales Report Membership Wise generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to Sales Report Membership Wise
-            # ==========================================
-            print("📂 Navigating to Reports → Loyalty & Promotion Report → Sales Report Membership Wise...")
+            print("Navigating to Reports → Loyalty & Promotion Report → Sales Report Membership Wise...")
 
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
@@ -47,7 +44,7 @@ class SalesReportMembershipWisePage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", loyalty_and_promotion_report)
             self.actions.move_to_element(loyalty_and_promotion_report).pause(0.4).perform()
-            print("✅ Hovered over 'Loyalty & Promotion Report'.")
+            print("Hovered over 'Loyalty & Promotion Report'.")
             time.sleep(1)
 
             sales_report_membership = wait.until(
@@ -55,13 +52,13 @@ class SalesReportMembershipWisePage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", sales_report_membership)
             sales_report_membership.click()
-            print("✅ Clicked 'Sales Report - Membership Wise'")
+            print("Clicked 'Sales Report - Membership Wise'")
             time.sleep(2)
 
             # ==========================================
             # STEP 2: Select Member
             # ==========================================
-            print("🧍 Selecting member input...")
+            print("Selecting member input...")
 
             member_input = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter or Tab for Member List']"))
@@ -69,56 +66,36 @@ class SalesReportMembershipWisePage:
             member_input.click()
             time.sleep(0.5)
             member_input.send_keys("\n")  # Press ENTER to load list
-            print("✅ Member list opened")
+            print("Member list opened")
             time.sleep(1)
-
-            # ==========================================
-            # STEP 3: Double-click Member "TheTestCustom"
-            # ==========================================
-            print("🖱️ Selecting member 'TheTestCustom'...")
 
             member_option = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//div[@title='TheTestCustom']"))
             )
             self.actions.double_click(member_option).perform()
-            print("✅ Double-clicked member 'TheTestCustom'")
+            print("Double-clicked member 'TheTestCustom'")
             time.sleep(1)
-
-            # ==========================================
-            # STEP 4: Select Detail Report Radio
-            # ==========================================
-            print("📌 Selecting 'Detail Report'...")
 
             detail_report_radio = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//input[@type='radio' and @name='reportType' and @value='1']"))
             )
             driver.execute_script("arguments[0].click();", detail_report_radio)
-            print("✅ Detail Report selected")
+            print("Detail Report selected")
             time.sleep(1)
-
-            # ==========================================
-            # STEP 5: Click RUN Button
-            # ==========================================
-            print("🏃 Clicking RUN button...")
 
             run_button = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(@class,'confirm-btn') and text()='RUN']"))
             )
             run_button.click()
-            print("✅ RUN button clicked")
+            print("RUN button clicked")
             time.sleep(4)
-
-            # ==========================================
-            # STEP 6: Verify Table Loaded
-            # ==========================================
-            print("📊 Verifying Sales Report Membership Wise table...")
 
             try:
                 table = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//table[contains(@class,'table')]"))
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
-                print(f"✅ Report table loaded with {len(rows) - 1} rows.")
+                print(f"Report table loaded with {len(rows) - 1} rows.")
 
                 # Attach screenshot
                 screenshot = driver.get_screenshot_as_png()
@@ -127,10 +104,10 @@ class SalesReportMembershipWisePage:
                     name="Sales_Report_Membership_Wise_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load — no rows found.")
+                print("Table did NOT load — no rows found.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="Sales_Report_Membership_Wise_No_Table",
@@ -138,7 +115,7 @@ class SalesReportMembershipWisePage:
                 )
 
         except Exception as e:
-            print(f"❌ Error occurred: {e}")
+            print(f"Error occurred: {e}")
 
             # Attach failure screenshot
             allure.attach(

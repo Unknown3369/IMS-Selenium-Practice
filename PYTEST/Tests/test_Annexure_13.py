@@ -14,7 +14,7 @@ def test_annexure_13_report(driver):
     login_page = login(driver)
 
     try:
-        login_page.perform_login("Paras", "Ims@1234")
+        login_page.perform_login("Testuser", "Test@1234")
         print("✅ Logged into IMS")
 
         annexure_13_report = Annexure13ReportPage(driver)

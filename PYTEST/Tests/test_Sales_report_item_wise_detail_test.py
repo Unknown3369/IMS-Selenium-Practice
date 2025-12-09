@@ -13,23 +13,23 @@ def test_generate_sales_report_item_wise_detail(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate Sales Report Item Wise Detail ---
         sales_report_page = SalesReportItemWiseDetailPage(driver)
         sales_report_page.generate_sales_report_item_wise_detail()
-        print("📊 Sales Report Item Wise Detail generated successfully.")
+        print("Sales Report Item Wise Detail generated successfully.")
 
-        # ✅ Step 3: Capture screenshot after successful report generation
+        # Step 3: Capture screenshot after successful report generation
         allure.attach(
             driver.get_screenshot_as_png(),
             name="Sales_Report_Item_Wise_Detail_Success",
             attachment_type=allure.attachment_type.PNG
         )
-        print("📸 Screenshot captured after successful Sales Report Item Wise Detail generation.")
+        print("Screenshot captured after successful Sales Report Item Wise Detail generation.")
 
     except Exception as e:
-        # ❌ Step 4: Capture screenshot & error details on failure
+        # Step 4: Capture screenshot & error details on failure
         allure.attach(
             driver.get_screenshot_as_png(),
             name="Sales_Report_Item_Wise_Detail_Error",
@@ -40,4 +40,4 @@ def test_generate_sales_report_item_wise_detail(driver):
             name="Error_Details",
             attachment_type=allure.attachment_type.TEXT
         )
-        pytest.fail(f"❌ Sales Report Item Wise Detail test failed due to: {e}")
+        pytest.fail(f"Sales Report Item Wise Detail test failed due to: {e}")

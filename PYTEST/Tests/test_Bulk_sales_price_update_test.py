@@ -14,7 +14,7 @@ def test_bulk_sales_price_test(driver):
 
     try:
 
-        login_page.perform_login("Paras", "Ims@1234")
+        login_page.perform_login("Testuser", "Test@1234")
         print("✅ Logged into IMS")
 
         bulk_page = BulkSalesPriceUpdatePage(driver)

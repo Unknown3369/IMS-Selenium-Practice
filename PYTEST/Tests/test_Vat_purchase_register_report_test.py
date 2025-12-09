@@ -14,12 +14,12 @@ def test_vat_purchase_register_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         vat_purchase_report = VatPurchaseRegisterReportPage(driver)
         vat_purchase_report.generate_vat_purchase_register_report()
 
-        print("✅ Vat Purchase Register Report generated successfully.")
+        print("Vat Purchase Register Report generated successfully.")
 
         allure.attach(
             driver.get_screenshot_as_png(),
@@ -43,4 +43,4 @@ def test_vat_purchase_register_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

@@ -21,13 +21,10 @@ class MaterializedViewReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Materialized View Report generation...")
+        print("Starting Materialized View Report generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to Materialized View
-            # ==========================================
-            print("📂 Navigating to Reports → VAT Report → Materialized View...")
+            print("Navigating to Reports → VAT Report → Materialized View...")
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
             )
@@ -46,7 +43,7 @@ class MaterializedViewReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_report)
             self.actions.move_to_element(vat_report).pause(0.4).perform()
-            print("✅ Hovered over 'VAT Report'.")
+            print("Hovered over 'VAT Report'.")
             time.sleep(1)
 
             materialized_view_report = wait.until(
@@ -54,23 +51,17 @@ class MaterializedViewReportPage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", materialized_view_report)
             materialized_view_report.click()
-            print("✅ Clicked 'Materialized View'")
+            print("Clicked 'Materialized View'")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 2: Click RUN button
-            # ==========================================
             run_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(@class,'confirm-btn') and text()='RUN']"))
             )
             run_btn.click()
-            print("✅ Clicked RUN button")
+            print("Clicked RUN button")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 3: Verify Table Loaded
-            # ==========================================
-            print("📊 Verifying Materialized View Report table...")
+            print("Verifying Materialized View Report table...")
 
             try:
                 table = wait.until(
@@ -78,7 +69,7 @@ class MaterializedViewReportPage:
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
 
-                print(f"✅ Materialized View Report loaded with {len(rows) - 1} rows.")
+                print(f"Materialized View Report loaded with {len(rows) - 1} rows.")
 
                 # Screenshot when the table appears
                 screenshot = driver.get_screenshot_as_png()
@@ -88,20 +79,20 @@ class MaterializedViewReportPage:
                     attachment_type=allure.attachment_type.PNG
                 )
 
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load — no rows found.")
+                print("Table did NOT load — no rows found.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="Materialized_View_Report_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
 
-            print("🎉 Materialized View Report generation completed successfully.")
+            print("Materialized View Report generation completed successfully.")
 
         except Exception as e:
-            print(f"❌ Error occurred: {e}")
+            print(f"Error occurred: {e}")
             # Screenshot on failure
             allure.attach(
                 driver.get_screenshot_as_png(),

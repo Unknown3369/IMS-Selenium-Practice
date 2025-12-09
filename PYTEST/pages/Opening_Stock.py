@@ -19,10 +19,10 @@ class OpeningStockPage:
     # noinspection PyBroadException
     @allure.step("Generate Opening Stock")
     def generate_opening_stock(self):
-        print("🚀 Starting Opening Stock generation...")
+        print("Starting Opening Stock generation...")
 
         # Step 1: Navigate to Transactions → Opening Stock
-        print("📂 Navigating to Transactions → Opening Stock...")
+        print("Navigating to Transactions → Opening Stock...")
 
         transaction_btn = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='Transactions']"))
@@ -48,11 +48,11 @@ class OpeningStockPage:
             EC.element_to_be_clickable((By.LINK_TEXT, "Opening Stock"))
         )
         opening_stock.click()
-        print("✅ Opening Stock page opened.")
+        print("Opening Stock page opened.")
         time.sleep(2)
 
         # STEP 2 → ENTER REMARKS
-        print("📝 Adding remark...")
+        print("Adding remark...")
         remark_field = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//textarea[@type='text']"))
         )
@@ -62,7 +62,7 @@ class OpeningStockPage:
         time.sleep(1)
 
         # STEP 3 → SELECT FIRST ITEM
-        print("📦 Selecting first item...")
+        print("Selecting first item...")
         item_field = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//input[@id='itemDesc0']"))
         )
@@ -104,7 +104,7 @@ class OpeningStockPage:
         time.sleep(1)
 
         # STEP 4 → SELECT SECOND ITEM
-        print("📦 Selecting second item...")
+        print("Selecting second item...")
         item_field_2 = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//input[@id='itemDesc1']"))
         )
@@ -136,7 +136,7 @@ class OpeningStockPage:
         time.sleep(1)
 
         # STEP 5 → CLICK SAVE
-        print("💾 Saving Opening Stock...")
+        print("Saving Opening Stock...")
         save_btn = self.wait.until(
             EC.element_to_be_clickable(
                 (By.XPATH, "//button[normalize-space()='SAVE [End]']")
@@ -144,5 +144,5 @@ class OpeningStockPage:
         )
         save_btn.click()
 
-        print("🎉 Opening Stock entry completed successfully!")
+        print("Opening Stock entry completed successfully!")
 

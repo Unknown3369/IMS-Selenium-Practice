@@ -24,7 +24,7 @@ class PurchaseReportItemWiseDetailPage:
         print("Starting Purchase Report - Item Wise Detail generation...")
 
         try:
-            # ✅ Step 1: Navigate to Reports → Purchase Reports → Purchase Report - Item Wise Detail
+            # Step 1: Navigate to Reports → Purchase Reports → Purchase Report - Item Wise Detail
             print("Navigating to Reports → Purchase Reports → Purchase Report - Item Wise Detail...")
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
@@ -55,7 +55,7 @@ class PurchaseReportItemWiseDetailPage:
             print("Clicked on 'Purchase Report - Item Wise Detail'.")
             time.sleep(3)
 
-            # ✅ Step 2: Select Item
+            # Step 2: Select Item
             print("Selecting Item: White Chocolate...")
 
             # Wait for the input field to be clickable

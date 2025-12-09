@@ -38,7 +38,7 @@ class BulkSalesPriceUpdatePage:
 
         bulk_price_change = self.wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Bulk Price Change")))
         bulk_price_change.click()
-        print("✅ Navigated to Bulk Price Change page.")
+        print("Navigated to Bulk Price Change page.")
         time.sleep(3)
 
     # --- Select Item Group (Chocolate) and Category (Chocolate) ---
@@ -56,18 +56,18 @@ class BulkSalesPriceUpdatePage:
                 EC.element_to_be_clickable((By.XPATH, "//select[@id='Category']/option[text()='Chocolate']"))
             )
             chocolate_category_option.click()
-            print("✅ Selected Category: Chocolate")
+            print("Selected Category: Chocolate")
             time.sleep(5)
 
             # Step 2: Attach screenshot to Allure
             allure.attach(self.driver.get_screenshot_as_png(), name="Item_Group_and_Category_Selected",
-                          attachment_type=allure.attachment_type.PNG)
-            print("📸 Screenshot attached: Item Group and Category selected successfully.")
+                attachment_type=allure.attachment_type.PNG)
+            print("Screenshot attached: Item Group and Category selected successfully.")
 
         except Exception as e:
             allure.attach(self.driver.get_screenshot_as_png(), name="Item_Group_Select_Error",
-                          attachment_type=allure.attachment_type.PNG)
-            raise AssertionError(f"❌ Failed to select Item Group or Category due to: {e}")
+                attachment_type=allure.attachment_type.PNG)
+            raise AssertionError(f"Failed to select Item Group or Category due to: {e}")
 
     # --- Update prices for 4 items ---
     @allure.step("Update Prices for 4 Items with Random Values")
@@ -89,7 +89,7 @@ class BulkSalesPriceUpdatePage:
                 price_input.clear()  # Clear existing value
                 random_price = random.randint(500, 1000)
                 price_input.send_keys(str(random_price))
-                print(f"✅ Updated {field_id} with price: {random_price}")
+                print(f"Updated {field_id} with price: {random_price}")
 
             # --- Click Save button ---
 
@@ -103,15 +103,15 @@ class BulkSalesPriceUpdatePage:
                 save_button.click()
             except:
                 self.driver.execute_script("arguments[0].click();", save_button)
-            print("✅ Clicked Save button after updating prices")
+            print("Clicked Save button after updating prices")
             time.sleep(5)
 
             # Attach screenshot after updating prices
             allure.attach(self.driver.get_screenshot_as_png(), name="Prices_Updated",
-                          attachment_type=allure.attachment_type.PNG)
-            print("📸 Screenshot attached: Prices updated successfully.")
+                attachment_type=allure.attachment_type.PNG)
+            print("Screenshot attached: Prices updated successfully.")
 
         except Exception as e:
             allure.attach(self.driver.get_screenshot_as_png(), name="Price_Update_Error",
-                          attachment_type=allure.attachment_type.PNG)
-            raise AssertionError(f"❌ Failed to update prices due to: {e}")
+                attachment_type=allure.attachment_type.PNG)
+            raise AssertionError(f"Failed to update prices due to: {e}")

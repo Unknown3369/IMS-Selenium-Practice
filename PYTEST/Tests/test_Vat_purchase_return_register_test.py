@@ -15,7 +15,7 @@ def test_vat_purchase_return_register_report(driver):
     try:
 
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate VAT Purchase Return Register Report ---
         vat_purchase_return_report = VatPurchaseReturnRegisterReportPage(driver)

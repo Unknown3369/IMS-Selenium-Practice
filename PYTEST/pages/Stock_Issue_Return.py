@@ -19,10 +19,10 @@ class StockIssueReturnPage:
     # noinspection PyBroadException
     @allure.step("Generate Stock Issue Return")
     def generate_stock_issue_return(self):
-        print("🚀 Starting Stock Issue Return generation...")
+        print("Starting Stock Issue Return generation...")
 
         # Step 1: Navigate to Transactions → Stock Issue Return
-        print("📂 Navigating to Transactions → Stock Issue Return...")
+        print("Navigating to Transactions → Stock Issue Return...")
 
         transaction_btn = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='Transactions']"))
@@ -48,11 +48,11 @@ class StockIssueReturnPage:
             EC.element_to_be_clickable((By.LINK_TEXT, "Stock Issue Return"))
         )
         stock_issue_return.click()
-        print("✅ Stock Issue page opened.")
+        print("Stock Issue page opened.")
         time.sleep(2)
 
         # STEP 2: Select From Warehouse (FIRST DROPDOWN)
-        print("🏷 Selecting From Warehouse (Test)...")
+        print("Selecting From Warehouse (Test)...")
 
         from_wh = self.wait.until(
             EC.element_to_be_clickable((By.ID, "stockissueFromWH"))
@@ -66,21 +66,19 @@ class StockIssueReturnPage:
             )
         )
         test_wh.click()
-        print("✅ Selected From Warehouse: Test")
+        print("Selected From Warehouse: Test")
         time.sleep(2)
 
-        # STEP 3: Enter Remark
-        print("📝 Entering Remark...")
         r_field = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//textarea"))
         )
         r_field.click()
         r_field.send_keys("Stock Issue Automation Entry")
-        print("✅ Remark added.")
+        print("Remark added.")
         time.sleep(1)
 
         # STEP 4: Select To Warehouse
-        print("🏷 Selecting To Warehouse...")
+        print("Selecting To Warehouse...")
 
         # Click the SECOND dropdown (To Warehouse)
         to_wh = self.wait.until(
@@ -94,16 +92,12 @@ class StockIssueReturnPage:
         # Select "Main Warehouse" from second dropdown
         main_wh_2 = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH,
-                 "(//select[@style='width: 70%;' and contains(@class,'ng-valid')])[2]/option[contains(text(),'Main Warehouse')]")
+                (By.XPATH,"(//select[@style='width: 70%;' and contains(@class,'ng-valid')])[2]/option[contains(text(),'Main Warehouse')]")
             )
         )
         main_wh_2.click()
-        print("✅ Selected To Warehouse: Main Warehouse")
+        print("Selected To Warehouse: Main Warehouse")
         time.sleep(2)
-
-        # STEP 5: Select Reference IS Number
-        print("🔎 Selecting Reference IS Number...")
 
         # Click on the reference field
         ref_field = self.wait.until(
@@ -114,24 +108,24 @@ class StockIssueReturnPage:
 
         # Press Enter to load reference list
         ref_field.send_keys(Keys.ENTER)
-        print("⏳ Loading reference list...")
+        print("Loading reference list...")
         time.sleep(2)
 
         # Wait for reference list to appear
         ref_item = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH, "//div[@title='2025-12-04']")
+                (By.XPATH, "//div[@title='2025-12-09']") # Update this date as needed
             )
         )
 
         # Double-click the reference
-        print("🖱 Double clicking reference number...")
+        print("Double clicking reference number...")
         self.actions.double_click(ref_item).perform()
         time.sleep(2)
-        print("✅ Reference IS Number selected.")
+        print("Reference IS Number selected.")
 
         # STEP 6: Click Save
-        print("💾 Saving Stock Issue Return...")
+        print("Saving Stock Issue Return...")
         save_btn = self.wait.until(
             EC.element_to_be_clickable(
                 (By.XPATH, "//button[normalize-space()='SAVE [End]']")
@@ -148,9 +142,9 @@ class StockIssueReturnPage:
                 )
             )
             ok_btn.click()
-            print("✅ Save confirmation clicked.")
+            print("Save confirmation clicked.")
         except:
-            print("ℹ️ No confirmation popup appeared.")
+            print("No confirmation popup appeared.")
 
-        print("🎉 Stock Issue Return generated successfully!")
+        print("Stock Issue Return generated successfully!")
 

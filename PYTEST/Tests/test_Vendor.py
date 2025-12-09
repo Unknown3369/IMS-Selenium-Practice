@@ -35,7 +35,7 @@ def test_create_vendor(driver):
     login_page = login(driver)
 
     login_page.perform_login("Testuser", "Test@1234")
-    print("✅ Logged into IMS")
+    print("Logged into IMS")
 
     random_name_str = random_name()
     random_addr = random_address(12)
@@ -50,11 +50,11 @@ def test_create_vendor(driver):
         vat_no=random_vat,
         email=random_email_str,
         mobile=random_mobile_str)
-    print("✅ Vendor creation process completed")
+    print("Vendor creation process completed")
 
     # --- Step 3: Verify success message ---
     success_message = wait.until(
         EC.presence_of_element_located((By.XPATH, "//div[contains(text(),'Vendor saved successfully')]"))
     )
-    assert success_message.is_displayed(), "❌ Vendor creation failed"
-    print("🎉 Vendor created successfully and verified.")
+    assert success_message.is_displayed(), "Vendor creation failed"
+    print("Vendor created successfully and verified.")

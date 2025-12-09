@@ -30,7 +30,7 @@ class AddProductGroupMasterPage:
 
         add_product_group_button = self.wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@id='create' and contains(., 'Add Product Group')]")))
         add_product_group_button.click()
-        print("✅ Clicked on Add Product Group button.")
+        print("Clicked on Add Product Group button.")
         time.sleep(2)
 
     # --- Select Parent Group ---
@@ -46,38 +46,35 @@ class AddProductGroupMasterPage:
         body_care_option.click()
         ok_button = self.wait.until(EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='Ok']")))
         ok_button.click()
-        print("✅ Selected parent group: BODY CARE.")
+        print("Selected parent group: BODY CARE.")
         time.sleep(2)
 
     # --- Fill Group Details ---
     @allure.step("Fill group details and save Product Group")
     def fill_group_details_and_save(self, group_name, recommended_margin, shelf_life):
-        print("🧾 Filling Product Group details...")
+        print("Filling Product Group details...")
 
         # --- Group Name ---
         group_name_field = self.wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='groupName']")))
         group_name_field.clear()
         group_name_field.send_keys(group_name)
-        print(f"✅ Entered Group Name: {group_name}")
+        print(f"Entered Group Name: {group_name}")
 
         # --- Recommended Margin ---
         margin_field = self.wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='recommendedMargin']")))
         margin_field.clear()
         margin_field.send_keys(recommended_margin)
-        print(f"✅ Entered Recommended Margin: {recommended_margin}")
+        print(f"Entered Recommended Margin: {recommended_margin}")
 
         # --- Shelf Life ---
         shelf_life_field = self.wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='shelfLife']")))
         shelf_life_field.clear()
         shelf_life_field.send_keys(shelf_life)
-        print(f"✅ Entered Shelf Life: {shelf_life}")
+        print(f"Entered Shelf Life: {shelf_life}")
 
         # --- Click Save Button ---
         save_button = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//button[@id='save' and normalize-space(text())='SAVE']")))
         save_button.click()
-        print("💾 Clicked Save button.")
+        print("Clicked Save button.")
         time.sleep(2)
-
-
-

@@ -21,13 +21,11 @@ class OneLakhAboveSalesReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting One Lakh Above Sales Report generation...")
+        print("Starting One Lakh Above Sales Report generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to One Lakh Above Sales Report
-            # ==========================================
-            print("📂 Navigating to Reports → VAT Report → One Lakh Above Sales Report...")
+
+            print("Navigating to Reports → VAT Report → One Lakh Above Sales Report...")
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
             )
@@ -46,7 +44,7 @@ class OneLakhAboveSalesReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_report)
             self.actions.move_to_element(vat_report).pause(0.4).perform()
-            print("✅ Hovered over 'VAT Report'.")
+            print("Hovered over 'VAT Report'.")
             time.sleep(1)
 
             one_lakh_above_sales_report = wait.until(
@@ -54,29 +52,23 @@ class OneLakhAboveSalesReportPage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", one_lakh_above_sales_report)
             one_lakh_above_sales_report.click()
-            print("✅ Clicked 'One Lakh Above Sales Report'")
+            print("Clicked 'One Lakh Above Sales Report'")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 2: Click RUN button
-            # ==========================================
+
             run_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(@class,'confirm-btn') and text()='RUN']"))
             )
             run_btn.click()
-            print("✅ Clicked RUN button")
+            print("Clicked RUN button")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 3: Verify Table Loaded
-            # ==========================================
-            print("📊 Verifying One Lakh Above Sales Report table...")
             try:
                 table = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//table[contains(@class,'table')]"))
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
-                print(f"✅ One Lakh Above Sales Report loaded with {len(rows) - 1} rows.")
+                print(f"One Lakh Above Sales Report loaded with {len(rows) - 1} rows.")
 
                 # Screenshot when table appears
                 screenshot = driver.get_screenshot_as_png()
@@ -85,20 +77,20 @@ class OneLakhAboveSalesReportPage:
                     name="One_Lakh_Above_Sales_Report_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load — no rows found.")
+                print("Table did NOT load — no rows found.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="One_Lakh_Above_Sales_Report_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
 
-            print("🎉 One Lakh Above Sales Report generation completed successfully.")
+            print("One Lakh Above Sales Report generation completed successfully.")
 
         except Exception as e:
-            print(f"❌ Error occurred: {e}")
+            print(f"Error occurred: {e}")
             # Screenshot on failure
             allure.attach(
                 driver.get_screenshot_as_png(),

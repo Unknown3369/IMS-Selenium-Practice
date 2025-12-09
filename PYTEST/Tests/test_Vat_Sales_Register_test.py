@@ -43,4 +43,4 @@ def test_vat_sales_register_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

@@ -21,13 +21,10 @@ class StockIssueReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Stock Issue Report generation...")
+        print("Starting Stock Issue Report generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to Stock Issue Report
-            # ==========================================
-            print("📂 Navigating to Reports → Inventory Reports → Stock Issue Report...")
+            print("Navigating to Reports → Inventory Reports → Stock Issue Report...")
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
             )
@@ -46,35 +43,24 @@ class StockIssueReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", inventory_reports)
             self.actions.move_to_element(inventory_reports).pause(0.4).perform()
-            print("✅ Hovered over 'Inventory Reports'.")
+            print("Hovered over 'Inventory Reports'.")
             time.sleep(1)
 
-            # ==========================================
-            # STEP 2: Click Inventory Movement Report
-            # ==========================================
-            print("📂 Clicking on Inventory Movement Report...")
             inv_mov_report = wait.until(
                 EC.element_to_be_clickable((By.LINK_TEXT, "Inventory Movement Report"))
             )
-            # driver.execute_script("arguments[0].scrollIntoView(true);", inv_mov_report)
+            driver.execute_script("arguments[0].scrollIntoView(true);", inv_mov_report)
             inv_mov_report.click()
-            print("✅ Clicked 'Inventory Movement Report'")
+            print("Clicked 'Inventory Movement Report'")
 
-            # ==========================================
-            # STEP 3: Click Stock Issue Report
-            # ==========================================
             stock_issue_report = wait.until(
                 EC.element_to_be_clickable((By.LINK_TEXT, "Stock Issue Report"))
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", stock_issue_report)
             stock_issue_report.click()
-            print("✅ Clicked 'Stock Issue Report'")
+            print("Clicked 'Stock Issue Report'")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 4: Select From Warehouse
-            # ==========================================
-            print("🏢 Selecting From Warehouse: Main Warehouse...")
             from_warehouse_dropdown = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "(//select[contains(@class,'form-control')])[1]"))
             )
@@ -83,13 +69,9 @@ class StockIssueReportPage:
                 EC.element_to_be_clickable((By.XPATH, "//option[contains(text(),'Main Warehouse')]"))
             )
             main_warehouse_from.click()
-            print("✅ From Warehouse selected: Main Warehouse")
+            print("From Warehouse selected: Main Warehouse")
             time.sleep(1)
 
-            # ==========================================
-            # STEP 5: Select To Warehouse
-            # ==========================================
-            print("🏢 Selecting To Warehouse: Test...")
             to_warehouse_dropdown = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "(//select[contains(@class,'form-control')])[2]"))
             )
@@ -98,29 +80,22 @@ class StockIssueReportPage:
                 EC.element_to_be_clickable((By.XPATH, "//option[contains(text(),'Test')]"))
             )
             test_warehouse_to.click()
-            print("✅ To Warehouse selected: Test")
+            print("To Warehouse selected: Test")
             time.sleep(1)
 
-            # ==========================================
-            # STEP 6: Click RUN
-            # ==========================================
             run_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(@class,'confirm-btn') and text()='RUN']"))
             )
             run_btn.click()
-            print("🚀 Clicked RUN button")
+            print("Clicked RUN button")
             time.sleep(3)
 
-            # ==========================================
-            # STEP 7: Verify Table Loaded
-            # ==========================================
-            print("📊 Verifying Stock Issue Report table...")
             try:
                 table = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//table[contains(@class,'table')]"))
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
-                print(f"✅ Stock Issue Report loaded with {len(rows) - 1} rows.")
+                print(f"Stock Issue Report loaded with {len(rows) - 1} rows.")
 
                 # Attach screenshot
                 screenshot = driver.get_screenshot_as_png()
@@ -129,20 +104,20 @@ class StockIssueReportPage:
                     name="Stock_Issue_Report_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load — no rows found.")
+                print("Table did NOT load — no rows found.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="Stock_Issue_Report_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
 
-            print("🎉 Stock Issue Report generation completed successfully.")
+            print("Stock Issue Report generation completed successfully.")
 
         except Exception as e:
-            print(f"❌ Error occurred: {e}")
+            print(f"Error occurred: {e}")
             # Screenshot on failure
             allure.attach(
                 driver.get_screenshot_as_png(),

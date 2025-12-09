@@ -14,12 +14,12 @@ def test_stock_valuation_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         stock_val_report = StockValuationReportPage(driver)
         stock_val_report.generate_stock_valuation_report()
 
-        print("✅ Stock Valuation Report generated successfully.")
+        print("Stock Valuation Report generated successfully.")
 
         allure.attach(
             driver.get_screenshot_as_png(),
@@ -43,4 +43,4 @@ def test_stock_valuation_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

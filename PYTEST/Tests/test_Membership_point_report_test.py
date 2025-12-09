@@ -15,7 +15,7 @@ def test_generate_membership_point_report(driver):
     login_page = login(driver)
 
     try:
-        login_page.perform_login("Paras", "Ims@1234")
+        login_page.perform_login("Testuser", "Test@1234")
         print("✅ Logged into IMS")
 
         # --- Step 2: Generate Membership Point Report ---

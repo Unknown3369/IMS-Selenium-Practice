@@ -13,13 +13,13 @@ def test_stock_issue_return_entry(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Navigate to Stock Issue Return page ---
         stock_issue_return = StockIssueReturnPage(driver)
         stock_issue_return.generate_stock_issue_return()
 
-        print("✅ Stock Issue Return entry created successfully.")
+        print("Stock Issue Return entry created successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -43,4 +43,4 @@ def test_stock_issue_return_entry(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

@@ -14,13 +14,13 @@ def test_stock_ageing_report(driver):
     try:
 
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate Stock Ageing Report ---
         stock_ageing_report = StockAgeingReportPage(driver)
         stock_ageing_report.generate_stock_ageing_report()
 
-        print("✅ Stock Ageing Report generated successfully.")
+        print("Stock Ageing Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -45,4 +45,4 @@ def test_stock_ageing_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

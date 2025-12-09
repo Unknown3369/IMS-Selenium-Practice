@@ -14,14 +14,13 @@ def test_stock_issue_report(driver):
     try:
 
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
-
+        print("Logged into IMS")
 
         # --- Step 2: Generate Stock Issue Report ---
         stock_issue_report = StockIssueReportPage(driver)
         stock_issue_report.generate_stock_issue_report()
 
-        print("✅ Stock Issue Report generated successfully.")
+        print("Stock Issue Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -46,4 +45,4 @@ def test_stock_issue_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")
