@@ -19,10 +19,10 @@ class StockIssuePage:
     # noinspection PyBroadException
     @allure.step("Generate Stock Issue")
     def generate_stock_issue(self):
-        print("🚀 Starting Stock Issue generation...")
+        print("Starting Stock Issue generation...")
 
         # Step 1: Navigate to Transactions → Stock Issue
-        print("📂 Navigating to Transactions → Stock Issue...")
+        print("Navigating to Transactions → Stock Issue...")
 
         transaction_btn = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='Transactions']"))
@@ -48,7 +48,7 @@ class StockIssuePage:
             EC.element_to_be_clickable((By.LINK_TEXT, "Stock Issue"))
         )
         stock_issue.click()
-        print("✅ Stock Issue page opened.")
+        print("Stock Issue page opened.")
         time.sleep(2)
 
         # STEP 2: Select From Warehouse
@@ -64,17 +64,17 @@ class StockIssuePage:
                 (By.XPATH, "//select[@id='stockissueFromWH']/option[contains(text(),'Main Warehouse')]"))
         )
         main_wh.click()
-        print("✅ Selected From Warehouse: Main Warehouse")
+        print("Selected From Warehouse: Main Warehouse")
         time.sleep(3)
 
         # STEP 3: Enter Remark
-        print("📝 Entering Remark...")
+        print("Entering Remark...")
         remark_field = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//textarea"))
         )
         remark_field.click()
         remark_field.send_keys("Stock Issue Automation Entry")
-        print("✅ Remark added.")
+        print("Remark added.")
         time.sleep(3)
 
         # STEP 4: Select To Warehouse
@@ -92,16 +92,15 @@ class StockIssuePage:
         # Select "Test" from second dropdown
         test_wh = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH,
-                 "(//select[@style='width: 70%;' and contains(@class,'ng-valid')])[2]/option[contains(text(),'Test')]")
+                (By.XPATH,"(//select[@style='width: 70%;' and contains(@class,'ng-valid')])[2]/option[contains(text(),'Test')]")
             )
         )
         test_wh.click()
-        print("✅ Selected To Warehouse: Test")
+        print("Selected To Warehouse: Test")
         time.sleep(2)
 
         # STEP 5: Select Item
-        print("📦 Selecting Item...")
+        print("Selecting Item...")
 
         select_item_field = self.wait.until(
             EC.element_to_be_clickable((By.ID, "ITEMDESC0"))
@@ -115,11 +114,11 @@ class StockIssuePage:
             EC.element_to_be_clickable((By.XPATH, "//div[contains(text(),'Amigo Nepal 2345')]"))
         )
         ActionChains(self.driver).double_click(item_to_select).perform()
-        print("✅ Selected Item: Amigo Nepal 2345")
+        print("Selected Item: Amigo Nepal 2345")
         time.sleep(2)
 
         # STEP 6: Enter Quantity
-        print("🔢 Entering Quantity...")
+        print("Entering Quantity...")
         qty_field = self.wait.until(
             EC.element_to_be_clickable((By.ID, "ALTERNATEQUANTIY0"))
         )
@@ -132,7 +131,7 @@ class StockIssuePage:
         time.sleep(5)
 
         # STEP 7: Save
-        print("💾 Saving Stock Issue...")
+        print("Saving Stock Issue...")
         save_button = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'SAVE [End]')]"))
         )
@@ -142,6 +141,5 @@ class StockIssuePage:
         except:
             self.driver.execute_script("arguments[0].click();", save_button)
 
-        print("✅ Stock Issue Saved Successfully!")
-        allure.attach(self.driver.get_screenshot_as_png(), name="Stock_Issue_Success",
-                      attachment_type=allure.attachment_type.PNG)
+        print("Stock Issue Saved Successfully!")
+        allure.attach(self.driver.get_screenshot_as_png(), name="Stock_Issue_Success",attachment_type=allure.attachment_type.PNG)

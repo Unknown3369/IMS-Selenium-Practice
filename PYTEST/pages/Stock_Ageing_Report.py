@@ -110,7 +110,6 @@ class StockAgeingReportPage:
             )
             run_btn.click()
             print(" Clicked RUN button")
-            time.sleep()
 
             # STEP 5: Verify Table Loaded
             print("Verifying Stock Ageing Report table...")
