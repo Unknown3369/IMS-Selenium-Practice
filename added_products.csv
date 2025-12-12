@@ -1,11 +1,2 @@
-Item Code,Product Name,HS Code,Description,Purchase Price,Sales Price
-14.3116,prod_9525b766,9899,Testdescription,419,566
-14.3117,prod_c04861cb,7750,Testdescription,284,433
-14.3118,prod_07cca3d7,8699,Testdescription,467,615
-14.3119,prod_22fdad5a,9494,Testdescription,987,1139
-14.3120,prod_4f8991c2,1989,Testdescription,111,254
-14.3121,prod_f7f8b73e,2935,Testdescription,328,494
-14.3122,prod_0ff0011c,3363,Testdescription,48,221
-14.3123,prod_c0bdce4f,8817,Testdescription,580,779
-14.3124,prod_3905b57a,8784,Testdescription,966,1146
-14.3125,prod_2b742f19,7791,Testdescription,514,645
+Group Code,Item Group,Item Code,HS Code,Item Name,Category,Stock Unit,Is Vatable Item,Item Type,Description,Purchase Price,Sales Price
+14,Chocolate,14.3133,9661,prod_42ecdf58,N/A,Pkt.,Yes,,Auto generated product description,50,50

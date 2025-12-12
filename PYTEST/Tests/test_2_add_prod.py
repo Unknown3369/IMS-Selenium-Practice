@@ -9,44 +9,67 @@ import csv
 import os
 
 def random_name():
-   # short unique string using uuid
    return "prod_" + uuid.uuid4().hex[:8]
 
 def clear_csv(filename="added_products.csv"):
-   """Clears the CSV file and writes headers."""
    with open(filename, mode="w", newline="", encoding="utf-8") as file:
       writer = csv.writer(file)
-      writer.writerow(["Item Code", "Product Name", "HS Code", "Description", "Purchase Price", "Sales Price"])
-   print("CSV file cleared successfully before adding new products.")
+      writer.writerow(["Group Code", "Item Group", "Item Code", "HS Code", "Item Name", "Category", "Stock Unit", "Is Vatable Item", "Item Type", "Description", "Purchase Price", "Sales Price"])
+   print("CSV reset complete.")
 
 def save_product_to_csv(product_data, filename="added_products.csv"):
-   """Appends a product entry to the CSV file. Creates file if it doesn’t exist."""
-   file_exists = os.path.isfile(filename)
+   file_empty = (not os.path.exists(filename)) or os.stat(filename).st_size == 0
    with open(filename, mode="a", newline="", encoding="utf-8") as file:
       writer = csv.writer(file)
-      # Only write headers if the file was missing or empty
-      if os.stat(filename).st_size == 0:
-         writer.writerow(["Item Code", "Product Name", "HS Code", "Description", "Purchase Price", "Sales Price"])
+      if file_empty:
+         writer.writerow(["Group Code", "Item Group", "Item Code", "HS Code", "Item Name", "Category", "Stock Unit", "Is Vatable Item", "Item Type", "Description", "Purchase Price", "Sales Price"])
       writer.writerow(product_data)
 
 def test_add_prod(driver: webdriver):
    login_page = login(driver)
    add_prod_page = Add_prod(driver)
+   # Login and navigate
    login_page.perform_login("Testuser", "Test@1234")
    add_prod_page.masters_click_test(driver)
-
-   # Clear CSV before adding any new products
+   # CSV reset
    clear_csv("added_products.csv")
-
-   # Generate and add multiple products
-   for i in range(10):
-      random_string = random_name()
-      random_hs = random.randint(1000, 9999)
-      random_price = random.randint(10, 999)
-      output_price = random_price + random.randint(130, 200)
-      
-      # Get item code from add_prod_test()
-      item_code = add_prod_page.add_prod_test(driver, random_string, random_hs, "Testdescription", random_price, output_price)
-
-      # Save with item code included
-      save_product_to_csv([item_code, random_string, random_hs, "Testdescription", random_price, output_price])
+   # prepare product input
+   random_item_name = random_name()
+   random_hs_code = str(random.randint(1000, 9999))
+   random_description = "Auto generated product description"
+   random_purchase_price = random.randint(50, 150)
+   random_sales_price = random.randint(200, 350)
+   # Fill the form (do not save yet)
+   item_code = add_prod_page.add_prod_test(
+      driver,
+      input_itemname=random_item_name,
+      input_hscode=random_hs_code,
+      input_description=random_description,
+      input_purchase_price=random_purchase_price,
+      input_sales_price=random_sales_price
+   )
+   print("Form filled. Generated Item Code:", item_code)
+   # Read all fields BEFORE clicking save
+   product_data_dict = add_prod_page.read_all_product_fields()
+   # Prepare CSV row and save BEFORE clicking SAVE
+   csv_row = [
+      product_data_dict.get("Group Code", "14"),
+      product_data_dict.get("Item Group", ""),
+      product_data_dict.get("Item Code", ""),
+      product_data_dict.get("HS Code", ""),
+      product_data_dict.get("Item Name", ""),
+      product_data_dict.get("Category",""),
+      product_data_dict.get("Stock Unit", ""),
+      product_data_dict.get("Is Vatable Item", ""),
+      product_data_dict.get("Item Type", ""),
+      product_data_dict.get("Description", ""),
+      product_data_dict.get("Purchase Price Excl VAT", ""),
+      product_data_dict.get("Sales Price Incl VAT", "")
+   ]
+   save_product_to_csv(csv_row, "added_products.csv")
+   print("Product details written to CSV BEFORE saving the product!")
+   # Now click save and handle popups
+   add_prod_page.save_button()
+   # Optional: after save you may want to re-read or assert something
+   # final_data = add_prod_page.read_all_product_fields()
+   # assert final_data.get("Item Code") == item_code
