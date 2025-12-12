@@ -114,7 +114,7 @@ class StockIssueReturnPage:
         # Wait for reference list to appear
         ref_item = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH, "//div[@title='2025-12-09']") # Update this date as needed
+                (By.XPATH, "//div[@title='2025-12-07']") # Update this date as needed
             )
         )
 
