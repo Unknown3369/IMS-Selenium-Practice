@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 # ------------------ FILE PATHS ------------------
 csv_file = "added_products.csv"
 excel_file = "Product Master Sample.xlsx"
-sheet_name = "Sheet1"
+sheet_name = "Product"
 
 # ------------------ COLUMN MAPPING ------------------
 # CSV column name : Excel column letter
