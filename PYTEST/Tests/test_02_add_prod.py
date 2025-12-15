@@ -34,10 +34,10 @@ def test_add_prod(driver: webdriver):
    # CSV reset
    clear_csv("added_products.csv")
    # prepare product input
-   for i in range(4):  # Change range for multiple products
+   for i in range(1):  # Change range for multiple products
       random_item_name = random_name()
       random_hs_code = str(random.randint(1000, 9999))
-      random_description = "Auto generated product description"
+      random_description = "Test Product Description"
       random_purchase_price = random.randint(50, 150)
       random_sales_price = random.randint(200, 350)
       # Fill the form (do not save yet)
@@ -59,11 +59,11 @@ def test_add_prod(driver: webdriver):
          product_data_dict.get("Item Code", ""),
          product_data_dict.get("HS Code", ""),
          product_data_dict.get("Item Name", ""),
+         product_data_dict.get("Description", ""),
          product_data_dict.get("Category",""),
          product_data_dict.get("Stock Unit", ""),
          product_data_dict.get("Is Vatable Item", ""),
          product_data_dict.get("Item Type", ""),
-         product_data_dict.get("Description", ""),
          product_data_dict.get("Purchase Price Excl VAT", ""),
          product_data_dict.get("Sales Price Incl VAT", "")
       ]
