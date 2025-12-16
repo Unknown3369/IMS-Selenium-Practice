@@ -1,9 +1,11 @@
+import select
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from selenium.webdriver.support.ui import Select
 
 class UploadSheetPage:
    def __init__(self, driver):
@@ -11,13 +13,11 @@ class UploadSheetPage:
       self.wait = WebDriverWait(driver, 20)
       self.actions = ActionChains(driver)
 
-      excel_path = r"C:\Users\tamra\OneDrive\Documents\GitHub\IMS-Selenium-Practice\Product Master Sample.xlsx"
-
       self.utilities = (By.XPATH, "//span[contains(text(),'Utilities')]")
       self.migration = (By.LINK_TEXT, "Migration")
       self.master_migration = (By.XPATH, "//a[span[normalize-space()='Master Migration']]")
       self.upload_sheet = (By.XPATH, "//a[@href='#upload-sheet' and normalize-space()='Upload Sheet']")
-      self.select_master = (By.XPATH, "//select[@name='selectedMaster']")
+      self.select_master = (By.XPATH, "//select[@name='selectedMaster' and contains(@class,'form-control')]")
       self.choose_file = (By.XPATH, "//input[@type='file' and contains(@accept,'.xlsx')]")
       self.upload_btn = (By.XPATH, "//button[normalize-space()='Upload File']")
 
@@ -51,25 +51,46 @@ class UploadSheetPage:
       print("Master Migration clicked successfully!")
       time.sleep(2)
 
+      rand_click = self.wait.until(
+         EC.presence_of_element_located((By.XPATH, "//div[contains(@class,'col-md-12') and contains(@style,'overflow-y: auto')]"))
+      )
+      rand_click.click()
+
       upload_sheet = self.wait.until(
          EC.presence_of_element_located(self.upload_sheet)
       )
       upload_sheet.click()
       print("Upload Sheet clicked successfully!")
+      time.sleep(2)
 
    def open_upload_sheet(self):
-      select_master = self.wait.until(
-         EC.element_to_be_clickable(self.select_master)
+      select_element = self.wait.until(
+         EC.element_to_be_clickable((By.NAME, "selectedMaster"))
       )
-      select_master.click()
-      select_master.select_by_visible_text("Product Master")
-      time.sleep(1)
+
+      # Scroll into view
+      self.driver.execute_script(
+         "arguments[0].scrollIntoView({block: 'center'});",
+         select_element
+      )
+
+      select = Select(select_element)
+
+      # Wait until options are populated
+      self.wait.until(lambda d: len(select.options) > 1)
+
+      # Select by visible text
+      select.select_by_visible_text("Product Master")
+
       print("Master clicked successfully!")
 
       choose_path = self.wait.until(
          EC.presence_of_element_located(self.choose_file)
       )
       time.sleep(1)
+      
+      excel_path = r"C:\Users\tamra\OneDrive\Documents\GitHub\IMS-Selenium-Practice\Product Master Sample.xlsx"
+      
       choose_path.send_keys(excel_path)
       print("File path chosen successfully!")
 
