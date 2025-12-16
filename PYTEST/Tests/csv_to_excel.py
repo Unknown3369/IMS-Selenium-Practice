@@ -34,8 +34,19 @@ with open(csv_file, newline="", encoding="utf-8") as f:
    current_row = START_ROW
    for row in reader:
       for csv_col, excel_col in COLUMN_MAPPING.items():
-         ws[f"{excel_col}{current_row}"] = row.get(csv_col)
-      current_row += 1
+         value = row.get(csv_col, "")
+         # ---- YES / NO → 1 / 0 conversion for Is Vatable Item ----
+         if csv_col == "Is Vatable Item":
+            value = str(value).strip().lower()
+            if value == "yes":
+               value = 1
+            elif value == "no":
+               value = 0
+            else:
+               value = ""  # or raise an error if required
+         ws[f"{excel_col}{current_row}"] = value
+
+   current_row += 1
 
 # ------------------ SAVE ------------------
 wb.save(excel_file)

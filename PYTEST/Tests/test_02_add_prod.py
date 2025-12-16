@@ -59,11 +59,11 @@ def test_add_prod(driver: webdriver):
          product_data_dict.get("Item Code", ""),
          product_data_dict.get("HS Code", ""),
          product_data_dict.get("Item Name", ""),
-         product_data_dict.get("Description", ""),
          product_data_dict.get("Category",""),
          product_data_dict.get("Stock Unit", ""),
          product_data_dict.get("Is Vatable Item", ""),
          product_data_dict.get("Item Type", ""),
+         product_data_dict.get("Description", ""),
          product_data_dict.get("Purchase Price Excl VAT", ""),
          product_data_dict.get("Sales Price Incl VAT", "")
       ]

@@ -64,25 +64,21 @@ class UploadSheetPage:
       time.sleep(2)
 
    def open_upload_sheet(self):
-      select_element = self.wait.until(
-         EC.element_to_be_clickable((By.NAME, "selectedMaster"))
+      self.wait.until(
+         EC.presence_of_element_located((By.TAG_NAME, "body"))
       )
 
-      # Scroll into view
-      self.driver.execute_script(
-         "arguments[0].scrollIntoView({block: 'center'});",
-         select_element
-      )
+      self.driver.execute_script("""
+         const select = document.querySelector("select[name='selectedMaster']");
+         if (!select) {
+            throw new Error("Upload Sheet dropdown not found");
+         }
 
-      select = Select(select_element)
+         select.value = "Product Master";
+         select.dispatchEvent(new Event('change', { bubbles: true }));
+      """)
 
-      # Wait until options are populated
-      self.wait.until(lambda d: len(select.options) > 1)
-
-      # Select by visible text
-      select.select_by_visible_text("Product Master")
-
-      print("Master clicked successfully!")
+      print("Upload Sheet dropdown selected successfully")
 
       choose_path = self.wait.until(
          EC.presence_of_element_located(self.choose_file)
