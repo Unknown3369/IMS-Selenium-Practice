@@ -1,1 +1,1 @@
-{"total":2,"items":[{"uid":"6c486eacdc1bc2c80c73b8afc3f89fd2","name":"PYTEST.tests","statistic":{"failed":1,"broken":2,"skipped":0,"passed":48,"unknown":0,"total":51}}]}
+{"total":2,"items":[{"uid":"6c486eacdc1bc2c80c73b8afc3f89fd2","name":"PYTEST.tests","statistic":{"failed":8,"broken":6,"skipped":0,"passed":39,"unknown":0,"total":53}}]}

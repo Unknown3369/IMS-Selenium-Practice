@@ -15,7 +15,12 @@ class SheetGenerationPage:
       self.migration = (By.LINK_TEXT, "Migration")
       self.master_migration = (By.XPATH, "//a[span[normalize-space()='Master Migration']]")
       self.select_master = (By.XPATH, "//select[@name='selectedMaster']")
-      self.select_file = (By.XPATH, "//option[@value='Currency Master']")
+      # self.select_file = (By.XPATH, "//option[@value='Currency Master']")
+      # self.select_file = (By.XPATH, "//option[@value='Opening Stock']")
+      # self.select_file = (By.XPATH, "//option[@value='Product Master']")
+      # self.select_file = (By.XPATH, "//option[@value='Product Update']")
+      # self.select_file = (By.XPATH, "//option[@value='Customer Master']")
+      self.select_file = (By.XPATH, "//option[@value='Vendor Master']")
       self.download_btn = (By.XPATH, "//button[normalize-space()='Download Sample Excel']")
 
    def generate_sheet(self):
