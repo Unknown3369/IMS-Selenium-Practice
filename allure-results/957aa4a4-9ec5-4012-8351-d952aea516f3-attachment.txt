@@ -1,0 +1,24 @@
+Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff7b26b87d5
+	0x7ff7b2628e44
+	0x7ff7b2a131f2
+	0x7ff7b2482d9e
+	0x7ff7b2482ffb
+	0x7ff7b24be917
+	0x7ff7b247a2e5
+	0x7ff7b24bc8de
+	0x7ff7b247982a
+	0x7ff7b2478b33
+	0x7ff7b2479653
+	0x7ff7b25622e4
+	0x7ff7b257109c
+	0x7ff7b256ac7f
+	0x7ff7b2749b37
+	0x7ff7b26346a6
+	0x7ff7b262eab4
+	0x7ff7b262ebf9
+	0x7ff7b2622cbd
+	0x7ffa2403e8d7
+	0x7ffa25b0c53c
