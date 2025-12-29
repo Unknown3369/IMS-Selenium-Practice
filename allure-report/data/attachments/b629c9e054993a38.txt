@@ -1,0 +1,24 @@
+❌ Stock Ledger Report failed due to: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff710ec87d5
+	0x7ff710e38e44
+	0x7ff7112231f2
+	0x7ff710c92d9e
+	0x7ff710c92ffb
+	0x7ff710cce917
+	0x7ff710c8a2e5
+	0x7ff710ccc8de
+	0x7ff710c8982a
+	0x7ff710c88b33
+	0x7ff710c89653
+	0x7ff710d722e4
+	0x7ff710d8109c
+	0x7ff710d7ac7f
+	0x7ff710f59b37
+	0x7ff710e446a6
+	0x7ff710e3eab4
+	0x7ff710e3ebf9
+	0x7ff710e32cbd
+	0x7ffa2403e8d7
+	0x7ffa25b0c53c

@@ -1,0 +1,33 @@
+Message: unknown error: net::ERR_INTERNET_DISCONNECTED
+  (Session info: MicrosoftEdge=143.0.3650.96)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff710ec87d5
+	0x7ff710e38e44
+	0x7ff7112231f2
+	0x7ff710c4a1e5
+	0x7ff710c3fb61
+	0x7ff710c410de
+	0x7ff710c3fdbc
+	0x7ff710c3f9e1
+	0x7ff710c3f785
+	0x7ff710c3d946
+	0x7ff710c3df72
+	0x7ff710c4fad6
+	0x7ff710ccce44
+	0x7ff710cb23ea
+	0x7ff710c8a2e5
+	0x7ff710ccc8de
+	0x7ff710c8982a
+	0x7ff710c88b33
+	0x7ff710c89653
+	0x7ff710d722e4
+	0x7ff710d8109c
+	0x7ff710d7ac7f
+	0x7ff710f59b37
+	0x7ff710e446a6
+	0x7ff710e3eab4
+	0x7ff710e3ebf9
+	0x7ff710e32cbd
+	0x7ffa2403e8d7
+	0x7ffa25b0c53c
