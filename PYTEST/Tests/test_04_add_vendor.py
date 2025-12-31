@@ -76,11 +76,11 @@ def test_create_vendor(driver):
 
     # ---------------- Write data to CSV ----------------
     vendor_data = {
-        "Main Group": "SUPPLIER",
-        "Acc Name": random_name_str,
+        "MainGroup": "SUPPLIER",
+        "ACNAME": random_name_str,
         "Address": random_addr,
-        "Vat No": random_vat,
-        "Party Type": "Supplier"
+        "VATNO": random_vat,
+        "PARTYTYPE": "Supplier"
     }
 
     write_vendor_to_csv(vendor_data)

@@ -21,7 +21,6 @@ class UploadSheetPage:
       self.choose_file = (By.XPATH, "//input[@type='file' and contains(@accept,'.xlsx')]")
       self.upload_btn = (By.XPATH, "//button[normalize-space()='Upload File']")
 
-
    def generate_sheet(self):
       #Click on Utilities -> Migration -> Sheet Generation
       utilities = self.wait.until(
@@ -74,11 +73,21 @@ class UploadSheetPage:
             throw new Error("Upload Sheet dropdown not found");
          }
 
-         select.value = "Product Master";
+         const option = Array.from(select.options)
+         .find(o => o.text.trim() === "Vendor Master");
+
+         if (!option) {
+            throw new Error("Vendor Master option not found");
+         }
+
+         option.selected = true;
+
+         select.dispatchEvent(new Event('input', { bubbles: true }));
          select.dispatchEvent(new Event('change', { bubbles: true }));
       """)
 
       print("Upload Sheet dropdown selected successfully")
+
 
       choose_path = self.wait.until(
          EC.presence_of_element_located(self.choose_file)
@@ -86,6 +95,7 @@ class UploadSheetPage:
       time.sleep(1)
       
       excel_path = r"C:\Users\tamra\OneDrive\Documents\GitHub\IMS-Selenium-Practice\Product Master Sample.xlsx"
+      # excel_path = r"C:\Users\tamra\OneDrive\Documents\GitHub\IMS-Selenium-Practice\Vendor Master Sample.xlsx"
       
       choose_path.send_keys(excel_path)
       print("File path chosen successfully!")
