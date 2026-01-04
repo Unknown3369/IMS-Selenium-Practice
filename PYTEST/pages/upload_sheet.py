@@ -105,4 +105,3 @@ class UploadSheetPage:
       )
       upload_btn.click()
       print("Upload button clicked successfully!")
-
