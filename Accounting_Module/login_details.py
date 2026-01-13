@@ -8,7 +8,7 @@ import time
 def login_to_ims():
     driver = webdriver.Edge()
     login =Login(driver)
-    login.perform_login("Testuser", "Test@1234")
+    login.perform_login("Saga", "Ims@1234")
     print("Login process completed.")
 
     wait = WebDriverWait(driver, 30)

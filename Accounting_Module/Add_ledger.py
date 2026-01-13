@@ -21,7 +21,7 @@ class MainPage:
         self.account_dropdown = (By.XPATH, "//select[@id='accountType']")
         self.parent_dropdown = (By.XPATH, "//button[normalize-space(text())='Select Parent Group']")
         self.parent_select = (By.XPATH, "//li[normalize-space(text())='Automation Testing']")
-        self.accpunt_select = (By.XPATH, "//input[@id='accountName']")
+        self.account_select = (By.XPATH, "//input[@id='accountName']")
         self.sub_ledger = (By.XPATH, "//input[@type='checkbox' and @formcontrolname='HasSubLedger']")
         self.save_btn = (By.XPATH, "//button[@id='save']")
 
@@ -71,6 +71,10 @@ class MainPage:
             print("Sidebar closed.")
         except:
             print("Sidebar close button not found.")
+        click_whitespace = self.wait.until(
+            EC.element_to_be_clickable((By.XPATH, "//th[contains(@class,'mat-column-action') and @role='columnheader']"))
+        )
+        click_whitespace.click()
 
     def add_new_ledger(self, account_name: str):
         # Click Add New
@@ -92,19 +96,23 @@ class MainPage:
         )
         account_type_dropdown.click()
 
-        Select(account_type_dropdown).select_by_visible_text("ASSETS")
-        print("Selected Account Type: ASSETS")
+        account_type_dropdown.click()
+        option = self.wait.until( 
+            EC.element_to_be_clickable((By.XPATH, "//option[normalize-space()='ASSETS']"))
+            )
+        option.click()
 
-        parent_group_dropdown = self.wait.until(
-            EC.element_to_be_clickable(self.parent_dropdown)
-        )
-        parent_group_dropdown.click()
 
-        parent_group_select = self.wait.until(
-            EC.element_to_be_clickable(self.parent_select)
-        )
-        ActionChains(self.driver).double_click(parent_group_select).perform()
-        print("Selected Parent Group: Automation Testing")
+        # parent_group_dropdown = self.wait.until(
+        #     EC.element_to_be_clickable(self.parent_dropdown)
+        # )
+        # parent_group_dropdown.click()
+
+        # parent_group_select = self.wait.until(
+        #     EC.element_to_be_clickable(self.parent_select)
+        # )
+        # ActionChains(self.driver).double_click(parent_group_select).perform()
+        # print("Selected Parent Group: Automation Testing")
 
         acc_name_select = self.wait.until(
             EC.element_to_be_clickable(self.account_select)
@@ -113,11 +121,11 @@ class MainPage:
         acc_name_select.send_keys(account_name)
         print(f"Entered Account Name: {account_name}")
 
-        sub_ledger_checkbox = self.wait.until(
-            EC.element_to_be_clickable(self.sub_ledger)
-        )
-        sub_ledger_checkbox.click()
-        print("Checked Sub Ledger checkbox.")
+        # sub_ledger_checkbox = self.wait.until(
+        #     EC.element_to_be_clickable(self.sub_ledger)
+        # )
+        # sub_ledger_checkbox.click()
+        # print("Checked Sub Ledger checkbox.")
 
         save_btn = self.wait.until(
             EC.element_to_be_clickable(self.save_btn)

@@ -15,7 +15,7 @@ def ledger_details():
     Add_ledger.open_ledger_group_master()
 
     # Step 4: Add new ledger
-    Add_ledger.add_new_ledger("Automation Ledger")
+    Add_ledger.add_new_ledger("AutomationLedger")
 
     # Step 5: Wait before closing
     time.sleep(5)
