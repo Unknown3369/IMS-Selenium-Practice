@@ -9,7 +9,7 @@ class Login:
     def __init__(self, driver: webdriver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 35)
-
+        
         self.username = (By.XPATH, "//input[@placeholder='Username']")
         self.password = (By.XPATH, "//input[@placeholder='Password']")
         self.login_button = (By.XPATH, "//button[contains(text(), 'Sign In')]")
