@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from login_details import login_to_ims
+from PYTEST.tests.Accounting.login_accounting_test import test_login_to_ims
 
 class MainPage:
     def __init__(self, driver):
@@ -110,7 +110,7 @@ class MainPage:
         print("Clicked on NO button in the confirmation dialog.")
 
 if __name__ == "__main__":
-    driver = login_to_ims()
+    driver = test_login_to_ims()
     ledger_opening_bl = MainPage(driver)
     ledger_opening_bl.open_accounting_module()
     ledger_opening_bl.open_ledger_opening_bl()

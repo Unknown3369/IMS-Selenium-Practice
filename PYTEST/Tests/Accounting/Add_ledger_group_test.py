@@ -7,9 +7,8 @@ def random_name():
     import uuid
     return "ledgergroup_" + uuid.uuid4().hex[:8]
 
-def test_ledger_details():
+def test_ledger_details(driver):
     # Step 1: Login and get driver
-    driver = webdriver.Edge()
     login =Login(driver)
     login.perform_login("Saga", "Ims@1234")
 

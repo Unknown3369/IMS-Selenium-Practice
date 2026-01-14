@@ -11,9 +11,7 @@ def random_number():
     import random
     return str(random.randint(1000000000, 9999999999))
 
-def test_add_sub_ledger_details():
-    # Step 1: Login and get driver
-    driver = webdriver.Edge()
+def test_add_sub_ledger_details(driver):
     login = Login(driver)
     login.perform_login("Saga", "Ims@1234")
 

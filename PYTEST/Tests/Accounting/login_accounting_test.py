@@ -4,8 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-def test_login_to_ims():
-    driver = webdriver.Edge()
+def test_login_to_ims(driver):
     login =Login(driver)
     login.perform_login("Saga", "Ims@1234")
     print("Login process completed.")

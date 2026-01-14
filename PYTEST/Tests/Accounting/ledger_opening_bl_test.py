@@ -1,7 +1,8 @@
-from login_details import login_to_ims
+from PYTEST.pages.Accounting.Login_accounting import Login
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from ledger_opening_bl import MainPage
+from PYTEST.pages.Accounting.ledger_opening_bl import MainPage
 import time
 import random
 
@@ -10,9 +11,9 @@ ref_number = f"REF-82/83={random_ref}"
 
 random_amount = random.randint(100000, 500000)
 
-def ledger_opening_bl_details():
-    # Login and get driver
-    driver = login_to_ims()
+def test_ledger_opening_bl_details(driver):
+    login = Login(driver)
+    login.perform_login("Saga", "Ims@1234")
     # Initialize MainPage with the logged-in driver
     ledger_opening = MainPage(driver)
     # Navigate through the app
@@ -22,7 +23,4 @@ def ledger_opening_bl_details():
     ledger_opening.add_ledger_opening_details(ref_number, random_amount, "Automation Test Ledger Opening")
     # Wait before closing
     time.sleep(5)
-    driver.quit()
-
-if __name__ == "__main__":
-    ledger_opening_bl_details()
+    assert True

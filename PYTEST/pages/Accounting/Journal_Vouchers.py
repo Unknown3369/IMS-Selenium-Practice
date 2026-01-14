@@ -125,7 +125,8 @@ class MainPage:
 
         # Always locate the element right before performing the action
         ActionChains(self.driver).double_click(
-            self.wait.until(EC.element_to_be_clickable( self.selected_account_n))
+            self.wait.until(
+                EC.element_to_be_clickable( self.selected_account_n))
         ).perform()
 
         cr_amount = self.wait.until(

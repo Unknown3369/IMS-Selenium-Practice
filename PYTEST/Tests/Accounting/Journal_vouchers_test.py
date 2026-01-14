@@ -5,8 +5,7 @@ from datetime import datetime
 import random
 import time
 
-def test_journal_voucher_details():
-    driver = webdriver.Edge()
+def test_journal_voucher_details(driver):
     login = Login(driver)
     login.perform_login("Saga", "Ims@1234")
 
