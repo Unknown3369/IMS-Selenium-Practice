@@ -20,7 +20,7 @@ class MainPage:
         self.new_ledger = (By.XPATH, "//label[normalize-space(text())='Add New Ledger']")
         self.account_dropdown = (By.XPATH, "//select[@id='accountType']")
         self.parent_dropdown = (By.XPATH, "//button[normalize-space(text())='Select Parent Group']")
-        self.parent_select = (By.XPATH, "//li[normalize-space(text())='Automation Testing']")
+        self.parent_select = (By.XPATH, "//li[normalize-space(text())='FIXED ASSETS']")
         self.account_select = (By.XPATH, "//input[@id='accountName']")
         self.sub_ledger = (By.XPATH, "//input[@type='checkbox' and @formcontrolname='HasSubLedger']")
         self.save_btn = (By.XPATH, "//button[@id='save']")
@@ -101,6 +101,17 @@ class MainPage:
             EC.element_to_be_clickable((By.XPATH, "//option[normalize-space()='ASSETS']"))
             )
         option.click()
+
+        parent_group_dropdown = self.wait.until(
+            EC.element_to_be_clickable(self.parent_dropdown)
+        )
+        parent_group_dropdown.click()
+
+        parent_group_select = self.wait.until(
+            EC.element_to_be_clickable(self.parent_select)
+        )
+        ActionChains(self.driver).double_click(parent_group_select).perform()
+        print("Selected Parent Group: Automation Testing")
 
         acc_name_select = self.wait.until(
             EC.element_to_be_clickable(self.account_select)

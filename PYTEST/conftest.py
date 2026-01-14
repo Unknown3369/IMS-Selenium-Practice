@@ -10,6 +10,7 @@ def driver():
    options.add_argument("--disable-gpu")
    options.add_argument("--no-sandbox")
    options.add_argument("--window-size=1500,1000")
+   print(">>> ROOT conftest.py LOADED")
 
    prefs = {
       "download.default_directory": r"C:\Users\tamra\Downloads",
