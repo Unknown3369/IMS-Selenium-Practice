@@ -4,10 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from login_details import login_to_ims
 from datetime import datetime
 import time  # Needed for short sleep
-
 
 class MainPage:
    def __init__(self, driver):
@@ -169,12 +167,3 @@ class MainPage:
       save_button = self.wait.until(EC.element_to_be_clickable(self.save))
       save_button.click()
       print("Save button clicked successfully.")
-
-if __name__ == "__main__":
-   driver = login_to_ims()
-   receipt_voucher = MainPage(driver)
-   receipt_voucher.open_accounting_module()
-   receipt_voucher.open_journal_voucher()
-   time.sleep(2)
-   driver.quit()
-

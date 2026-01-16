@@ -76,11 +76,3 @@ class MainPage:
         )
         save_btn.click()
         print("Clicked Save button for Sub Ledger.")
-
-        time.sleep(3)
-
-if __name__ == "__main__":
-    driver = test_login_to_ims()
-    main = MainPage(driver)
-    main.open_accounting_module()
-    main.open_sub_ledger_account_master()

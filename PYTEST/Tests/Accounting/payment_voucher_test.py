@@ -1,13 +1,14 @@
 from selenium import webdriver
-from Payment_Vouchers import MainPage
-from login_details import login_to_ims
+from PYTEST.pages.Accounting.Payment_Vouchers import MainPage
+from PYTEST.pages.Accounting.Login_accounting import Login
 from datetime import datetime
 import random
 import time
 
-def payment_voucher_details():
+def test_payment_voucher_details(driver):
     # Login and get driver
-    driver = login_to_ims()
+    login = Login(driver)
+    login.perform_login("Saga", "Ims@1234")
 
     # Initialize MainPage with the logged-in driver
     payment_voucher = MainPage(driver)
@@ -33,6 +34,4 @@ def payment_voucher_details():
     payment_voucher.add_voucher_details(generate_random_refno(), "Test Payment", "John Doe", generate_random_amount(), generate_rendom_chequeno())
 
     payment_voucher.save_voucher()
-
-if __name__ == "__main__":
-    payment_voucher_details()
+    assert True

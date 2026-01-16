@@ -4,7 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from login_details import login_to_ims
 
 class MainPage:
    def __init__(self, driver):
@@ -95,11 +94,3 @@ class MainPage:
       )
       no_button.click()
       print("Clicked on No button in confirmation dialog.")
-
-if __name__ == "__main__":
-   driver = login_to_ims()
-   main_page = MainPage(driver)
-   main_page.open_accounting_module()
-   main_page.open_party_opening_bl()
-   # Add further interactions as needed
-   driver.quit()

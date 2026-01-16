@@ -1,11 +1,12 @@
-from login_details import login_to_ims
-from party_opening_bl import MainPage
+from PYTEST.pages.Accounting.Login_accounting import Login
+from PYTEST.pages.Accounting.party_opening_bl import MainPage
 from selenium.webdriver.common.by import By
 import time
 
-def party_opening_bl_details():
+def test_party_opening_bl_details(driver):
     # Login and get driver
-    driver = login_to_ims()
+    login = Login(driver)
+    login.perform_login("Saga", "Ims@1234")
     # Initialize MainPage with the logged-in driver
     party_opening = MainPage(driver)
     # Navigate through the app
@@ -14,7 +15,4 @@ def party_opening_bl_details():
     # Add party opening details
     party_opening.add_party_opening_details("REF62201585", 250000, "Automation Test Party Opening")
     # Wait before closing
-    driver.quit()
-
-if __name__ == "__main__":
-    party_opening_bl_details()
+    assert True

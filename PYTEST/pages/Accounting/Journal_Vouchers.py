@@ -251,12 +251,3 @@ class MainPage:
             EC.element_to_be_clickable(self.enter_view)
         )
         ActionChains(self.driver).double_click(enter_view).perform()
-
-#important Code
-if __name__ == "__main__":
-    driver = test_login_to_ims()
-    journal_voucher = MainPage(driver)
-    journal_voucher.open_accounting_module()
-    journal_voucher.open_journal_voucher()
-    time.sleep(15)
-    driver.quit()

@@ -189,11 +189,3 @@ class ContraVouchersPage:
       )
       no_btn.click()
       print("Clicked 'No' on the confirmation dialog.")
-
-if __name__ == "__main__":
-   driver = webdriver.Chrome()
-   test_login_to_ims(driver)
-   contra_voucher_page = ContraVouchersPage(driver)
-   contra_voucher_page.open_accounting_module()
-   contra_voucher_page.open_contra_voucher()
-   driver.quit()

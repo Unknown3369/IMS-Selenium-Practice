@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from login_details import login_to_ims
+from PYTEST.tests.Accounting.login_accounting_test import test_login_to_ims
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
 from datetime import datetime
@@ -36,7 +36,7 @@ class MainPage:
         self.cheque_no = (By.XPATH, "//input[@id='ChequeNo_0']")
         self.cheque_date = (By.ID, "chequeDate_0")
         self.save = (By.XPATH, "//button[contains(text(), 'F6 SAVE')]")
-        self.no_popup = (By.XPATH, "//button[@id='nobtn' and normalize-space(text())='No']")
+        self.no_popup = (By.ID, "ChequePrintNoBtn")
 
     def open_accounting_module(self):
         account = self.wait.until(
@@ -191,10 +191,3 @@ class MainPage:
         )
         no_popup.click()
         print("Handled popup.")
-
-if __name__ == "__main__":
-    driver = login_to_ims()
-    payment_voucher = MainPage(driver)
-    payment_voucher.open_accounting_module()
-    payment_voucher.open_payment_voucher()
-    driver.quit()

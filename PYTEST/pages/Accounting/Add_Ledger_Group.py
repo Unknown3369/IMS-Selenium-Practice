@@ -94,11 +94,3 @@ class MainPage:
         )
         save_btn.click()
         print("Clicked Save button to add new ledger group.")
-        time.sleep(5)  
-
-if __name__ == "__main__":
-    driver = test_login_to_ims()
-    main = MainPage(driver)
-    main.open_accounting_module()
-    main.open_ledger_group_master()
-    main.add_new_ledger_group()

@@ -109,10 +109,3 @@ class MainPage:
         no_button.click()
         print("Clicked on NO button in the confirmation dialog.")
 
-if __name__ == "__main__":
-    driver = test_login_to_ims()
-    ledger_opening_bl = MainPage(driver)
-    ledger_opening_bl.open_accounting_module()
-    ledger_opening_bl.open_ledger_opening_bl()
-    # Add any further interactions here
-    driver.quit()
