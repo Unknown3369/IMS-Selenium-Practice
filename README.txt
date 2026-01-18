@@ -28,6 +28,17 @@ Forder Structure:
 ├───.vscode
 ├───Accounting_Module
 │   └───__pycache__
+├───allure-report
+│   ├───data
+│   │   ├───attachments
+│   │   └───test-cases
+│   ├───export
+│   ├───history
+│   ├───plugin
+│   │   ├───behaviors
+│   │   ├───packages
+│   │   └───screen-diff
+│   └───widgets
 ├───allure-results
 ├───IMS
 ├───PYTEST
@@ -35,11 +46,15 @@ Forder Structure:
 │   │   └───v
 │   │       └───cache
 │   ├───pages
+│   │   ├───Accounting
+│   │   │   └───__pycache__
 │   │   └───__pycache__
 │   ├───tests
 │   │   ├───.pytest_cache
 │   │   │   └───v
 │   │   │       └───cache
+│   │   ├───Accounting
+│   │   │   └───__pycache__
 │   │   └───__pycache__
 │   └───__pycache__
 ├───screenshots
