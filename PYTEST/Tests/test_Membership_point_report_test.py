@@ -16,13 +16,13 @@ def test_generate_membership_point_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate Membership Point Report ---
         mem_point_page = MembershipPointReportPage(driver)
         mem_point_page.generate_membership_point_report()
 
-        print("📊 Membership Point Report generated successfully.")
+        print("Membership Point Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -30,7 +30,7 @@ def test_generate_membership_point_report(driver):
             name="Membership_Point_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
-        print("📸 Screenshot captured after successful report generation.")
+        print("Screenshot captured after successful report generation.")
 
     except Exception as e:
         # Screenshot on failure
@@ -44,4 +44,4 @@ def test_generate_membership_point_report(driver):
             name="Error_Details",
             attachment_type=allure.attachment_type.TEXT
         )
-        pytest.fail(f"❌ Membership Point Report test failed due to: {e}")
+        pytest.fail(f"Membership Point Report test failed due to: {e}")

@@ -13,13 +13,13 @@ def test_reorder_level_stock_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate Reorder Level Stock Report ---
         reorder_stock_report = ReorderLevelStockReportPage(driver)
         reorder_stock_report.generate_reorder_level_stock_report()
 
-        print("✅ Reorder Level Stock Report generated successfully.")
+        print("Reorder Level Stock Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -44,4 +44,4 @@ def test_reorder_level_stock_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

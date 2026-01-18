@@ -13,7 +13,7 @@ class Login:
         
         self.username = (By.XPATH, "//input[@placeholder='Username']")
         self.password = (By.XPATH, "//input[@placeholder='Password']")
-        self.login_button = (By.XPATH, "//button[contains(text(), 'Sign In')]")
+        self.login_button = (By.XPATH, "//button[contains(text(), 'Login')]")
         self.logout_button = (By.XPATH, "//button[.//span[normalize-space()='Sign out']]")
 
     def perform_login(self, username: str, password: str):

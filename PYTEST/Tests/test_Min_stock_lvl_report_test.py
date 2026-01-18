@@ -13,13 +13,13 @@ def test_min_stock_level_report(driver):
     login_page = login(driver)
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate Minimum Stock Level Report ---
         min_stock_report = MinStockLevelReportPage(driver)
         min_stock_report.generate_min_stock_level_report()
 
-        print("✅ Minimum Stock Level Report generated successfully.")
+        print("Minimum Stock Level Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -44,4 +44,4 @@ def test_min_stock_level_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

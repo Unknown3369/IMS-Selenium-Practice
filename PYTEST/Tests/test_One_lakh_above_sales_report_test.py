@@ -13,13 +13,13 @@ def test_one_lakh_above_sales_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate One Lakh Above Sales Report ---
         one_lakh_sales_report = OneLakhAboveSalesReportPage(driver)
         one_lakh_sales_report.generate_one_lakh_above_sales_report()
 
-        print("✅ One Lakh Above Sales Report generated successfully.")
+        print("One Lakh Above Sales Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -44,4 +44,4 @@ def test_one_lakh_above_sales_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

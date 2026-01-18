@@ -14,12 +14,12 @@ def test_max_stock_level_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         max_stock_report = MaxStockLevelReportPage(driver)
         max_stock_report.generate_max_stock_level_report()
 
-        print("✅ Maximum Stock Level Report generated successfully.")
+        print("Maximum Stock Level Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -44,4 +44,4 @@ def test_max_stock_level_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

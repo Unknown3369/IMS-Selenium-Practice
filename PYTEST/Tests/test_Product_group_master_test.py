@@ -19,7 +19,7 @@ def test_add_product_group_master(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         add_group = AddProductGroupMasterPage(driver)
         add_group.navigate_to_add_product()
@@ -31,7 +31,7 @@ def test_add_product_group_master(driver):
             recommended_margin=str(random.randint(5, 20)),
             shelf_life=str(random.randint(15, 90))
         )
-        print("✅ Product group added successfully.")
+        print("Product group added successfully.")
 
         # Screenshot for success proof
         allure.attach(driver.get_screenshot_as_png(), name="Add_Product_Group_Success", attachment_type=allure.attachment_type.PNG)
@@ -40,4 +40,4 @@ def test_add_product_group_master(driver):
         # Capture screenshot and log error details for Allure
         allure.attach(driver.get_screenshot_as_png(), name="Add_Product_Group_Error", attachment_type=allure.attachment_type.PNG)
         allure.attach(str(e), name="Error Details", attachment_type=allure.attachment_type.TEXT)
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

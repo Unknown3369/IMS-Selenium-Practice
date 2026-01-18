@@ -11,7 +11,7 @@ from PYTEST.pages.Login import login
 def test_login_to_ims(driver):
    """Login test using pytest fixture for driver"""
    login_page = login(driver)
-   login_page.perform_login("Testuser", "Test@1234")
+   login_page.perform_login("Saga", "Ims@1234")
    print("Login process completed.")
    wait = WebDriverWait(driver, 30)
    wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='Date']")))

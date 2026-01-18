@@ -13,23 +13,20 @@ def test_generate_credit_note_book_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
-        # --- Step 2: Generate Credit Note Book Report ---
         credit_report_page = CreditNoteBookReportPage(driver)
         credit_report_page.generate_credit_note_book_report()
-        print("📊 Credit Note Book Report generated successfully.")
+        print("Credit Note Book Report generated successfully.")
 
-        # ✅ Step 3: Capture screenshot after successful report generation
         allure.attach(
             driver.get_screenshot_as_png(),
             name="Credit_Note_Book_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
-        print("📸 Screenshot captured after successful Credit Note Book Report generation.")
+        print("Screenshot captured after successful Credit Note Book Report generation.")
 
     except Exception as e:
-        # ❌ Step 4: Capture screenshot & error details on failure
         allure.attach(
             driver.get_screenshot_as_png(),
             name="Credit_Note_Book_Report_Error",
@@ -40,4 +37,4 @@ def test_generate_credit_note_book_report(driver):
             name="Error_Details",
             attachment_type=allure.attachment_type.TEXT
         )
-        pytest.fail(f"❌ Credit Note Book Report test failed due to: {e}")
+        pytest.fail(f"Credit Note Book Report test failed due to: {e}")

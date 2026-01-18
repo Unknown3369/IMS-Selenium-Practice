@@ -12,12 +12,12 @@ class login:
       self.wait = WebDriverWait(driver, 35)
       self.username = (By.XPATH, "//input[@placeholder='Username']")
       self.password = (By.XPATH, "//input[@placeholder='Password']")
-      self.login_button = (By.XPATH, "//button[contains(text(), 'Sign In')]")
-      self.logout_button = (By.XPATH, "//button[.//span[text()='Logout']]")
+      self.login_button = (By.XPATH, "//button[contains(text(), 'Login')]")
+      self.logout_button = (By.XPATH, "//button[contains(@class,'mat-flat-button') and .//span[normalize-space()='Sign out']]")
    def perform_login(self, username: str, password: str):
       # Open the login page
-      # self.driver.get("http://stc21.webredirect.himshang.com.np")
-      self.driver.get("https://redmiims.webredirect.himshang.com.np/#/login")
+      self.driver.get("http://stc21.variantqa.himshang.com.np")
+      # self.driver.get("https://redmiims.webredirect.himshang.com.np/#/login")
       # Enter username
       username_box = self.wait.until(
          EC.presence_of_element_located(self.username)
@@ -56,7 +56,7 @@ class login:
    def verify_login(self, driver: webdriver):
       current_url = driver.current_url
 
-      expected_url = "https://redmiims.webredirect.himshang.com.np/#/pages/dashboard"
+      expected_url = "https://stc21.variantqa.himshang.com.np/#/pages/dashboard"
 
       if current_url == expected_url:
          print ("Test Sucessfull")

@@ -14,7 +14,7 @@ def test_add_product_category(driver):
     try:
 
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Navigate to Product Category page ---
         add_category = AddProductCategoryPage(driver)
@@ -22,7 +22,7 @@ def test_add_product_category(driver):
 
         # --- Step 3: Add Product Category ---
         add_category.add_product_category("Liquor")
-        print("✅ Product category 'Liquor' added successfully.")
+        print("Product category 'Liquor' added successfully.")
 
         # Screenshot for success proof
         allure.attach(driver.get_screenshot_as_png(), name="Add_Product_Category_Success", attachment_type=allure.attachment_type.PNG)
@@ -31,4 +31,4 @@ def test_add_product_category(driver):
         # Capture screenshot and log error details for Allure
         allure.attach(driver.get_screenshot_as_png(), name="Add_Product_Category_Error", attachment_type=allure.attachment_type.PNG)
         allure.attach(str(e), name="Error Details", attachment_type=allure.attachment_type.TEXT)
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

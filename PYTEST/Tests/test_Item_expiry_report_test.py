@@ -14,12 +14,12 @@ def test_item_expiry_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         item_expiry_report = ItemExpiryReportPage(driver)
         item_expiry_report.generate_item_expiry_report()
 
-        print("✅ Item Expiry Report generated successfully.")
+        print("Item Expiry Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -44,4 +44,4 @@ def test_item_expiry_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

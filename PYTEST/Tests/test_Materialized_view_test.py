@@ -14,13 +14,13 @@ def test_materialized_view_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate Materialized View Report ---
         materialized_view_report = MaterializedViewReportPage(driver)
         materialized_view_report.generate_materialized_view_report()
 
-        print("✅ Materialized View Report generated successfully.")
+        print("Materialized View Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -45,4 +45,4 @@ def test_materialized_view_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

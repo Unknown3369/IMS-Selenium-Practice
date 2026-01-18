@@ -15,12 +15,12 @@ def test_annexure_13_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         annexure_13_report = Annexure13ReportPage(driver)
         annexure_13_report.generate_annexure_13_report()
 
-        print("✅ Annexure 13 Report generated successfully.")
+        print("Annexure 13 Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -45,4 +45,4 @@ def test_annexure_13_report(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

@@ -15,26 +15,26 @@ def test_bulk_sales_price_test(driver):
     try:
 
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         bulk_page = BulkSalesPriceUpdatePage(driver)
         bulk_page.navigate_to_bulk_sales_price()
-        print("✅ Navigated to Bulk Sales Price Update page")
+        print("Navigated to Bulk Sales Price Update page")
 
         bulk_page.select_item_group()
-        print("✅ Successfully selected Item Group and Category: Chocolate")
+        print("Successfully selected Item Group and Category: Chocolate")
 
         bulk_page.update_prices()
-        print("✅ Successfully updated prices for 4 items randomly.")
+        print("Successfully updated prices for 4 items randomly.")
 
         # Screenshot for success
         allure.attach(driver.get_screenshot_as_png(), name="Bulk_Sales_Price_Update_Success",
             attachment_type=allure.attachment_type.PNG)
-        print("📸 Screenshot captured for success.")
+        print("Screenshot captured for success.")
 
     except Exception as e:
         # Capture screenshot and log error for Allure
         allure.attach(driver.get_screenshot_as_png(), name="Bulk_Sales_Price_Update_Error",
             attachment_type=allure.attachment_type.PNG)
         allure.attach(str(e), name="Error Details", attachment_type=allure.attachment_type.TEXT)
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")

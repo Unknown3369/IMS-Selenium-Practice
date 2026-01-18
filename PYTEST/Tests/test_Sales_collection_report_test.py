@@ -13,23 +13,21 @@ def test_generate_sales_collection_report(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Generate Sales Collection Report ---
         sales_collection_page = SalesCollectionReportPage(driver)
         sales_collection_page.generate_sales_collection_report()
-        print("📊 Sales Collection Report generated successfully.")
+        print("Sales Collection Report generated successfully.")
 
-        # ✅ Step 3: Capture screenshot after successful generation
         allure.attach(
             driver.get_screenshot_as_png(),
             name="Sales_Collection_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
-        print("📸 Screenshot captured after successful Sales Collection Report generation.")
+        print("Screenshot captured after successful Sales Collection Report generation.")
 
     except Exception as e:
-        # ❌ Step 4: Capture screenshot & error details on failure
         allure.attach(
             driver.get_screenshot_as_png(),
             name="Sales_Collection_Report_Error",
@@ -40,4 +38,4 @@ def test_generate_sales_collection_report(driver):
             name="Error_Details",
             attachment_type=allure.attachment_type.TEXT
         )
-        pytest.fail(f"❌ Sales Collection Report test failed due to: {e}")
+        pytest.fail(f"Sales Collection Report test failed due to: {e}")
