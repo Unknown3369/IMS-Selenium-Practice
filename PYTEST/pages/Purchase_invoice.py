@@ -20,9 +20,9 @@ class PurchaseInvoice:
       self.purchase_invoice_link = (By.XPATH, "//span[normalize-space()='Purchase Invoice']")
       self.invoice_no = (By.XPATH, "//input[@id='invoiceNO']")
       self.account = (By.XPATH, "//input[@id='accountfield']")
-      self.account_name = (By.XPATH, "//div[@title='Dark Chocolate Vendor']")
+      self.account_name = (By.XPATH, "//div[normalize-space()='11 QA Vendor']")
       self.item_name = (By.XPATH, "//input[@id='barcodeField' and @placeholder='Enter Barcode']")
-      self.quantity = (By.XPATH, "//input[@id='quantityBarcode' and @type='number']")
+      self.quantity = (By.XPATH, "//input[@id='ALTERNATEQUANTIY0']")
       self.save_button = (By.XPATH, "//button[contains(text(),'SAVE')]")
 
    def purchase_invoice(self, driver: webdriver, invoice_value: int):
@@ -76,14 +76,15 @@ class PurchaseInvoice:
       )
       self.actions.double_click(account_name).perform()
       print("Account name selected successfully!")
-      time.sleep(2)
    
-   def purchase_invoice_test(self, driver:webdriver, item_code: str, enter_quantity: int):
+   def purchase_invoice_test(self, item_code: str, enter_quantity: int):
 
       # Click on item name field
-      item_name = self.wait.until(EC.presence_of_element_located(self.item_name))
-      item_name.clear()
-      item_name.send_keys(item_code)   # type the actual Item Code
+      item_name = self.wait.until(
+         EC.presence_of_element_located(self.item_name)
+         )
+      item_name.click()
+      item_name.send_keys(item_code) 
       time.sleep(2)
       item_name.send_keys(Keys.ENTER)
       time.sleep(2)
@@ -93,7 +94,7 @@ class PurchaseInvoice:
       quantity = self.wait.until(
          EC.presence_of_element_located(self.quantity)
       )
-      quantity.clear()
+      quantity.click()
       quantity.send_keys(enter_quantity)
       quantity.send_keys(Keys.ENTER)
       print("Quantity entered successfully!")

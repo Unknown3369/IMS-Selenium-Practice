@@ -47,10 +47,18 @@ class addCustomer:
       print("Inventory Info hovered and clicked successfully!")
 
    def add_customer(self, custom_name: str, custom_address: str, custom_contact: int):
-      # Click on “Product Master” link
+      # Click on “Customer Master” link
       customer_master_link = self.wait.until(
          EC.presence_of_element_located(self.customer_master_link)
       )
+      time.sleep(2)
+      self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", customer_master_link)
+      time.sleep(2)
+      self.driver.execute_script("arguments[0].click();", customer_master_link)
+      print("Customer Master clicked successfully!")
+      time.sleep(5)
+
+
       self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", customer_master_link)
       time.sleep(2)
       self.driver.execute_script("arguments[0].click();", customer_master_link)

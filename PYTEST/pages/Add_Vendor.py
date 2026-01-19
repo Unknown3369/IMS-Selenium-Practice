@@ -50,6 +50,10 @@ class addVendor:
       self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", vendor_master_link)
       time.sleep(2)
       self.driver.execute_script("arguments[0].click();", vendor_master_link)
+      time.sleep(5)
+      self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", vendor_master_link)
+      time.sleep(2)
+      self.driver.execute_script("arguments[0].click();", vendor_master_link)
       print("Vendor Master clicked successfully!")
       time.sleep(5)
 
