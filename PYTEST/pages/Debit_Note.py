@@ -19,7 +19,7 @@ class Debit_Note:
       self.ref_no = (By.XPATH, "//input[@id='invoiceNO']")
       self.return_mode = (By.XPATH, "//select[@id='paymentTerms']")
       self.supplier = (By.XPATH, "//input[@id='customerselectid']")
-      self.select_supplier = (By.XPATH, "//div[normalize-space(text())='Dark Chocolate Vendor']") 
+      self.select_supplier = (By.XPATH, "//div[normalize-space()='11 QA Vendor']") 
       self.item_name = (By.XPATH, "//input[@id='barcodeField']")
       self.quantity = (By.XPATH, "//input[@id='quantityBarcode']")    
       self.save_button = (By.XPATH, "//button[normalize-space(text())='SAVE [End]']")
@@ -50,6 +50,7 @@ class Debit_Note:
       self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", debit_note_link)
       time.sleep(2)
       self.driver.execute_script("arguments[0].click();", debit_note_link)
+      time.sleep(4)
       print("Debit Note clicked successfully!")
 
    def debit_note_entry(self, enter_ref_no: str):

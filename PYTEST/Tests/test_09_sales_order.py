@@ -25,7 +25,7 @@ def test_sales_order(driver: webdriver):
    sales_order.sales_order()
    
    for product in products:
-      product_name = product['Product Name']
+      product_name = product['Item Name']
       hs_code = product['HS Code']
       description = product['Description']
       purchase_price = product['Purchase Price']

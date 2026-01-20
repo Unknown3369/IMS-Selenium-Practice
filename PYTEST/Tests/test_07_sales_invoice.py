@@ -29,7 +29,7 @@ def test_sales_invoice(driver: webdriver):
    sales_invoice_page.sales_invoice_test(driver, ref_num)
 
    for product in products:
-      product_name = product['Product Name']
+      product_name = product['Item Name']
       hs_code = product['HS Code']
       description = product['Description']
       purchase_price = product['Purchase Price']

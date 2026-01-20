@@ -14,6 +14,8 @@ class CreditNotePage:
         self.wait = WebDriverWait(driver, 30)
         self.actions = ActionChains(driver)
 
+
+
     @allure.step("Create Credit Note Entry")
     def create_credit_note(self):
         driver = self.driver
@@ -68,17 +70,16 @@ class CreditNotePage:
             # Step 2: Press ENTER to load voucher list
             actions.send_keys("\ue007").perform()
             print("Pressed ENTER to load vouchers...")
-            time.sleep(2)
 
             # Step 3: Double-click voucher
             print("Selecting a voucher from the list...")
             voucher_item = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//div[@title='2025-12-08']")) #update this manually for now .
+                EC.element_to_be_clickable((By.XPATH, "//div[@title='TI168-STC-82/83']")) #update this manually for now .
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", voucher_item)
             actions.double_click(voucher_item).perform()
             print("Voucher selected.")
-            time.sleep(5)
+            time.sleep(3)
 
             # Step 4: Enter Remarks
             print("Entering Remarks...")
