@@ -71,7 +71,7 @@ class OpeningStockPage:
         time.sleep(1)
 
         first_item = self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//div[@title='33333']"))
+            EC.element_to_be_clickable((By.XPATH, "//div[@title='00TAX']"))
         )
         self.actions.double_click(first_item).perform()
         time.sleep(1)
@@ -113,7 +113,7 @@ class OpeningStockPage:
         time.sleep(1)
 
         second_item = self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//div[@title='Amigo Nepal 2345']"))
+            EC.element_to_be_clickable((By.XPATH, "//div[@title='013TAX']"))
         )
         self.actions.double_click(second_item).perform()
         time.sleep(1)
@@ -143,6 +143,7 @@ class OpeningStockPage:
             )
         )
         save_btn.click()
+        time.sleep(3)
 
         print("Opening Stock entry completed successfully!")
 

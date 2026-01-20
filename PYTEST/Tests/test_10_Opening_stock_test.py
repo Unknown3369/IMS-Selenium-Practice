@@ -4,7 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
 from PYTEST.pages.Opening_Stock import OpeningStockPage
 
-
 # noinspection PyBroadException
 @allure.title("Generate Opening Stock Entry in IMS Application")
 @allure.description("Logs in, navigates to Opening Stock page, adds items with quantity, and saves the entry.")
@@ -13,13 +12,13 @@ def test_opening_stock_entry(driver):
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
-        print("✅ Logged into IMS")
+        print("Logged into IMS")
 
         # --- Step 2: Navigate to Opening Stock page ---
         opening_stock = OpeningStockPage(driver)
         opening_stock.generate_opening_stock()
 
-        print("✅ Opening Stock entry created successfully.")
+        print("Opening Stock entry created successfully.")
 
         # Screenshot on success
         allure.attach(
@@ -43,4 +42,4 @@ def test_opening_stock_entry(driver):
             attachment_type=allure.attachment_type.TEXT
         )
 
-        pytest.fail(f"❌ Test failed due to: {e}")
+        pytest.fail(f"Test failed due to: {e}")
