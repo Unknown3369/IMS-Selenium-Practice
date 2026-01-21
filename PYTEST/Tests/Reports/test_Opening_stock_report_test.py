@@ -2,30 +2,29 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Stock_Ledger_Report import StockLedReportPage
+from PYTEST.pages.Reports.Opening_Stock_Report import OpeningStockReportPage
 
 
 # noinspection PyBroadException
-@allure.title("Generate Stock Ledger Report in IMS Application")
-@allure.description("Logs in, navigates to Stock Ledger Report, selects warehouse and item, and runs the report.")
-def test_stock_ledger_report(driver):
-    wait = WebDriverWait(driver, 30)
+@allure.title("Generate Opening Stock Report in IMS Application")
+@allure.description("Logs in, navigates to Opening Stock Report, selects warehouse and supplier, and runs the report.")
+def test_opening_stock_report(driver):
     login_page = login(driver)
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        # --- Step 2: Generate Stock Ledger Report ---
-        stock_led_report = StockLedReportPage(driver)
-        stock_led_report.generate_stock_ledger_report()
+        # --- Step 2: Generate Opening Stock Report ---
+        opening_stock_report = OpeningStockReportPage(driver)
+        opening_stock_report.generate_opening_stock_report()
 
-        print("Stock Ledger Report generated successfully.")
+        print("Opening Stock Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Stock_Ledger_Report_Success",
+            name="Opening_Stock_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -34,7 +33,7 @@ def test_stock_ledger_report(driver):
         # Screenshot on failure
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Stock_Ledger_Report_Error",
+            name="Opening_Stock_Report_Error",
             attachment_type=allure.attachment_type.PNG
         )
 

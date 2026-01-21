@@ -2,29 +2,28 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Reorder_Lvl_Stock_Report import ReorderLevelStockReportPage
+from PYTEST.pages.Reports.Vat_Purchase_Register_Report import VatPurchaseRegisterReportPage
 
 
 # noinspection PyBroadException
-@allure.title("Generate Reorder Level Stock Report in IMS Application")
-@allure.description("Logs in, navigates to Reorder Level Stock Report, selects warehouse, and runs the report.")
-def test_reorder_level_stock_report(driver):
+@allure.title("Generate Vat Purchase Register Report in IMS Application")
+@allure.description("Logs in, navigates to Vat Purchase Register Report, selects supplier, and runs the report.")
+def test_vat_purchase_register_report(driver):
+    wait = WebDriverWait(driver, 30)
     login_page = login(driver)
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        # --- Step 2: Generate Reorder Level Stock Report ---
-        reorder_stock_report = ReorderLevelStockReportPage(driver)
-        reorder_stock_report.generate_reorder_level_stock_report()
+        vat_purchase_report = VatPurchaseRegisterReportPage(driver)
+        vat_purchase_report.generate_vat_purchase_register_report()
 
-        print("Reorder Level Stock Report generated successfully.")
+        print("Vat Purchase Register Report generated successfully.")
 
-        # Screenshot on success
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Reorder_Level_Stock_Report_Success",
+            name="Vat_Purchase_Register_Success",
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -33,7 +32,7 @@ def test_reorder_level_stock_report(driver):
         # Screenshot on failure
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Reorder_Level_Stock_Report_Error",
+            name="Vat_Purchase_Register_Error",
             attachment_type=allure.attachment_type.PNG
         )
 

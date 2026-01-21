@@ -1,5 +1,5 @@
 import pytest
-from PYTEST.pages.Sales_book_report import SalesBookReportPage
+from PYTEST.pages.Reports.Sales_book_report import SalesBookReportPage
 from PYTEST.pages.Login import login
 import allure
 import time

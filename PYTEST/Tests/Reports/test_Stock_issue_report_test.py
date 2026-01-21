@@ -2,29 +2,30 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Min_Stock_Lvl_Report import MinStockLevelReportPage
+from PYTEST.pages.Reports.Stock_Issue_Report import StockIssueReportPage
 
 
 # noinspection PyBroadException
-@allure.title("Generate Minimum Stock Level Report in IMS Application")
-@allure.description("Logs in, navigates to Minimum Stock Level Report, selects warehouse, and runs the report.")
-def test_min_stock_level_report(driver):
-
+@allure.title("Generate Stock Issue Report in IMS Application")
+@allure.description("Logs in, navigates to Stock Issue Report, selects From and To Warehouses, and runs the report.")
+def test_stock_issue_report(driver):
     login_page = login(driver)
+
     try:
+
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        # --- Step 2: Generate Minimum Stock Level Report ---
-        min_stock_report = MinStockLevelReportPage(driver)
-        min_stock_report.generate_min_stock_level_report()
+        # --- Step 2: Generate Stock Issue Report ---
+        stock_issue_report = StockIssueReportPage(driver)
+        stock_issue_report.generate_stock_issue_report()
 
-        print("Minimum Stock Level Report generated successfully.")
+        print("Stock Issue Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Min_Stock_Level_Report_Success",
+            name="Stock_Issue_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -33,7 +34,7 @@ def test_min_stock_level_report(driver):
         # Screenshot on failure
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Min_Stock_Level_Report_Error",
+            name="Stock_Issue_Report_Error",
             attachment_type=allure.attachment_type.PNG
         )
 

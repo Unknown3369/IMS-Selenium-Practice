@@ -2,29 +2,29 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Opening_Stock_Report import OpeningStockReportPage
+from PYTEST.pages.Reports.One_Lakh_Above_Purchase_Report import OneLakhAbovePurchaseReportPage
 
 
 # noinspection PyBroadException
-@allure.title("Generate Opening Stock Report in IMS Application")
-@allure.description("Logs in, navigates to Opening Stock Report, selects warehouse and supplier, and runs the report.")
-def test_opening_stock_report(driver):
+@allure.title("Generate One Lakh Above Purchase Report in IMS Application")
+@allure.description("Logs in, navigates to One Lakh Above Purchase Report, clicks RUN, and verifies the table.")
+def test_one_lakh_above_purchase_report(driver):
     login_page = login(driver)
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        # --- Step 2: Generate Opening Stock Report ---
-        opening_stock_report = OpeningStockReportPage(driver)
-        opening_stock_report.generate_opening_stock_report()
+        # --- Step 2: Generate One Lakh Above Purchase Report ---
+        one_lakh_purchase_report = OneLakhAbovePurchaseReportPage(driver)
+        one_lakh_purchase_report.generate_one_lakh_above_purchase_report()
 
-        print("Opening Stock Report generated successfully.")
+        print("One Lakh Above Purchase Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Opening_Stock_Report_Success",
+            name="One_Lakh_Above_Purchase_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -33,7 +33,7 @@ def test_opening_stock_report(driver):
         # Screenshot on failure
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Opening_Stock_Report_Error",
+            name="One_Lakh_Above_Purchase_Report_Error",
             attachment_type=allure.attachment_type.PNG
         )
 

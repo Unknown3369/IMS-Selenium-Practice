@@ -1,5 +1,5 @@
 import pytest
-from PYTEST.pages.stock_summary_report import StockSummaryReport
+from PYTEST.pages.Reports.stock_summary_report import StockSummaryReport
 from PYTEST.pages.Login import login
 import allure
 import time

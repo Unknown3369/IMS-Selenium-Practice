@@ -2,30 +2,29 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Stock_Ageing_Report import StockAgeingReportPage
+from PYTEST.pages.Reports.Max_Stock_Lvl_report import MaxStockLevelReportPage
 
 
 # noinspection PyBroadException
-@allure.title("Generate Stock Ageing Report in IMS Application")
-@allure.description("Logs in, navigates to Stock Ageing Report, selects supplier, and runs the report.")
-def test_stock_ageing_report(driver):
+@allure.title("Generate Maximum Stock Level Report in IMS Application")
+@allure.description("Logs in, navigates to Maximum Stock Level Report, selects supplier and warehouse, and runs the report.")
+def test_max_stock_level_report(driver):
+    wait = WebDriverWait(driver, 30)
     login_page = login(driver)
 
     try:
-
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        # --- Step 2: Generate Stock Ageing Report ---
-        stock_ageing_report = StockAgeingReportPage(driver)
-        stock_ageing_report.generate_stock_ageing_report()
+        max_stock_report = MaxStockLevelReportPage(driver)
+        max_stock_report.generate_max_stock_level_report()
 
-        print("Stock Ageing Report generated successfully.")
+        print("Maximum Stock Level Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Stock_Ageing_Report_Success",
+            name="Max_Stock_Level_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -34,7 +33,7 @@ def test_stock_ageing_report(driver):
         # Screenshot on failure
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Stock_Ageing_Report_Error",
+            name="Max_Stock_Level_Report_Error",
             attachment_type=allure.attachment_type.PNG
         )
 

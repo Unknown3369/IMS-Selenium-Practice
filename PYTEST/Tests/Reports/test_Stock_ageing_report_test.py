@@ -2,29 +2,30 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Item_Expiry_Report import ItemExpiryReportPage
+from PYTEST.pages.Reports.Stock_Ageing_Report import StockAgeingReportPage
 
 
 # noinspection PyBroadException
-@allure.title("Generate Item Expiry Report in IMS Application")
-@allure.description("Logs in, navigates to Item Expiry Report, enters number of days, and runs the report.")
-def test_item_expiry_report(driver):
-    wait = WebDriverWait(driver, 30)
+@allure.title("Generate Stock Ageing Report in IMS Application")
+@allure.description("Logs in, navigates to Stock Ageing Report, selects supplier, and runs the report.")
+def test_stock_ageing_report(driver):
     login_page = login(driver)
 
     try:
+
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        item_expiry_report = ItemExpiryReportPage(driver)
-        item_expiry_report.generate_item_expiry_report()
+        # --- Step 2: Generate Stock Ageing Report ---
+        stock_ageing_report = StockAgeingReportPage(driver)
+        stock_ageing_report.generate_stock_ageing_report()
 
-        print("Item Expiry Report generated successfully.")
+        print("Stock Ageing Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Item_Expiry_Report_Success",
+            name="Stock_Ageing_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -33,7 +34,7 @@ def test_item_expiry_report(driver):
         # Screenshot on failure
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Item_Expiry_Report_Error",
+            name="Stock_Ageing_Report_Error",
             attachment_type=allure.attachment_type.PNG
         )
 

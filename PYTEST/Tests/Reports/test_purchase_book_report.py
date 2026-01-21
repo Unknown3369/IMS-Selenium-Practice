@@ -1,5 +1,5 @@
 import pytest
-from PYTEST.pages.Purchase_book_report import PurchaseBookReport
+from PYTEST.pages.Reports.Purchase_book_report import PurchaseBookReport
 from PYTEST.pages.Login import login
 import allure
 import time

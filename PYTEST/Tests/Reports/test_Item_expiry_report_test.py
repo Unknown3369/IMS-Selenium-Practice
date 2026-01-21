@@ -2,29 +2,29 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.One_Lakh_Above_Purchase_Report import OneLakhAbovePurchaseReportPage
+from PYTEST.pages.Reports.Item_Expiry_Report import ItemExpiryReportPage
 
 
 # noinspection PyBroadException
-@allure.title("Generate One Lakh Above Purchase Report in IMS Application")
-@allure.description("Logs in, navigates to One Lakh Above Purchase Report, clicks RUN, and verifies the table.")
-def test_one_lakh_above_purchase_report(driver):
+@allure.title("Generate Item Expiry Report in IMS Application")
+@allure.description("Logs in, navigates to Item Expiry Report, enters number of days, and runs the report.")
+def test_item_expiry_report(driver):
+    wait = WebDriverWait(driver, 30)
     login_page = login(driver)
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        # --- Step 2: Generate One Lakh Above Purchase Report ---
-        one_lakh_purchase_report = OneLakhAbovePurchaseReportPage(driver)
-        one_lakh_purchase_report.generate_one_lakh_above_purchase_report()
+        item_expiry_report = ItemExpiryReportPage(driver)
+        item_expiry_report.generate_item_expiry_report()
 
-        print("One Lakh Above Purchase Report generated successfully.")
+        print("Item Expiry Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="One_Lakh_Above_Purchase_Report_Success",
+            name="Item_Expiry_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -33,7 +33,7 @@ def test_one_lakh_above_purchase_report(driver):
         # Screenshot on failure
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="One_Lakh_Above_Purchase_Report_Error",
+            name="Item_Expiry_Report_Error",
             attachment_type=allure.attachment_type.PNG
         )
 

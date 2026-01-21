@@ -2,29 +2,29 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Max_Stock_Lvl_report import MaxStockLevelReportPage
+from PYTEST.pages.Reports.Reorder_Lvl_Stock_Report import ReorderLevelStockReportPage
 
 
 # noinspection PyBroadException
-@allure.title("Generate Maximum Stock Level Report in IMS Application")
-@allure.description("Logs in, navigates to Maximum Stock Level Report, selects supplier and warehouse, and runs the report.")
-def test_max_stock_level_report(driver):
-    wait = WebDriverWait(driver, 30)
+@allure.title("Generate Reorder Level Stock Report in IMS Application")
+@allure.description("Logs in, navigates to Reorder Level Stock Report, selects warehouse, and runs the report.")
+def test_reorder_level_stock_report(driver):
     login_page = login(driver)
 
     try:
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        max_stock_report = MaxStockLevelReportPage(driver)
-        max_stock_report.generate_max_stock_level_report()
+        # --- Step 2: Generate Reorder Level Stock Report ---
+        reorder_stock_report = ReorderLevelStockReportPage(driver)
+        reorder_stock_report.generate_reorder_level_stock_report()
 
-        print("Maximum Stock Level Report generated successfully.")
+        print("Reorder Level Stock Report generated successfully.")
 
         # Screenshot on success
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Max_Stock_Level_Report_Success",
+            name="Reorder_Level_Stock_Report_Success",
             attachment_type=allure.attachment_type.PNG
         )
 
@@ -33,7 +33,7 @@ def test_max_stock_level_report(driver):
         # Screenshot on failure
         allure.attach(
             driver.get_screenshot_as_png(),
-            name="Max_Stock_Level_Report_Error",
+            name="Reorder_Level_Stock_Report_Error",
             attachment_type=allure.attachment_type.PNG
         )
 

@@ -2,7 +2,7 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Credit_Note_Book_Report import CreditNoteBookReportPage
+from PYTEST.pages.Reports.Credit_Note_Book_Report import CreditNoteBookReportPage
 
 
 # noinspection PyBroadException
