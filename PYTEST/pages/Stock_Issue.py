@@ -19,10 +19,6 @@ class StockIssuePage:
     # noinspection PyBroadException
     @allure.step("Generate Stock Issue")
     def generate_stock_issue(self):
-        print("Starting Stock Issue generation...")
-
-        # Step 1: Navigate to Transactions → Stock Issue
-        print("Navigating to Transactions → Stock Issue...")
 
         transaction_btn = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='Transactions']"))
@@ -92,18 +88,15 @@ class StockIssuePage:
         # Select "Test" from second dropdown
         test_wh = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH,"(//select[@style='width: 70%;' and contains(@class,'ng-valid')])[2]/option[contains(text(),'Test')]")
+                (By.XPATH,"//option[@value='0: IMS Warehouse']")
             )
         )
         test_wh.click()
-        print("Selected To Warehouse: Test")
+        print("Selected To Warehouse")
         time.sleep(2)
 
-        # STEP 5: Select Item
-        print("Selecting Item...")
-
         select_item_field = self.wait.until(
-            EC.element_to_be_clickable((By.ID, "ITEMDESC0"))
+            EC.element_to_be_clickable((By.XPATH, "//input[@id='ITEMDESC0']"))
         )
         select_item_field.click()
         select_item_field.send_keys(Keys.ENTER)
@@ -111,10 +104,10 @@ class StockIssuePage:
 
         # Double click item "Amigo Nepal 2345"
         item_to_select = self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//div[contains(text(),'Amigo Nepal 2345')]"))
+            EC.element_to_be_clickable((By.XPATH, "//div[normalize-space()='01 TAX PRODUCT']"))
         )
         ActionChains(self.driver).double_click(item_to_select).perform()
-        print("Selected Item: Amigo Nepal 2345")
+        print("Selected Item: 01 TAX PRODUCT")
         time.sleep(2)
 
         # STEP 6: Enter Quantity

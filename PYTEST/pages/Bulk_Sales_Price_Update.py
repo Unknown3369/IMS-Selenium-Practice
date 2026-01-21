@@ -41,8 +41,8 @@ class BulkSalesPriceUpdatePage:
         print("Navigated to Bulk Price Change page.")
         time.sleep(3)
 
-    # --- Select Item Group (Chocolate) and Category (Chocolate) ---
-    @allure.step("Select Item Group and Category: Chocolate")
+    # --- Select Category (Testing) ---
+    @allure.step("Select  Category: Testing")
     def select_item_group(self):
         try:
             # Step 1: Select Category as Chocolate
@@ -53,10 +53,10 @@ class BulkSalesPriceUpdatePage:
             time.sleep(5)
 
             chocolate_category_option = self.wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//select[@id='Category']/option[text()='Chocolate']"))
+                EC.element_to_be_clickable((By.XPATH, "//select[@id='Category']/option[text()='Testing']"))
             )
             chocolate_category_option.click()
-            print("Selected Category: Chocolate")
+            print("Selected Category: Testing")
             time.sleep(5)
 
             # Step 2: Attach screenshot to Allure

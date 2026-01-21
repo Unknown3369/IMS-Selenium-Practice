@@ -19,10 +19,6 @@ class StockIssueReturnPage:
     # noinspection PyBroadException
     @allure.step("Generate Stock Issue Return")
     def generate_stock_issue_return(self):
-        print("Starting Stock Issue Return generation...")
-
-        # Step 1: Navigate to Transactions → Stock Issue Return
-        print("Navigating to Transactions → Stock Issue Return...")
 
         transaction_btn = self.wait.until(
             EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='Transactions']"))
@@ -52,21 +48,20 @@ class StockIssueReturnPage:
         time.sleep(2)
 
         # STEP 2: Select From Warehouse (FIRST DROPDOWN)
-        print("Selecting From Warehouse (Test)...")
 
         from_wh = self.wait.until(
-            EC.element_to_be_clickable((By.ID, "stockissueFromWH"))
+            EC.element_to_be_clickable((By.XPATH, "//select[@id='stockissueFromWH']"))
         )
         from_wh.click()
         time.sleep(1)
 
         test_wh = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH, "//select[@id='stockissueFromWH']/option[contains(text(),'Test')]")
+                (By.XPATH, "//select[@id='stockissueFromWH']/option[normalize-space()='IMS Warehouse']")
             )
         )
         test_wh.click()
-        print("Selected From Warehouse: Test")
+        print("Selected From Warehouse: IMS Warehouse")
         time.sleep(2)
 
         r_field = self.wait.until(
@@ -114,7 +109,7 @@ class StockIssueReturnPage:
         # Wait for reference list to appear
         ref_item = self.wait.until(
             EC.element_to_be_clickable(
-                (By.XPATH, "//div[@title='2025-12-07']") # Update this date as needed
+                (By.XPATH, "//div[@title='IS15-STC-82/83']") 
             )
         )
 
@@ -122,7 +117,7 @@ class StockIssueReturnPage:
         print("Double clicking reference number...")
         self.actions.double_click(ref_item).perform()
         time.sleep(2)
-        print("Reference IS Number selected.")
+        print("Reference Number selected.")
 
         # STEP 6: Click Save
         print("Saving Stock Issue Return...")

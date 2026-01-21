@@ -22,7 +22,7 @@ def test_bulk_sales_price_test(driver):
         print("Navigated to Bulk Sales Price Update page")
 
         bulk_page.select_item_group()
-        print("Successfully selected Item Group and Category: Chocolate")
+        print("Successfully selected Category: Testing")
 
         bulk_page.update_prices()
         print("Successfully updated prices for 4 items randomly.")

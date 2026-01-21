@@ -17,7 +17,7 @@ class SalesOrder:
       self.sales_order_link = (By.XPATH, "//span[normalize-space()='Sales Order']")
       self.ref_no = (By.XPATH,"//input[@id='invoiceNO' and @type='text']")
       self.customer = (By.XPATH,"//input[@id='customerselectid' and @placeholder='Press ENTER or TAB to select Customer']")
-      self.customer_select = (By.XPATH,"//div[@title='44' and normalize-space(text())='44']")
+      self.customer_select = (By.XPATH,"//div[normalize-space()='11 QA Customer']")
       self.barcode = (By.XPATH, "//input[@id='barcodeField' and @placeholder='Enter Barcode']")
       self.quantity = (By.XPATH,"//input[@id='quantityBarcode' and @type='number']")
       self.save = (By.XPATH, "//button[normalize-space(text())='SAVE [End]']")
@@ -72,7 +72,7 @@ class SalesOrder:
       barcode = self.wait.until(
          EC.presence_of_element_located(self.barcode)
       )
-      barcode.clear()
+      barcode.click()
       barcode.send_keys(barcode_enter)
       barcode.send_keys(Keys.ENTER)
       print(f"Barcode {barcode_enter} entered successfully!")
