@@ -34,19 +34,19 @@ class AddProductGroupMasterPage:
         time.sleep(2)
 
     # --- Select Parent Group ---
-    @allure.step("Select Item Group as BODY CARE")
+    @allure.step("Select Item Group as OCR test")
     def select_item_group(self):
         item_group_icon = self.wait.until(EC.element_to_be_clickable((By.XPATH, "//mat-icon[normalize-space(text())='open_in_new']")))
         item_group_icon.click()
         time.sleep(1)
 
         main_group_input = self.wait.until(EC.presence_of_element_located((By.XPATH, "//input[@aria-autocomplete='list' and @type='text']")))
-        main_group_input.send_keys("B")
-        body_care_option = self.wait.until(EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='BODY CARE']")))
+        main_group_input.send_keys("OCR")
+        body_care_option = self.wait.until(EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='OCR test']")))
         body_care_option.click()
         ok_button = self.wait.until(EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='Ok']")))
         ok_button.click()
-        print("Selected parent group: BODY CARE.")
+        print("Selected parent group: OCR test.")
         time.sleep(2)
 
     # --- Fill Group Details ---

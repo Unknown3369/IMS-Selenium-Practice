@@ -22,13 +22,10 @@ class VatSalesReturnRegisterReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Vat Sales Return Register Report generation...")
+        print("Starting Vat Sales Return Register Report generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to Vat Sales Return Register
-            # ==========================================
-            print("📂 Navigating to Reports → VAT Report → Vat Sales Return Register...")
+            print("Navigating to Reports → VAT Report → Vat Sales Return Register...")
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
             )
@@ -47,7 +44,7 @@ class VatSalesReturnRegisterReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_report)
             self.actions.move_to_element(vat_report).pause(0.4).perform()
-            print("✅ Hovered over 'VAT Report'.")
+            print("Hovered over 'VAT Report'.")
             time.sleep(1)
 
             vat_sales_return_reg_report = wait.until(
@@ -55,13 +52,10 @@ class VatSalesReturnRegisterReportPage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_sales_return_reg_report)
             vat_sales_return_reg_report.click()
-            print("✅ Clicked 'VAT Sales Return Register'")
+            print("Clicked 'VAT Sales Return Register'")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 2: Select Customer
-            # ==========================================
-            print("👤 Selecting customer for report...")
+            print("Selecting customer for report...")
 
             customer_input = wait.until(
                 EC.element_to_be_clickable(
@@ -71,7 +65,7 @@ class VatSalesReturnRegisterReportPage:
             customer_input.click()
             time.sleep(0.5)
             customer_input.send_keys(Keys.ENTER)  # Open customer list
-            print("📋 Customer list opened.")
+            print("Customer list opened.")
             time.sleep(2)
 
             # Double click customer "21 Savage"
@@ -82,25 +76,19 @@ class VatSalesReturnRegisterReportPage:
             )
 
             self.actions.double_click(customer_option).perform()
-            print("✅ Selected customer: 21 Savage")
+            print("Selected customer: 21 Savage")
             time.sleep(1)
 
-            # ==========================================
-            # STEP 3: Click RUN Button
-            # ==========================================
             run_btn = wait.until(
                 EC.element_to_be_clickable(
                     (By.XPATH, "//button[contains(@class,'btn-info') and normalize-space()='RUN']")
                 )
             )
             run_btn.click()
-            print("▶️ Clicked RUN button")
+            print("Clicked RUN button")
             time.sleep(3)
 
-            # ==========================================
-            # STEP 4: Verify Table Loaded
-            # ==========================================
-            print("📊 Verifying Vat Sales Return Register Report table...")
+            print("Verifying Vat Sales Return Register Report table...")
 
             try:
                 table = wait.until(
@@ -109,7 +97,7 @@ class VatSalesReturnRegisterReportPage:
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
 
-                print(f"✅ Vat Sales Return Register loaded with {len(rows) - 1} rows.")
+                print(f"Vat Sales Return Register loaded with {len(rows) - 1} rows.")
 
                 # Screenshot when table appears
                 screenshot = driver.get_screenshot_as_png()
@@ -119,20 +107,20 @@ class VatSalesReturnRegisterReportPage:
                     attachment_type=allure.attachment_type.PNG
                 )
 
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load.")
+                print("Table did NOT load.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="Vat_Sales_Return_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
 
-            print("🎉 Vat Sales Return Register Report generation completed successfully.")
+            print("Vat Sales Return Register Report generation completed successfully.")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"Error: {e}")
 
             allure.attach(
                 driver.get_screenshot_as_png(),
