@@ -21,13 +21,9 @@ class StockLedReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Stock Ledger Report generation...")
+        print("Starting Stock Ledger Report generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to Stock Ledger Report
-            # ==========================================
-            print("📂 Navigating to Reports → Inventory Reports → Stock Ledger Report...")
 
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
@@ -47,7 +43,7 @@ class StockLedReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", inventory_reports)
             self.actions.move_to_element(inventory_reports).pause(0.4).perform()
-            print("✅ Hovered over 'Inventory Reports'.")
+            print("Hovered over 'Inventory Reports'.")
             time.sleep(1)
 
             stock_led_report = wait.until(
@@ -55,13 +51,8 @@ class StockLedReportPage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", stock_led_report)
             stock_led_report.click()
-            print("✅ Clicked 'Stock Ledger Report'")
+            print("Clicked 'Stock Ledger Report'")
             time.sleep(2)
-
-            # ==========================================
-            # STEP 2: Select Warehouse
-            # ==========================================
-            print("🏢 Selecting Warehouse: Main Warehouse...")
 
             warehouse_dropdown = wait.until(EC.element_to_be_clickable((
                 By.XPATH, "//select[contains(@class,'form-control')]"
@@ -73,45 +64,30 @@ class StockLedReportPage:
                 By.XPATH, "//option[contains(text(),'Main Warehouse')]"
             )))
             main_warehouse.click()
-            print("✅ Selected 'Main Warehouse'")
+            print("Selected 'Main Warehouse'")
             time.sleep(1)
-
-            # ==========================================
-            # STEP 3: Select Item
-            # ==========================================
-            print("📦 Selecting Item...")
 
             item_input = wait.until(EC.element_to_be_clickable((
                 By.XPATH, "//input[@placeholder='Press Enter or Tab for Item List']"
             )))
             item_input.click()
             item_input.send_keys(Keys.ENTER)
-            print("➡️ Opened Item List using ENTER key")
+            print("Opened Item List using ENTER key")
             time.sleep(2)
 
             white_chocolate = wait.until(EC.element_to_be_clickable((
                 By.XPATH, "//div[@title='White Chocolate']"
             )))
             self.actions.double_click(white_chocolate).perform()
-            print("🍫 Double-clicked item: White Chocolate")
+            print("Double-clicked item: White Chocolate")
             time.sleep(1)
-
-            # ==========================================
-            # STEP 4: Click RUN
-            # ==========================================
-            print("▶️ Clicking RUN button...")
 
             run_btn = wait.until(EC.element_to_be_clickable((
                 By.XPATH, "//button[contains(text(),'RUN')]"
             )))
             run_btn.click()
-            print("✅ RUN clicked. Loading report...")
+            print("RUN clicked. Loading report...")
             time.sleep(3)
-
-            # ==========================================
-            # STEP 5: Verify Table Loaded + Screenshot
-            # ==========================================
-            print("🧾 Verifying Stock Ledger Report table...")
 
             try:
                 table = wait.until(EC.presence_of_element_located((
@@ -119,21 +95,21 @@ class StockLedReportPage:
                 )))
 
                 rows = table.find_elements(By.XPATH, ".//tr")
-                print(f"✅ Stock Ledger Report loaded with {len(rows) - 1} data rows.")
+                print(f"Stock Ledger Report loaded with {len(rows) - 1} data rows.")
 
-                # 📸 Screenshot
+                # Screenshot
                 screenshot = driver.get_screenshot_as_png()
                 allure.attach(
                     screenshot,
                     name="Stock_Ledger_Report_Screenshot",
                     attachment_type=allure.attachment_type.PNG
                 )
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except:
-                print("⚠️ No report table appeared.")
+                print("No report table appeared.")
 
-            print("🎉 Stock Ledger Report generated successfully.")
+            print("Stock Ledger Report generated successfully.")
 
         except Exception as e:
 
@@ -150,4 +126,4 @@ class StockLedReportPage:
                 attachment_type=allure.attachment_type.TEXT
             )
 
-            raise AssertionError(f"❌ Stock Ledger Report failed due to: {e}")
+            raise AssertionError(f"Stock Ledger Report failed due to: {e}")

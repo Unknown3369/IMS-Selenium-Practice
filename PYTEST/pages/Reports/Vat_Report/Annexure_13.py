@@ -21,13 +21,10 @@ class Annexure13ReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Annexure 13 Report generation...")
+        print("Starting Annexure 13 Report generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to Annexure 13
-            # ==========================================
-            print("📂 Navigating to Reports → VAT Report → Annexure 13...")
+            print("Navigating to Reports → VAT Report → Annexure 13...")
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
             )
@@ -46,7 +43,7 @@ class Annexure13ReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_report)
             self.actions.move_to_element(vat_report).pause(0.4).perform()
-            print("✅ Hovered over 'VAT Report'.")
+            print("Hovered over 'VAT Report'.")
             time.sleep(1)
 
             annexure_13_report = wait.until(
@@ -54,30 +51,24 @@ class Annexure13ReportPage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", annexure_13_report)
             annexure_13_report.click()
-            print("✅ Clicked 'Annexure 13'")
+            print("Clicked 'Annexure 13'")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 2: Click Run Button
-            # ==========================================
             run_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(@class,'confirm-btn') and text()='RUN']"))
             )
             run_btn.click()
-            print("✅ Clicked 'RUN' button")
+            print("Clicked 'RUN' button")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 3: Verify Table Loaded
-            # ==========================================
-            print("📊 Verifying Annexure 13 Report table...")
+            print("Verifying Annexure 13 Report table...")
 
             try:
                 table = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//table[contains(@class,'table')]"))
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
-                print(f"✅ Annexure 13 Report loaded with {len(rows) - 1} rows.")
+                print(f"Annexure 13 Report loaded with {len(rows) - 1} rows.")
 
                 # Screenshot when the table appears
                 screenshot = driver.get_screenshot_as_png()
@@ -86,20 +77,20 @@ class Annexure13ReportPage:
                     name="Annexure_13_Report_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load — no rows found.")
+                print("Table did NOT load — no rows found.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="Annexure_13_Report_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
 
-            print("🎉 Annexure 13 Report generation completed successfully.")
+            print("Annexure 13 Report generation completed successfully.")
 
         except Exception as e:
-            print(f"❌ Error occurred: {e}")
+            print(f"Error occurred: {e}")
             # Screenshot on failure
             allure.attach(
                 driver.get_screenshot_as_png(),

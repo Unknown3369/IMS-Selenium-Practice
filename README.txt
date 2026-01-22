@@ -6,6 +6,9 @@ Tested Link:
   https://redmiims.webredirect.himshang.com.np/#/pages/dashboard
   https://redmiims.variantqa.himshang.com.np/#/pages/dashboard
 
+  https://stc21.variantqa.himshang.com.np/#/pages/dashboard
+
+
 Install framework:
   pip install selenium
   pip install pytest
@@ -48,12 +51,28 @@ Forder Structure:
 │   ├───pages
 │   │   ├───Accounting
 │   │   │   └───__pycache__
+│   │   ├───Masters
+│   │   │   └───__pycache__
+│   │   ├───Reports
+│   │   │   ├───Vat_Report
+│   │   │   │   └───__pycache__
+│   │   │   └───__pycache__
+│   │   ├───Transactions
+│   │   │   └───__pycache__
 │   │   └───__pycache__
 │   ├───tests
 │   │   ├───.pytest_cache
 │   │   │   └───v
 │   │   │       └───cache
 │   │   ├───Accounting
+│   │   │   └───__pycache__
+│   │   ├───Masters
+│   │   │   └───__pycache__
+│   │   ├───Reports
+│   │   │   ├───Vat_Report
+│   │   │   │   └───__pycache__
+│   │   │   └───__pycache__
+│   │   ├───Transactions
 │   │   │   └───__pycache__
 │   │   └───__pycache__
 │   └───__pycache__

@@ -42,7 +42,7 @@ class VatSalesRegisterReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_report)
             self.actions.move_to_element(vat_report).pause(0.4).perform()
-            print("✅ Hovered over 'VAT Report'.")
+            print("Hovered over 'VAT Report'.")
             time.sleep(1)
 
             vat_sales_reg_report = wait.until(
@@ -50,7 +50,7 @@ class VatSalesRegisterReportPage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_sales_reg_report)
             vat_sales_reg_report.click()
-            print("✅ Clicked 'VAT Sales Register'")
+            print("Clicked 'VAT Sales Register'")
             time.sleep(2)
 
             print(" Selecting customer...")
@@ -69,22 +69,16 @@ class VatSalesRegisterReportPage:
                 EC.element_to_be_clickable((By.XPATH, "//div[@title='Carti']"))
             )
             self.actions.double_click(customer_select).perform()
-            print(" Selected customer: Carti")
+            print("Selected customer: Carti")
             time.sleep(1)
 
-            # ==========================================
-            # STEP 3: Click RUN
-            # ==========================================
             run_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'RUN')]"))
             )
             run_btn.click()
-            print("▶Clicked RUN button.")
+            print("Clicked RUN button.")
             time.sleep(3)
 
-            # ==========================================
-            # STEP 4: Verify Table Loaded
-            # ==========================================
             print("Verifying Vat Sales Register table...")
 
             try:

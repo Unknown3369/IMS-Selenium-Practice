@@ -22,13 +22,10 @@ class VatPurchaseRegisterReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Vat Purchase Register Report generation...")
+        print("Starting Vat Purchase Register Report generation...")
 
         try:
-            # ==========================================
-            # STEP 1: Navigate to Vat Purchase Register Report
-            # ==========================================
-            print("📂 Navigating to Reports → Vat Report → Vat Purchase Register...")
+            print("Navigating to Reports → Vat Report → Vat Purchase Register...")
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
             )
@@ -47,7 +44,7 @@ class VatPurchaseRegisterReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_report)
             self.actions.move_to_element(vat_report).pause(0.4).perform()
-            print("✅ Hovered over 'VAT Report'.")
+            print("Hovered over 'VAT Report'.")
             time.sleep(1)
 
             vat_purchase_reg_report = wait.until(
@@ -55,13 +52,10 @@ class VatPurchaseRegisterReportPage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", vat_purchase_reg_report)
             vat_purchase_reg_report.click()
-            print("✅ Clicked 'VAT Purchase Register'")
+            print("Clicked 'VAT Purchase Register'")
             time.sleep(2)
 
-            # ==========================================
-            # STEP 2: Select Supplier
-            # ==========================================
-            print("📝 Selecting Supplier...")
+            print("Selecting Supplier...")
 
             supplier_input = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter or Tab for Supplier List']"))
@@ -72,7 +66,7 @@ class VatPurchaseRegisterReportPage:
 
             # Press Enter to trigger supplier list dropdown
             supplier_input.send_keys(Keys.ENTER)
-            print("📄 Supplier list opened.")
+            print("Supplier list opened.")
             time.sleep(1)
 
             # Double-click the target supplier
@@ -81,35 +75,26 @@ class VatPurchaseRegisterReportPage:
             )
 
             self.actions.double_click(supplier_option).perform()
-            print("✅ Selected supplier: Sujata Vendor")
+            print("Selected supplier: Sujata Vendor")
             time.sleep(1)
 
-            # ==========================================
-            # STEP 3: Click RUN
-            # ==========================================
             run_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[contains(@class,'confirm-btn') and text()='RUN']"))
             )
 
             driver.execute_script("arguments[0].scrollIntoView(true);", run_btn)
             run_btn.click()
-            print("🚀 RUN button clicked to generate report.")
+            print("RUN button clicked to generate report.")
             time.sleep(3)
 
-            print("✅ Vat Purchase Register Report generated successfully.")
-
-            # ==========================================
-            # STEP 4: Verify Table Loaded
-            # ==========================================
-            print("📊 Verifying Vat Purchase Register table...")
+            print("Vat Purchase Register Report generated successfully.")
 
             try:
                 table = wait.until(
                     EC.presence_of_element_located((By.XPATH, "//table[contains(@class,'table')]"))
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
-
-                print(f"✅ Vat Purchase Register Report loaded with {len(rows) - 1} rows.")
+                print(f"Vat Purchase Register Report loaded with {len(rows) - 1} rows.")
 
                 # Screenshot when the table appears
                 screenshot = driver.get_screenshot_as_png()
@@ -118,21 +103,20 @@ class VatPurchaseRegisterReportPage:
                     name="Vat_Purchase_Register_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
-
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except TimeoutException:
-                print("⚠️ Table did NOT load — no rows found.")
+                print("Table did NOT load — no rows found.")
                 allure.attach(
                     driver.get_screenshot_as_png(),
                     name="Vat_Purchase_Register_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
 
-            print("🎉 Vat Purchase Register Report generation completed successfully.")
+            print("Vat Purchase Register Report generation completed successfully.")
 
         except Exception as e:
-            print(f"❌ Error occurred: {e}")
+            print(f"Error occurred: {e}")
             # Screenshot on failure
             allure.attach(
                 driver.get_screenshot_as_png(),
