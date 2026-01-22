@@ -1,6 +1,6 @@
 import pytest
 import allure
-from PYTEST.pages.Reports.Item_wise_purchase_report import PurchaseReport_ItemWise
+from PYTEST.pages.Reports.Purchase_Report.Item_wise_purchase_report import PurchaseReport_ItemWise
 from PYTEST.pages.Login import login
 import time
 import os

@@ -17,7 +17,7 @@ class PurchaseReport_ItemWise:
       self.reports = (By.XPATH, "//span[contains(text(),'Reports')]")
       self.purchase_report = (By.LINK_TEXT, "Purchase Reports")
       self.purchase_report_item_wise = (By.XPATH, "//span[normalize-space()='Purchase Report - Item Wise']")
-      self.branch_dropdown = (By.XPATH, "//select[contains(@class, 'selectText')]")
+      self.branch_dropdown = (By.XPATH, "//select[option[@disabled and normalize-space()='Select Branch']]")
       self.run_button = (By.XPATH, "//button[@class='btn btn-info confirm-btn' and text()='RUN']")
 
    def open_purchase_report_item_wise(self):
@@ -38,7 +38,7 @@ class PurchaseReport_ItemWise:
       ActionChains(driver).move_to_element(purchase_report).perform()
       time.sleep(1)
       purchase_report.click()
-      print("Purchase Report- Item Wise clicked successfully!")
+      print("Purchase Report clicked successfully!")
       # Click on “Purchase Book Report”
       purchase_report_item_wise = self.wait.until(
          EC.presence_of_element_located(self.purchase_report_item_wise)
@@ -54,6 +54,7 @@ class PurchaseReport_ItemWise:
          EC.presence_of_element_located(self.branch_dropdown)
          )
       select_branch = Select(branch_dropdown)
+      time.sleep(1)
       select_branch.select_by_visible_text("ALL")
       print("Branch selected successfully!")
       # Run report

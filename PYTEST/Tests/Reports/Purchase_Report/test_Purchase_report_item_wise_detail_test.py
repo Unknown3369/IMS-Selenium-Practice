@@ -2,7 +2,7 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Reports.Purchase_report_item_wise_detail import PurchaseReportItemWiseDetailPage
+from PYTEST.pages.Reports.Purchase_Report.Purchase_report_item_wise_detail import PurchaseReportItemWiseDetailPage
 
 
 # noinspection PyBroadException
@@ -18,7 +18,6 @@ def test_generate_purchase_report_item_wise_detail(driver):
 
         purchase_detail_page = PurchaseReportItemWiseDetailPage(driver)
         purchase_detail_page.generate_purchase_report_item_wise_detail()
-        print("Purchase Report Item Wise Detail generated successfully.")
 
         allure.attach(
             driver.get_screenshot_as_png(),
