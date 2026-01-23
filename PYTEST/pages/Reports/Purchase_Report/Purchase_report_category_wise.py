@@ -16,7 +16,6 @@ class Purchase_report_category_wise:
       self.reports = (By.XPATH, "//span[contains(text(),'Reports')]")
       self.purchase_report = (By.LINK_TEXT, "Purchase Reports")
       self.report_category_wise = (By.XPATH, "//span[normalize-space()='Purchase Report - Category Wise']")
-      self.branch_dropdown = (By.XPATH, "//select[@class='form-control input-text ng-untouched ng-pristine ng-valid']")
       self.run_button = (By.XPATH, "//button[@type='button' and text()='RUN']")
 
    def category_wise_report(self):
@@ -48,13 +47,6 @@ class Purchase_report_category_wise:
       print("Purchase Report - Category Wise clicked successfully!")
 
    def open_category_wise_report(self):
-      # Branch Selection
-      branch_dropdown = self.wait.until(
-         EC.presence_of_element_located(self.branch_dropdown)
-         )
-      select_branch = Select(branch_dropdown)
-      select_branch.select_by_visible_text("ALL")
-      print("Branch selected successfully!")
 
       # Run report
       run_button = self.wait.until(
