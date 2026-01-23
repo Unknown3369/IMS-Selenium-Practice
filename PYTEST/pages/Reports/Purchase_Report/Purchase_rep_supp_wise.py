@@ -16,9 +16,8 @@ class Purchase_rep_supp_wise:
       self.reports = (By.XPATH, "//span[contains(text(),'Reports')]")
       self.purchase_report = (By.LINK_TEXT, "Purchase Reports")
       self.purchase_report_item_wise = (By.XPATH, "//span[normalize-space()='Purchase Report - Supplier Wise']")
-      self.branch_dropdown = (By.XPATH, "//select[contains(@class, 'selectText')]")
       self.supplier = (By.XPATH, "//input[@placeholder='Press Enter or Tab for Account List' and @type='text']")
-      self.select_supplier = (By.XPATH, "//div[@title='Dark Chocolate Vendor' and normalize-space(text())='Dark Chocolate Vendor']")
+      self.select_supplier = (By.XPATH, "//div[contains(@title, '11 QA Vendor') and contains(text(), '11 QA Vendor')]")
       self.run_button = (By.XPATH, "//button[@type='button' and contains(@class, 'confirm-btn') and normalize-space(text())='RUN']")
 
    def purchase_report_supp(self):
@@ -49,13 +48,6 @@ class Purchase_rep_supp_wise:
       print("Purchase Report - Supplier Wise clicked successfully!")
 
    def run_purchase_report_supp(self):
-      # Branch Selection
-      branch_dropdown = self.wait.until(
-         EC.presence_of_element_located(self.branch_dropdown)
-         )
-      select_branch = Select(branch_dropdown)
-      select_branch.select_by_visible_text("ALL")
-      print("Branch selected successfully!")
 
       # Supplier Select
       supplier = self.wait.until(
