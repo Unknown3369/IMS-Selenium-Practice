@@ -1,3 +1,4 @@
+from concurrent.futures import wait
 import time
 import allure
 from selenium.webdriver.common.by import By
@@ -64,18 +65,24 @@ class PurchaseReportItemWiseDetailPage:
         item_input.send_keys(Keys.ENTER)
         time.sleep(2)
         print("Item input field clicked.")
-        search_item = wait.until(
-            EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Enter keyword to search']"))
+
+        self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, "cdk-overlay-container")))
+
+        item_xpath = "//tr[descendant::div[contains(normalize-space(), 'yamari food')]]"
+        
+        item_row = self.wait.until(
+            EC.element_to_be_clickable((By.XPATH, item_xpath))
         )
-        search_item.send_keys("Porsche")
-        print("Searching for item 'Porsche'...")
-        selected_item = wait.until(
-            EC.presence_of_element_located((By.XPATH, "//div[@title='Porsche_Taycan_01' and normalize-space()='Porsche_Taycan_01']"))
-        )
-        # Double-click on "White Chocolate"
-        actions = ActionChains(driver)
-        actions.double_click(selected_item).perform()
-        print("Successfully selected item")
+
+        ActionChains(self.driver).move_to_element(item_row).double_click().perform()
+        print("Double-clicked the item row.")
+
+        try:
+            ok_button = self.driver.find_element(By.XPATH, "//button[contains(text(), 'OK')]")
+            ok_button.click()
+        except:
+            pass
+
         time.sleep(2)
         # Wait for the OK button to be clickable and click it using JavaScript (more reliable)
         print("Confirming item selection by clicking 'OK'...")
