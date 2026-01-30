@@ -52,7 +52,6 @@ class CreditNoteBookReportPage:
         print("Clicked on 'Credit Note Book Report'.")
         time.sleep(3)
 
-        print("Selecting customer '21 Savage'...")
         try:
             customer_input = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter or Tab for Account List']"))
@@ -63,12 +62,12 @@ class CreditNoteBookReportPage:
             customer_input.send_keys("\n")  # Press Enter to open list
             time.sleep(2)
 
-            # Select "21 Savage"
+            # Select customer
             customer_option = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//div[@title='21 Savage']"))
+                EC.element_to_be_clickable((By.XPATH, "//div[@title='11 QA Customer ' and contains(@class,'ng-star-inserted')]"))
             )
             self.actions.double_click(customer_option).perform()
-            print("Selected customer: 21 Savage.")
+            print("Selected customer.")
         except Exception as e:
             raise AssertionError(f"Failed to select customer: {e}")
 
@@ -87,7 +86,7 @@ class CreditNoteBookReportPage:
 
         time.sleep(2)
 
-        print("▶️ Clicking 'RUN' button...")
+        print("Clicking 'RUN' button...")
         try:
             run_button = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[normalize-space(text())='RUN']"))
@@ -106,7 +105,7 @@ class CreditNoteBookReportPage:
             rows = table.find_elements(By.XPATH, ".//tr")
             print(f"Report table loaded with {len(rows) - 1} rows.")
 
-            # 📸 Capture and attach screenshot for Allure
+            # Capture and attach screenshot for Allure
             screenshot = driver.get_screenshot_as_png()
             allure.attach(screenshot, name="Credit_Note_Book_Report_Screenshot",
                 attachment_type=allure.attachment_type.PNG)

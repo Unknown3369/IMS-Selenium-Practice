@@ -16,7 +16,8 @@ class login:
       self.logout_button = (By.XPATH, "//button[contains(@class,'mat-flat-button') and .//span[normalize-space()='Sign out']]")
    def perform_login(self, username: str, password: str):
       # Open the login page
-      self.driver.get("http://stc21.variantqa.himshang.com.np")
+      # self.driver.get("http://stc21.variantqa.himshang.com.np")
+      self.driver.get("http://stc21.webredirect.himshang.com.np")
       # self.driver.get("https://redmiims.webredirect.himshang.com.np/#/login")
       # Enter username
       username_box = self.wait.until(
@@ -56,9 +57,9 @@ class login:
    def verify_login(self, driver: webdriver):
       current_url = driver.current_url
 
-      expected_url = "https://stc21.variantqa.himshang.com.np/#/pages/dashboard"
-
-      if current_url == expected_url:
+      if current_url == "https://stc21.webredirect.himshang.com.np/#/pages/dashboard":
          print ("Test Sucessfull")
+      elif current_url == "https://redmiims.webredirect.himshang.com.np/#/pages/dashboard":
+         print ("Test passed")
       else:
-         print ("Test Failed")
+         print("Login failed or unexpected URL.")
