@@ -1,5 +1,5 @@
 import pytest
-from PYTEST.pages.Reports.stock_summary_report import StockSummaryReport
+from PYTEST.pages.Reports.Inventory_Reports.stock_summary_report import StockSummaryReport
 from PYTEST.pages.Login import login
 import allure
 import time
@@ -11,7 +11,7 @@ def test_stock_summary_report(driver):
 
    login_page.perform_login("Testuser", "Test@1234")
    stock_report.open_stock_summary_report()  # <-- run actual flow
-   stock_report.select_branch()
+   # stock_report.select_branch()
    stock_report.run_report()
    time.sleep(8)  # Wait for report to generate
 

@@ -16,9 +16,9 @@ class StockSummaryReport:
       self.reports = (By.XPATH, "//span[contains(text(),'Reports')]")
       self.inventory_report = (By.LINK_TEXT, "Inventory Reports")
       self.stock_summary_report = (By.XPATH, "//span[normalize-space()='Stock Summary Report']")
-      self.branch_dropdown = (By.XPATH, "//select[@class='form-control selectText ng-untouched ng-pristine ng-valid']")
-      self.select_warehouse = (By.XPATH, "//span[contains(@class,'dropdown-btn') and .//span[contains(text(),'Select Warehouse')]]")
-      self.warehouse_option = (By.XPATH, "//div[normalize-space(text())='Main Warehouse']")
+      # self.branch_dropdown = (By.XPATH, "//select[contains(@class,'selectText')]")
+      # self.select_warehouse = (By.XPATH, "//ng-multiselect-dropdown//span[contains(@class,'dropdown-btn')]")
+      # self.warehouse_option = (By.XPATH, "//div[normalize-space(text())='Main Warehouse']")
       self.run_button = (By.XPATH, "//button[@type='button' and normalize-space(text())='RUN']")
 
    def open_stock_summary_report(self):
