@@ -56,8 +56,7 @@ class SalesReportItemWisePage:
         time.sleep(3)
 
 
-        # Step 2: Select Customer ("21 Savage")
-        print("Selecting Customer: 21 Savage...")
+        # Step 2: Select Customer
         customer_field = wait.until(
             EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter or Tab for Account List']"))
         )
@@ -68,14 +67,13 @@ class SalesReportItemWisePage:
         time.sleep(2)
 
         customer_option = wait.until(
-            EC.visibility_of_element_located((By.XPATH, "//div[@title='21 Savage']"))
+            EC.visibility_of_element_located((By.XPATH, "//div[@title='11 QA Customer ' and contains(@class,'ng-star-inserted')]"))
         )
         actions.double_click(customer_option).perform()
-        print("Successfully selected Customer: 21 Savage")
+        print("Successfully selected Customer")
         time.sleep(2)
 
-        # Step 3: Select Item ("White Chocolate")
-        print("Selecting Item: White Chocolate...")
+        # Step 3: Select Item
         item_field = wait.until(
             EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter or Tab for Item List']"))
         )
@@ -85,11 +83,11 @@ class SalesReportItemWisePage:
         item_field.send_keys(Keys.ENTER)
         time.sleep(2)
 
-        white_choco = wait.until(
-            EC.visibility_of_element_located((By.XPATH, "//div[@title='White Chocolate']"))
+        select_item = wait.until(
+            EC.visibility_of_element_located((By.XPATH, "//div[@title='Paras-200']"))
         )
-        actions.double_click(white_choco).perform()
-        print("Successfully selected Item: White Chocolate")
+        actions.double_click(select_item).perform()
+        print("Successfully selected Item")
         time.sleep(2)
 
         # Step 4: Click RUN button
@@ -100,7 +98,6 @@ class SalesReportItemWisePage:
         driver.execute_script("arguments[0].scrollIntoView(true);", run_btn)
         run_btn.click()
         print("Clicked Run button.")
-        time.sleep(3)
 
         # Step 5: Verify report table
         print("Verifying Sales Report - Item Wise table...")
