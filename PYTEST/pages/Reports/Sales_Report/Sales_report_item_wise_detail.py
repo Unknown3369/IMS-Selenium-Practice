@@ -53,8 +53,7 @@ class SalesReportItemWiseDetailPage:
         print("Clicked on 'Sales Report - Item Wise Detail'.")
         time.sleep(3)
 
-        # Step 2: Select Item (White Chocolate)
-        print("Selecting Item: White Chocolate...")
+        # Step 2: Select Item
 
         # Wait for the item input field and click it
         item_input = wait.until(
@@ -68,15 +67,15 @@ class SalesReportItemWiseDetailPage:
         item_input.send_keys(Keys.ENTER)
         time.sleep(2)
 
-        # Wait for the 'White Chocolate' item to appear
-        white_choco = wait.until(
-            EC.visibility_of_element_located((By.XPATH, "//div[@title='White Chocolate']"))
+        # Wait for the item to appear
+        select_item = wait.until(
+            EC.visibility_of_element_located((By.XPATH, "//div[@title='Paras-200']"))
         )
 
-        # Double-click on the 'White Chocolate' item
+        # Double-click on the item
         actions = ActionChains(driver)
-        actions.double_click(white_choco).perform()
-        print("Successfully selected 'White Chocolate'")
+        actions.double_click(select_item).perform()
+        print("Successfully selected")
         time.sleep(2)
 
         ok_button = wait.until(
@@ -88,8 +87,7 @@ class SalesReportItemWiseDetailPage:
         print("Clicked 'OK' to confirm selected item.")
         time.sleep(2)
 
-        # Step 3: Select User (Paras)
-        print("Selecting User: Paras...")
+        # Step 3: Select User
         user_input = wait.until(
             EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter for User List']"))
         )
@@ -100,11 +98,11 @@ class SalesReportItemWiseDetailPage:
         user_input.send_keys(Keys.ENTER)
         time.sleep(2)
 
-        paras_user = wait.until(
+        user = wait.until(
             EC.visibility_of_element_located((By.XPATH, "//div[@title='Paras']"))
         )
-        actions.double_click(paras_user).perform()
-        print("Successfully selected user: Paras")
+        actions.double_click(user).perform()
+        print("Successfully selected user")
         time.sleep(2)
 
         # Step 5: Click 'RUN' button
@@ -118,7 +116,6 @@ class SalesReportItemWiseDetailPage:
         time.sleep(5)
 
         # Step 5: Verify report table and capture screenshot
-        print("Verifying Sales Report Item Wise Detail table...")
         try:
             table = wait.until(EC.presence_of_element_located((By.XPATH, "//table[contains(@class,'table')]")))
             rows = table.find_elements(By.XPATH, ".//tr")
