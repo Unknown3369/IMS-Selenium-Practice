@@ -24,7 +24,6 @@ class StockLedReportPage:
         print("Starting Stock Ledger Report generation...")
 
         try:
-
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
             )
@@ -76,10 +75,10 @@ class StockLedReportPage:
             time.sleep(2)
 
             white_chocolate = wait.until(EC.element_to_be_clickable((
-                By.XPATH, "//div[@title='White Chocolate']"
+                By.XPATH, "//div[@title='Paras-200']"
             )))
             self.actions.double_click(white_chocolate).perform()
-            print("Double-clicked item: White Chocolate")
+            print("Double-clicked item")
             time.sleep(1)
 
             run_btn = wait.until(EC.element_to_be_clickable((

@@ -16,7 +16,6 @@ def test_stock_ledger_report(driver):
         login_page.perform_login("Testuser", "Test@1234")
         print("Logged into IMS")
 
-        # --- Step 2: Generate Stock Ledger Report ---
         stock_led_report = StockLedReportPage(driver)
         stock_led_report.generate_stock_ledger_report()
 
