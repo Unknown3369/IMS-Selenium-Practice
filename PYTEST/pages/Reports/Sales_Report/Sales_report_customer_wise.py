@@ -16,7 +16,7 @@ class Sales_report_customer_wise:
       self.reports = (By.XPATH, "//span[contains(text(),'Reports')]")
       self.sales_report = (By.LINK_TEXT, "Sales Report")
       self.sales_report_customer_wise = (By.XPATH, "//span[normalize-space()='Sales Report - Customer Wise']")
-      self.branch_dropdown = (By.XPATH, "//select[@class='form-control input-text ng-untouched ng-pristine ng-valid']")
+      self.branch = (By.XPATH, "//select//option[normalize-space()='ALL']")
       self.run_button = (By.XPATH, "//button[@type='button' and text()='RUN']")
    
    def sale_report_customer_wise(self):
@@ -49,11 +49,10 @@ class Sales_report_customer_wise:
 
    def test_sales_report_customer_wise(self):
       # Branch Selection
-      branch_dropdown = self.wait.until(
-         EC.presence_of_element_located(self.branch_dropdown)
+      branch = self.wait.until(
+         EC.presence_of_element_located(self.branch)
          )
-      select_branch = Select(branch_dropdown)
-      select_branch.select_by_visible_text("ALL")
+      branch.click()
       print("Branch selected successfully!")
 
       # Run report

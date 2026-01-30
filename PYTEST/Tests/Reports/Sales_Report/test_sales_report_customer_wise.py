@@ -1,6 +1,6 @@
 import pytest
 import allure
-from PYTEST.pages.Reports.Sales_report_customer_wise import Sales_report_customer_wise
+from PYTEST.pages.Reports.Sales_Report.Sales_report_customer_wise import Sales_report_customer_wise
 from PYTEST.pages.Login import login
 import time
 import os
