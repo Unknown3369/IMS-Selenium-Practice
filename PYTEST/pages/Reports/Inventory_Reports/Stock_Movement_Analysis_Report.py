@@ -22,7 +22,7 @@ class StockMovementAnalysisReportPage:
         wait = self.wait
         driver = self.driver
 
-        print("🚀 Starting Stock Movement Analysis Report generation...")
+        print("Starting Stock Movement Analysis Report generation...")
 
         try:
 
@@ -44,7 +44,7 @@ class StockMovementAnalysisReportPage:
 
             driver.execute_script("arguments[0].scrollIntoView(true);", inventory_reports)
             self.actions.move_to_element(inventory_reports).pause(0.4).perform()
-            print("✅ Hovered over 'Inventory Reports'.")
+            print("Hovered over 'Inventory Reports'.")
             time.sleep(1)
 
             stock_mv_anal_report = wait.until(
@@ -52,31 +52,31 @@ class StockMovementAnalysisReportPage:
             )
             driver.execute_script("arguments[0].scrollIntoView(true);", stock_mv_anal_report)
             stock_mv_anal_report.click()
-            print("✅ Clicked 'Stock Movement Analysis Report'")
+            print("Clicked 'Stock Movement Analysis Report'")
             time.sleep(2)
 
             supplier_input = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Press Enter or Tab for Account List']"))
             )
             supplier_input.click()
-            supplier_input.send_keys("Sujata Vendor")
             supplier_input.send_keys(Keys.ENTER)
             time.sleep(1)
+            print("Supplier input field clicked and Enter key sent.")
 
             # Double-click supplier in dropdown list
             supplier_option = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//div[@title='Sujata Vendor']"))
+                EC.visibility_of_element_located((By.XPATH, "//div[normalize-space()='11 QA Vendor']"))
             )
             self.actions.double_click(supplier_option).perform()
 
-            print("✅ Supplier 'Sujata Vendor' selected successfully.")
+            print("Supplier selected successfully.")
 
             run_btn = wait.until(
                 EC.element_to_be_clickable(
                     (By.XPATH, "//button[@class='btn btn-info confirm-btn' and contains(text(),'RUN')]"))
             )
             run_btn.click()
-            print("⏳ Report is generating...")
+            print("Report is generating...")
             time.sleep(3)
 
             try:
@@ -85,7 +85,7 @@ class StockMovementAnalysisReportPage:
                 )
                 rows = table.find_elements(By.XPATH, ".//tr")
 
-                print(f"✅ Stock Movement Analysis Report loaded with {len(rows) - 1} rows.")
+                print(f"Stock Movement Analysis Report loaded with {len(rows) - 1} rows.")
 
                 # Screenshot when the table appears
                 screenshot = driver.get_screenshot_as_png()
@@ -95,7 +95,7 @@ class StockMovementAnalysisReportPage:
                     attachment_type=allure.attachment_type.PNG
                 )
 
-                print("📸 Screenshot attached to Allure.")
+                print("Screenshot attached to Allure.")
 
             except TimeoutException:
                 allure.attach(
@@ -103,12 +103,12 @@ class StockMovementAnalysisReportPage:
                     name="Stock_Mv_Analysis_Report_No_Table",
                     attachment_type=allure.attachment_type.PNG
                 )
-                print("⚠️ Table did NOT load — no rows found.")
+                print("Table did NOT load — no rows found.")
 
-            print("🎉 Stock Movement Analysis Report generation completed successfully.")
+            print("Stock Movement Analysis Report generation completed successfully.")
 
         except Exception as e:
-            print(f"❌ Error occurred: {e}")
+            print(f"Error occurred: {e}")
 
             # Screenshot on failure
             allure.attach(
