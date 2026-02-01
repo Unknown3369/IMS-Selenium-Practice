@@ -82,10 +82,10 @@ class OpeningStockReportPage:
             time.sleep(1)
 
             supplier_option = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//div[@title='Sujata Vendor']"))
+                EC.element_to_be_clickable((By.XPATH, "//div[@title='11 QA Vendor ']"))
             )
             self.actions.double_click(supplier_option).perform()
-            print("Selected supplier: Sujata Vendor")
+            print("Selected supplier: 11 QA Vendor")
             time.sleep(1)
 
             # STEP 4: Click RUN
