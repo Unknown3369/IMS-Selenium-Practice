@@ -2,7 +2,7 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Reports.Reorder_Lvl_Stock_Report import ReorderLevelStockReportPage
+from PYTEST.pages.Reports.Inventory_Reports.Reorder_Lvl_Stock_Report import ReorderLevelStockReportPage
 
 
 # noinspection PyBroadException
