@@ -65,10 +65,10 @@ class MaxStockLevelReportPage:
             time.sleep(1)
 
             supplier_option = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//div[@title='Dark Chocolate Vendor']"))
+                EC.element_to_be_clickable((By.XPATH, "//div[@title='11 QA Vendor ']"))
             )
             self.actions.double_click(supplier_option).perform()
-            print("Selected supplier: Dark Chocolate Vendor")
+            print("Selected supplier")
             time.sleep(1)
 
             print("Selecting Warehouse: Main Warehouse...")
