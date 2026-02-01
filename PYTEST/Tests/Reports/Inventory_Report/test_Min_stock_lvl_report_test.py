@@ -2,7 +2,7 @@ import pytest
 import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from PYTEST.pages.Login import login
-from PYTEST.pages.Reports.Min_Stock_Lvl_Report import MinStockLevelReportPage
+from PYTEST.pages.Reports.Inventory_Reports.Min_Stock_Lvl_Report import MinStockLevelReportPage
 
 
 # noinspection PyBroadException
