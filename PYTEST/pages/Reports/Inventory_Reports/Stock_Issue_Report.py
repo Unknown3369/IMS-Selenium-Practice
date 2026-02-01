@@ -44,20 +44,17 @@ class StockIssueReportPage:
             driver.execute_script("arguments[0].scrollIntoView(true);", inventory_reports)
             self.actions.move_to_element(inventory_reports).pause(0.4).perform()
             print("Hovered over 'Inventory Reports'.")
-            time.sleep(1)
-
+            time.sleep(2)
             inv_mov_report = wait.until(
                 EC.element_to_be_clickable((By.LINK_TEXT, "Inventory Movement Report"))
             )
-            driver.execute_script("arguments[0].scrollIntoView(true);", inv_mov_report)
-            inv_mov_report.click()
+            self.actions.move_to_element(inv_mov_report).pause(0.4).perform()
             print("Clicked 'Inventory Movement Report'")
 
             stock_issue_report = wait.until(
                 EC.element_to_be_clickable((By.LINK_TEXT, "Stock Issue Report"))
             )
-            driver.execute_script("arguments[0].scrollIntoView(true);", stock_issue_report)
-            stock_issue_report.click()
+            self.actions.move_to_element(stock_issue_report).pause(0.4).click().perform()
             print("Clicked 'Stock Issue Report'")
             time.sleep(2)
 
