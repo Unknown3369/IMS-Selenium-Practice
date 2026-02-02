@@ -5,6 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import Select
 
 
 # noinspection PyBroadException
@@ -18,107 +19,116 @@ class StockIssueReportPage:
 
     @allure.step("Generate Stock Issue Report for selected From and To Warehouses")
     def generate_stock_issue_report(self):
-        wait = self.wait
         driver = self.driver
+        wait = self.wait
 
-        print("Starting Stock Issue Report generation...")
+        print("Opening Stock Issue Report directly via URL...")
 
         try:
-            print("Navigating to Reports → Inventory Reports → Stock Issue Report...")
-            reports_btn = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
-            )
-            driver.execute_script("arguments[0].scrollIntoView(true);", reports_btn)
-            reports_btn.click()
-            time.sleep(1)
+            time.sleep(5)
+            # --- Step 1: Navigate directly to Stock Issue Report page ---
+            driver.get("https://stc21.webredirect.himshang.com.np/#/pages/reports/stock-issue-report")
 
-            try:
-                inventory_reports = wait.until(
-                    EC.element_to_be_clickable((By.LINK_TEXT, "Inventory Reports"))
+            # Wait for page to load (page-unique element)
+            wait.until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, "//h5[normalize-space()='Stock Issue Report']")
                 )
-            except:
-                inventory_reports = wait.until(
-                    EC.visibility_of_element_located((By.XPATH, "//span[normalize-space()='Inventory Reports']"))
+            )
+            print("Stock Issue Report page loaded.")
+
+            # --- Step 2: Select From Warehouse ---
+            # from_warehouse_dropdown = wait.until(
+            #     EC.element_to_be_clickable((By.XPATH, "(//select[contains(@class,'form-control')])[2]"))
+            # )
+            # from_warehouse_dropdown.click()
+            # time.sleep(2)
+            # print("From Warehouse dropdown clicked")
+
+            # from_warehouse = self.wait.until(
+            #     EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='Main Warehouse']"))
+            # )
+            # from_warehouse.click()
+
+            # wait.until(EC.presence_of_element_located(
+            #     (By.XPATH, "//div[contains(@class,'ng-dropdown-panel')]")
+            # ))
+
+            # option = wait.until(EC.element_to_be_clickable(
+            #     (By.XPATH, "//div[contains(@class,'ng-option') and .//span[normalize-space()='Main Warehouse']]")
+            # ))
+            # driver.execute_script("arguments[0].click();", option)
+            # Select(from_warehouse_dropdown).select_by_visible_text("Main Warehouse")
+            # print("From Warehouse selected")
+            # time.sleep(2)
+            from_warehouse_select = self.wait.until(
+                EC.presence_of_element_located(
+                (By.XPATH, "//label[normalize-space()='From Warehouse:']/following::select[1]")
                 )
-
-            driver.execute_script("arguments[0].scrollIntoView(true);", inventory_reports)
-            self.actions.move_to_element(inventory_reports).pause(0.4).perform()
-            print("Hovered over 'Inventory Reports'.")
-            time.sleep(2)
-            inv_mov_report = wait.until(
-                EC.element_to_be_clickable((By.LINK_TEXT, "Inventory Movement Report"))
             )
-            self.actions.move_to_element(inv_mov_report).pause(0.4).perform()
-            print("Clicked 'Inventory Movement Report'")
-
-            stock_issue_report = wait.until(
-                EC.element_to_be_clickable((By.LINK_TEXT, "Stock Issue Report"))
-            )
-            self.actions.move_to_element(stock_issue_report).pause(0.4).click().perform()
-            print("Clicked 'Stock Issue Report'")
+            select_from = Select(from_warehouse_select)
             time.sleep(2)
 
-            from_warehouse_dropdown = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "(//select[contains(@class,'form-control')])[1]"))
-            )
-            from_warehouse_dropdown.click()
-            main_warehouse_from = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//option[contains(text(),'Main Warehouse')]"))
-            )
-            main_warehouse_from.click()
-            print("From Warehouse selected: Main Warehouse")
-            time.sleep(1)
+            # Debug: print all options (IMPORTANT)
+            for opt in select_from.options:
+                print(f"'{opt.text}'")
 
-            to_warehouse_dropdown = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "(//select[contains(@class,'form-control')])[2]"))
-            )
-            to_warehouse_dropdown.click()
-            test_warehouse_to = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//option[contains(text(),'Test')]"))
-            )
-            test_warehouse_to.click()
-            print("To Warehouse selected: Test")
-            time.sleep(1)
+            select_from.select_by_visible_text("Main Warehouse")
 
+
+            # --- Step 3: Select To Warehouse ---
+            # to_warehouse_dropdown = self.wait.until(
+            #     EC.element_to_be_clickable((By.XPATH, "(//select[contains(@class,'form-control')])[3]"))
+            # )
+            # to_warehouse_dropdown.click()
+            # time.sleep(2)
+            # print("To Warehouse dropdown clicked")
+
+            # to_warehouse = wait.until(
+            #     EC.element_to_be_clickable((By.XPATH, "//span[normalize-space()='IMS Warehouse']"))
+            # )
+            # # self.actions.move_to_element(to_warehouse).pause(0.5).double_click().perform()
+            # to_warehouse.click()
+            # print("To Warehouse selected")
+
+            to_warehouse_select = self.wait.until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//label[normalize-space()='To Warehouse:']/following::select[1]")
+                )
+            )
+
+            select_to = Select(to_warehouse_select)
+            select_to.select_by_visible_text("IMS Warehouse")
+
+
+            # --- Step 4: Click RUN ---
             run_btn = wait.until(
-                EC.element_to_be_clickable((By.XPATH, "//button[contains(@class,'confirm-btn') and text()='RUN']"))
+                EC.element_to_be_clickable(
+                    (By.XPATH, "//button[contains(@class,'confirm-btn') and normalize-space()='RUN']")
+                )
             )
             run_btn.click()
             print("Clicked RUN button")
-            time.sleep(3)
 
-            try:
-                table = wait.until(
-                    EC.presence_of_element_located((By.XPATH, "//table[contains(@class,'table')]"))
-                )
-                rows = table.find_elements(By.XPATH, ".//tr")
-                print(f"Stock Issue Report loaded with {len(rows) - 1} rows.")
+            time.sleep(5)
 
-                # Attach screenshot
-                screenshot = driver.get_screenshot_as_png()
-                allure.attach(
-                    screenshot,
-                    name="Stock_Issue_Report_Table",
-                    attachment_type=allure.attachment_type.PNG
-                )
-                print("Screenshot attached to Allure.")
+            # --- Step 5: Validate table load ---
+            wait.until(
+                EC.presence_of_element_located((By.XPATH, "//tr[contains(@class,'Bold') and contains(@class,'ng-star-inserted')]"))
+            )
+            print("Stock Issue Report generated successfully.")
 
-            except TimeoutException:
-                print("Table did NOT load — no rows found.")
-                allure.attach(
-                    driver.get_screenshot_as_png(),
-                    name="Stock_Issue_Report_No_Table",
-                    attachment_type=allure.attachment_type.PNG
-                )
-
-            print("Stock Issue Report generation completed successfully.")
+            allure.attach(
+                driver.get_screenshot_as_png(),
+                name="Stock_Issue_Report_Success",
+                attachment_type=allure.attachment_type.PNG
+            )
 
         except Exception as e:
             print(f"Error occurred: {e}")
-            # Screenshot on failure
             allure.attach(
                 driver.get_screenshot_as_png(),
                 name="Stock_Issue_Report_Error",
                 attachment_type=allure.attachment_type.PNG
             )
-            raise e
+            raise
