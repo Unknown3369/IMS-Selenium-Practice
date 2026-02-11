@@ -18,7 +18,7 @@ class Login:
 
     def perform_login(self, username: str, password: str):
         # Open the login page
-        self.driver.get("http://stc21.variantqa.himshang.com.np")
+        self.driver.get("http://stc21.webredirect.himshang.com.np")
 
         # Enter username
         username_box = self.wait.until(
