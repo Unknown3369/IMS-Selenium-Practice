@@ -24,7 +24,6 @@ class SalesReportMembershipWisePage:
         print("Starting Sales Report Membership Wise generation...")
 
         try:
-            print("Navigating to Reports → Loyalty & Promotion Report → Sales Report Membership Wise...")
 
             reports_btn = wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(normalize-space(),'Reports')]"))
