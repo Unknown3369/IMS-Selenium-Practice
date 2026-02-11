@@ -86,7 +86,7 @@ class SalesCollectionReportPage:
         # Step 4: Double-click on the specific user 
         print("Selecting user...")
         user_option = wait.until(
-            EC.visibility_of_element_located((By.XPATH, "//div[contains(@title,'Paras') and normalize-space()='Paras']"))
+            EC.visibility_of_element_located((By.XPATH, "//div[@title='Ac' and normalize-space()='Ac']"))
         )
         self.actions.move_to_element(user_option).double_click(user_option).perform()
         print("User selected successfully.")
