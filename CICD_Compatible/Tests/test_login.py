@@ -91,9 +91,7 @@ def test_password_masking(driver: webdriver):
    """Verify password field is masked"""
 
    login_page = login(driver)
-
    login_page.open_login_page()
-
    assert login_page.get_password_field_type() == "password"
 
 # TC-LOGIN-006
