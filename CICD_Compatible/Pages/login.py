@@ -133,6 +133,7 @@ class login:
       time.sleep(1)
       
       logout_btn = self.wait.until(
+         
             EC.element_to_be_clickable(self.main_logout)
       )
       logout_btn.click()
