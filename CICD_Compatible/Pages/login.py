@@ -61,13 +61,13 @@ class login:
 
       # Handle already logged in popup
       try:
-         popup_logout_button = WebDriverWait(self.driver, 20).until(
+         popup_logout_button = WebDriverWait(self.driver, 15).until(
             EC.element_to_be_clickable(self.logout_button)
          )
          popup_logout_button.click()
          print("Detected previous session popup and clicked Logout.")
          time.sleep(5)
-         login_button = WebDriverWait(self.driver, 20).until(
+         login_button = WebDriverWait(self.driver, 15).until(
             EC.element_to_be_clickable(self.login_button)
          )
          login_button.click()

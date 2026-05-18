@@ -28,7 +28,7 @@ from CICD_Compatible.Pages.login import login
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from PYTEST.conftest import driver
+#from CICD_Compatible.conftest import driver
 
 @allure.title("Login to IMS Application")
 @allure.description("This test logs into the IMS application using valid credentials")
