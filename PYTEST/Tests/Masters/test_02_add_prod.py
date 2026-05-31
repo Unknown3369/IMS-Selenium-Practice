@@ -9,6 +9,7 @@ import csv
 import os
 
 def random_name():
+   
    return "prod_" + uuid.uuid4().hex[:8]
 
 def clear_csv(filename="added_products.csv"):

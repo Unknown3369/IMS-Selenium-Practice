@@ -16,13 +16,13 @@ class AddProductCategoryPage:
         self.actions = ActionChains(driver)
 
     # --- Login ---
-    @allure.step("Login to IMS application")
-    def login(self, username, password):
-        self.driver.get("https://redmiims.variantqa.himshang.com.np/#/login")
-        self.wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/app/div/ng-component/div/form/div/div[2]/input"))).send_keys(username)
-        self.driver.find_element(By.XPATH, "/html/body/app/div/ng-component/div/form/div/div[3]/input").send_keys(password)
-        self.driver.find_element(By.XPATH, "//button[normalize-space(text())='Sign In']").click()
-        time.sleep(5)
+    # @allure.step("Login to IMS application")
+    # def login(self, username, password):
+    #     self.driver.get("https://redmiims.variantqa.himshang.com.np/#/login")
+    #     self.wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/app/div/ng-component/div/form/div/div[2]/input"))).send_keys(username)
+    #     self.driver.find_element(By.XPATH, "/html/body/app/div/ng-component/div/form/div/div[3]/input").send_keys(password)
+    #     self.driver.find_element(By.XPATH, "//button[normalize-space(text())='Sign In']").click()
+    #     time.sleep(5)
 
     # --- Navigate to Product Category page ---
     @allure.step("Navigate to Product Category page")

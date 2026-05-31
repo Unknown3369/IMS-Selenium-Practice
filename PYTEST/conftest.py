@@ -6,7 +6,7 @@ from selenium import webdriver
 def driver():
    # Setup Edge in headless mode
    options = webdriver.EdgeOptions()
-   options.add_argument("--headless")
+   # options.add_argument("--headless")
    options.add_argument("--disable-gpu")
    options.add_argument("--no-sandbox")
    options.add_argument("--window-size=1500,1000")
